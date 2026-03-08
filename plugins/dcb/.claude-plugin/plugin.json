@@ -1,0 +1,15 @@
+{
+  "name": "dcb",
+  "version": "1.0.0",
+  "description": "Dynamic Consistency Boundary (DCB) for event-driven systems. Use when implementing event sourcing with cross-entity rules, replacing rigid aggregates with flexible query-based consistency, working with KurrentDB/Axon Server/EventSourcingDB, or refactoring from traditional aggregate-based event sourcing.",
+  "keywords": [
+    "dcb",
+    "event-sourcing",
+    "consistency",
+    "cqrs",
+    "kurrentdb"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}

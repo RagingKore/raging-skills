@@ -1,0 +1,16 @@
+{
+  "name": "crawl4ai",
+  "version": "0.7.4",
+  "description": "Complete toolkit for web crawling and data extraction using Crawl4AI. Use when scraping websites, extracting structured data, handling JavaScript-heavy pages, crawling multiple URLs, or building automated web data pipelines. Includes optimized extraction patterns with schema generation for efficient, LLM-free extraction.",
+  "keywords": [
+    "crawl4ai",
+    "web-crawling",
+    "scraping",
+    "data-extraction",
+    "web-scraping",
+    "automation"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "name": "raging-skills",
+  "description": "Claude Code Marketplace with a collection of high-quality plugins for .NET development, architecture, event sourcing, diagrams, and skill development. Curated by Sérgio Silveira with a focus on expert-level skills and practical utility. Explore plugins for C# coding, Akka.NET, KurrentDB, Mermaid diagrams, excalidraw generation, domain-driven design, and more. Each plugin includes comprehensive skills and commands to enhance your Claude Code experience.",
+  "license": "MIT",
+  "owner": {
+    "name": "Sérgio Silveira",
+    "url": "https://github.com/ragingkore"
+  },
+  "repository": "https://github.com/ragingkore/raging-skills",
+  "plugins": [
+    { "name": "dotnet", "source": "./plugins/dotnet" },
+    { "name": "conventional-commits", "source": "./plugins/conventional-commits" },
+    { "name": "domain-driven-design", "source": "./plugins/domain-driven-design" },
+    { "name": "dcb", "source": "./plugins/dcb" },
+    { "name": "mermaid", "source": "./plugins/mermaid" },
+    { "name": "beautiful-mermaid", "source": "./plugins/beautiful-mermaid" },
+    { "name": "excalidraw", "source": "./plugins/excalidraw" },
+    { "name": "kurrentdb", "source": "./plugins/kurrentdb" },
+    { "name": "buf", "source": "./plugins/buf" },
+    { "name": "dotnet-scripts", "source": "./plugins/dotnet-scripts" },
+    { "name": "crawl4ai", "source": "./plugins/crawl4ai" },
+    { "name": "keep-a-changelog", "source": "./plugins/keep-a-changelog" },
+    { "name": "proto-style", "source": "./plugins/proto-style" },
+    { "name": "markdown-style", "source": "./plugins/markdown-style" },
+    { "name": "incrementalist", "source": "./plugins/incrementalist" },
+    { "name": "astro", "source": "./plugins/astro" },
+    { "name": "bullseye", "source": "./plugins/bullseye" },
+    { "name": "project-setup", "source": "./plugins/project-setup" },
+    { "name": "claude-output-style", "source": "./plugins/claude-output-style" }
+  ]
+}

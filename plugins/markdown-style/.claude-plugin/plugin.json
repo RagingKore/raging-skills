@@ -1,0 +1,16 @@
+{
+  "name": "markdown-style",
+  "version": "1.0.0",
+  "description": "Markdown writing conventions. Use before writing or editing any .md file, plan, doc, PR description, commit message, report, or any markdown content. Covers prose, structure, links, lists, code blocks, and tables.",
+  "keywords": [
+    "markdown",
+    "style-guide",
+    "formatting",
+    "documentation",
+    "writing",
+    "conventions"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}

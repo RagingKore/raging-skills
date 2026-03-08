@@ -1,0 +1,15 @@
+{
+  "name": "keep-a-changelog",
+  "version": "1.0.0",
+  "description": "Keep a Changelog 1.1.0 format guide. Use when creating, updating, or maintaining CHANGELOG.md files, cutting releases, managing [Unreleased] sections, or formatting changelog entries with proper section types (Added, Changed, Deprecated, Removed, Fixed, Security).",
+  "keywords": [
+    "changelog",
+    "keep-a-changelog",
+    "semver",
+    "release-notes",
+    "versioning"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}

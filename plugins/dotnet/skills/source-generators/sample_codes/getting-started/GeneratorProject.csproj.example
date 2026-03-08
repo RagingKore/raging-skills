@@ -1,0 +1,32 @@
+<!-- Example .csproj for a source generator project -->
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- MUST target netstandard2.0 - the compiler host requires it -->
+    <TargetFramework>netstandard2.0</TargetFramework>
+
+    <!-- Use latest C# features (C# 14) even on netstandard2.0 -->
+    <LangVersion>latest</LangVersion>
+
+    <!-- Required: marks this as a Roslyn component -->
+    <IsRoslynComponent>true</IsRoslynComponent>
+
+    <!-- Required: enforces analyzer/generator rules -->
+    <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+
+    <!-- Nullable reference types -->
+    <Nullable>enable</Nullable>
+
+    <!-- Implicit usings for convenience -->
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Core Roslyn dependency - use PrivateAssets to prevent leaking -->
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.12.0" PrivateAssets="all" />
+
+    <!-- Provides [Generator] attribute and analyzer rules -->
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0" PrivateAssets="all" />
+  </ItemGroup>
+
+</Project>

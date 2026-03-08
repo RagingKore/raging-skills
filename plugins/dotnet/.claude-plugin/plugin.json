@@ -1,0 +1,27 @@
+{
+  "name": "dotnet",
+  "version": "1.5.0",
+  "description": "Comprehensive .NET development skills including C# 14 code generation, high-performance logging, configuration and options pattern, dependency injection (lifetimes, keyed services, decorators, anti-patterns), localization with .resx files, source generators, and telemetry. Use when writing C#, implementing .NET features, adding logging, configuring apps, registering services, setting up dependency injection, fixing lifetime mismatches, validating options, localizing apps, or adding telemetry, tracing, metrics, and observability.",
+  "keywords": [
+    "csharp",
+    "dotnet",
+    "logging",
+    "configuration",
+    "options-pattern",
+    "dependency-injection",
+    "di",
+    "service-collection",
+    "keyed-services",
+    "localization",
+    "source-generators",
+
+    "telemetry",
+    "opentelemetry",
+    "tracing",
+    "metrics",
+    "observability"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}

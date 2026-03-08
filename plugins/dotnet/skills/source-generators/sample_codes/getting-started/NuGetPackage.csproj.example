@@ -1,0 +1,47 @@
+<!-- Example .csproj for packaging a source generator as a NuGet package -->
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <IsRoslynComponent>true</IsRoslynComponent>
+    <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+    <Nullable>enable</Nullable>
+
+    <!-- === NuGet Package Metadata === -->
+    <PackageId>MyCompany.AutoToString</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Your Name</Authors>
+    <Description>Compile-time ToString() generator. AOT and trimming safe.</Description>
+    <PackageTags>source-generator;roslyn;codegen;aot</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+
+    <!-- === Critical Packaging Settings === -->
+
+    <!-- Do NOT put the DLL in lib/ - it's not a runtime dependency -->
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+
+    <!-- Do NOT expose Roslyn as a transitive dependency -->
+    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+
+    <!-- Mark as development-only dependency -->
+    <DevelopmentDependency>true</DevelopmentDependency>
+
+    <!-- Suppress NuGet warning about missing lib/ folder -->
+    <NoPackageAnalysis>true</NoPackageAnalysis>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.12.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0" PrivateAssets="all" />
+  </ItemGroup>
+
+  <!-- Place the generator DLL in the analyzers folder -->
+  <ItemGroup>
+    <None Include="$(OutputPath)\$(AssemblyName).dll"
+          Pack="true"
+          PackagePath="analyzers/dotnet/cs"
+          Visible="false" />
+  </ItemGroup>
+
+</Project>

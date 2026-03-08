@@ -1,0 +1,6 @@
+<Project>
+  <!-- Isolate file-based apps from repo-level build configuration (CPM, shared packages) -->
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+</Project>

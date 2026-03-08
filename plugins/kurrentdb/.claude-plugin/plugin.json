@@ -1,0 +1,21 @@
+{
+  "name": "kurrentdb",
+  "version": "1.0.0",
+  "description": "Master KurrentDB (formerly EventStore) event-native database development with expert-level guidance. Use when writing event sourcing code, working with KurrentDB streams, projections, subscriptions, connectors, indexes, or the .NET KurrentDB.Client API. Covers appending and reading events, optimistic concurrency, catch-up and persistent subscriptions, server-side JavaScript projections, secondary and user-defined indexes, connectors, stream operations, multi-stream atomic appends, server configuration, security, and event-driven architecture patterns.",
+  "keywords": [
+    "kurrentdb",
+    "eventstore",
+    "event-sourcing",
+    "event-store",
+    "event-driven",
+    "cqrs",
+    "streams",
+    "projections",
+    "subscriptions",
+    "connectors",
+    "grpc"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "name": "proto-style",
+  "version": "1.0.0",
+  "description": "Protocol Buffer style conventions for edition 2023, based on Google AIPs. Use when writing or editing .proto files, reviewing protobuf definitions, designing gRPC APIs, adding new messages/fields/enums, or migrating proto3 files to edition 2023.",
+  "keywords": [
+    "protobuf",
+    "protocol-buffers",
+    "proto3",
+    "edition-2023",
+    "grpc",
+    "style-guide",
+    "aip",
+    "api-design"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
+    "CLAUDE_CODE_DISABLE_AUTO_MEMORY": "0"
+  },
+  "includeCoAuthoredBy": false,
+  "spinnerTipsEnabled": false,
+  "permissions": {
+    "allow": [
+      "Bash",
+      "Edit",
+      "Glob",
+      "Grep",
+      "Read",
+      "Task",
+      "WebFetch",
+      "WebSearch",
+      "Write",
+
+      "mcp__plugin_context7_context7__*",
+      "mcp__plugin_microsoft-docs_microsoft-learn__*",
+      "mcp__rider__*",
+
+      "Skill(dotnet-nuget-proxy:*)",
+      "Skill(microsoft-docs:*)"
+    ],
+    "deny": [
+      "Read(./**/*.key)",
+      "Read(./**/*.p12)",
+      "Read(./**/*.pem)",
+      "Read(./**/*.pfx)",
+      "Read(./**/*credential*)",
+      "Read(./**/*password*)",
+      "Read(./**/*secret*)",
+      "Read(./**/*token*.json)",
+      "Read(./**/launchSettings.json)",
+      "Read(./**/secrets.json)",
+      "Read(./**/secrets/**)",
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./appsettings.*.Local.json)",
+      "Read(./appsettings.Development.json)",
+      "Read(./secrets.json)",
+
+      "mcp__rider__execute_run_configuration",
+      "mcp__rider__get_run_configurations",
+      "mcp__rider__execute_terminal_command"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledPlugins": {
+    "context7@claude-plugins-official": true,
+    "microsoft-docs@microsoft-docs-marketplace": true
+  },
+  "extraKnownMarketplaces": {
+    "dotnet-nuget-proxy": {
+      "source": {
+        "source": "github",
+        "repo": "logiclabs/dotnet-nuget-proxy-skill"
+      }
+    },
+    "microsoft-docs-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "microsoftdocs/mcp"
+      }
+    }
+  }
+}

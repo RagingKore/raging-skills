@@ -1,0 +1,18 @@
+{
+  "name": "bullseye",
+  "version": "1.0.0",
+  "description": "Build automation with Bullseye target dependency graphs and SimpleExec. Create .NET build scripts as dotnet file-based scripts with no project boilerplate. Use when creating build.cs files, defining build targets, automating build/test/pack/publish steps, using forEach for test matrices, integrating System.CommandLine with Bullseye, or comparing Cake/Nuke/FAKE with simpler alternatives.",
+  "keywords": [
+    "bullseye",
+    "simpleexec",
+    "build-automation",
+    "build-scripts",
+    "dotnet",
+    "targets",
+    "dependency-graph",
+    "system-commandline"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}

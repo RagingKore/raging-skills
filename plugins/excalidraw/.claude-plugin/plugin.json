@@ -1,0 +1,19 @@
+{
+  "name": "excalidraw",
+  "version": "1.1.0",
+  "description": "Generate architecture diagrams as .excalidraw files from codebase analysis. Use when creating architecture diagrams, system diagrams, visualizing codebase structure, generating excalidraw files, or drawing infrastructure layouts.",
+  "keywords": [
+    "excalidraw",
+    "diagram",
+    "architecture",
+    "visualization",
+    "infrastructure",
+    "system-design"
+  ],
+  "skills": [
+    "./skills/"
+  ],
+  "agents": [
+    "./agents/excalidraw.md"
+  ]
+}

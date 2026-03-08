@@ -1,0 +1,15 @@
+{
+  "name": "domain-driven-design",
+  "version": "1.0.0",
+  "description": "Domain-Driven Design strategic and tactical patterns. Use when designing aggregates, entities, value objects, event sourcing, CQRS, bounded contexts, or complex business domains.",
+  "keywords": [
+    "ddd",
+    "domain-driven-design",
+    "aggregates",
+    "cqrs",
+    "event-sourcing"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}

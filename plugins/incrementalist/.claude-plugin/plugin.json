@@ -1,0 +1,18 @@
+{
+  "name": "incrementalist",
+  "version": "1.0.0",
+  "description": "Integrate Incrementalist into .NET monorepos for git-based incremental builds and testing in GitHub Actions CI/CD pipelines. Use when optimizing CI build times, setting up selective testing, writing GitHub Actions workflows for .NET solutions, or configuring incrementalist.json.",
+  "keywords": [
+    "incrementalist",
+    "dotnet",
+    "monorepo",
+    "ci-cd",
+    "github-actions",
+    "incremental-build",
+    "selective-testing",
+    "affected-projects"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}

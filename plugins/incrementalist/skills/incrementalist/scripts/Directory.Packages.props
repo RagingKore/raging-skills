@@ -1,0 +1,3 @@
+<Project>
+  <!-- Block CPM inheritance from repo root for file-based apps -->
+</Project>

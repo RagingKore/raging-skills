@@ -1,0 +1,25 @@
+{
+  "name": "buf",
+  "version": "1.0.0",
+  "description": "Comprehensive Buf CLI and Protobuf style guide plugin. Use when working with Protocol Buffers, buf build, buf lint, buf format, buf generate, buf breaking, buf.yaml configuration, .proto file style, naming conventions, code generation, managed mode, or migrating from protoc to Buf.",
+  "keywords": [
+    "buf",
+    "protobuf",
+    "grpc",
+    "proto3",
+    "lint",
+    "breaking-changes",
+    "code-generation",
+    "style-guide",
+    "connect",
+    "bsr"
+  ],
+  "skills": [
+    "./skills/"
+  ],
+  "agents": [
+    "./agents/buf-migration-helper.md",
+    "./agents/buf-workspace-designer.md",
+    "./agents/protobuf-reviewer.md"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "project-setup",
+  "version": "1.0.0",
+  "description": "Generate or update .project/ documentation structure. Use when initializing a new project, onboarding, or when project context files are missing, empty or outdated.",
+  "keywords": [
+    "project",
+    "documentation",
+    "onboarding",
+    "project-context",
+    "setup"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}

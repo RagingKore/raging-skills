@@ -1,0 +1,39 @@
+[
+  {
+    "id": "kubernetes-operator",
+    "basePath": "server",
+    "group": "Kubernetes Operator",
+    "versions": [
+      {
+        "path": "kubernetes-operator/v1.5.0",
+        "version": "v1.5.0",
+        "startPage": "getting-started/"
+      },
+      {
+        "path": "kubernetes-operator/v1.4.3",
+        "version": "v1.4.3",
+        "startPage": "getting-started/"
+      },
+      {
+        "path": "kubernetes-operator/v1.3.1",
+        "version": "v1.3.1",
+        "startPage": "getting-started/"
+      },
+      {
+        "path": "kubernetes-operator/v1.2.0",
+        "version": "v1.2.0",
+        "startPage": "getting-started/"
+      },
+      {
+        "path": "kubernetes-operator/v1.1.0",
+        "version": "v1.1.0",
+        "startPage": "getting-started/"
+      },
+      {
+        "path": "kubernetes-operator/v1.0.0",
+        "version": "v1.0.0",
+        "startPage": "getting-started/"
+      }
+    ]
+  }
+]

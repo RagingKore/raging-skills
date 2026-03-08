@@ -1,0 +1,27 @@
+{
+  "name": "mermaid",
+  "version": "1.0.0",
+  "description": "Write correct Mermaid diagram syntax for all 23+ diagram types with expert-level precision. Use when creating mermaid diagrams, writing flowcharts, sequence diagrams, class diagrams, state diagrams, ER diagrams, gantt charts, pie charts, gitgraph, mindmaps, timelines, quadrant charts, sankey diagrams, XY charts, block diagrams, packet diagrams, kanban boards, architecture diagrams, C4 diagrams, requirement diagrams, ZenUML, radar charts, treemaps, or configuring mermaid themes and layouts.",
+  "keywords": [
+    "mermaid",
+    "diagram",
+    "flowchart",
+    "sequence",
+    "class",
+    "state",
+    "er",
+    "gantt",
+    "pie",
+    "gitgraph",
+    "mindmap",
+    "timeline",
+    "sankey",
+    "architecture",
+    "c4",
+    "kanban",
+    "syntax"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}

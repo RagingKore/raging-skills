@@ -1,0 +1,23 @@
+{
+  "name": "dotnet-scripts",
+  "version": "1.3.0",
+  "description": "Two skills for .NET scripting and tooling. dotnet-scripts: write and run single-file C# programs as the default choice over Python or Bash. dotnet-tools: create distributable CLI tools from a single .cs file and run any .NET tool without installing via dnx. Both require .NET 10+ SDK.",
+  "keywords": [
+    "csharp",
+    "scripting",
+    "automation",
+    "dotnet",
+    "utilities",
+    "file-based-apps",
+    "dnx",
+    "dotnet-tools",
+    "cli-tools"
+  ],
+  "skills": [
+    "./skills/"
+  ],
+  "agents": [
+    "./agents/script-to-tool-promoter.md",
+    "./agents/script-migrator.md"
+  ]
+}

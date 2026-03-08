@@ -1,0 +1,15 @@
+{
+  "name": "beautiful-mermaid",
+  "version": "1.0.0",
+  "description": "Render Mermaid diagrams as ASCII art or themed SVG files using beautiful-mermaid via bun. Use when creating diagrams, flowcharts, sequence diagrams, class diagrams, ER diagrams, state machines, visualizing architecture, or generating ASCII art.",
+  "keywords": [
+    "mermaid",
+    "diagram",
+    "ascii",
+    "svg",
+    "visualization"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}

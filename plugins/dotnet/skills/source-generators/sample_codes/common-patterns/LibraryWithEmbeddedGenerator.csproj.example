@@ -1,0 +1,59 @@
+<!--
+  Example: Library that ships with an embedded source generator.
+  Consumers reference this library normally and get generated code automatically.
+  The generator DLL is invisible to consumers at runtime.
+-->
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net9.0;net10.0</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+
+    <!-- Library metadata -->
+    <PackageId>MyCompany.MyLibrary</PackageId>
+    <Version>2.0.0</Version>
+    <Description>My library with compile-time code generation. AOT-safe.</Description>
+
+    <!-- Mark as trimmable and AOT-compatible -->
+    <IsTrimmable>true</IsTrimmable>
+    <IsAotCompatible>true</IsAotCompatible>
+    <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
+    <EnableAotAnalyzer>true</EnableAotAnalyzer>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!--
+      Reference the generator as an analyzer.
+      - OutputItemType="Analyzer": Loaded as Roslyn component at compile time
+      - ReferenceOutputAssembly="false": NOT shipped as runtime dependency
+      - PrivateAssets="all": Not exposed to downstream consumers
+    -->
+    <ProjectReference Include="..\MyLibrary.Generator\MyLibrary.Generator.csproj"
+                      PrivateAssets="all"
+                      OutputItemType="Analyzer"
+                      ReferenceOutputAssembly="false" />
+  </ItemGroup>
+
+  <!--
+    Bundle the generator DLL inside the NuGet package's analyzer folder.
+    This makes the generator available when consumers install via NuGet.
+  -->
+  <ItemGroup>
+    <None Include="..\MyLibrary.Generator\bin\$(Configuration)\netstandard2.0\MyLibrary.Generator.dll"
+          Pack="true"
+          PackagePath="analyzers/dotnet/cs"
+          Visible="false" />
+  </ItemGroup>
+
+  <!--
+    Optional: Ship MSBuild props to expose configuration options.
+    Consumers can set these properties in their .csproj to customize generation.
+  -->
+  <ItemGroup>
+    <None Include="build\MyCompany.MyLibrary.props"
+          Pack="true"
+          PackagePath="build" />
+  </ItemGroup>
+
+</Project>

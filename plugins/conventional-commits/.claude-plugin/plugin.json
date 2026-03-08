@@ -1,0 +1,14 @@
+{
+  "name": "conventional-commits",
+  "version": "1.0.0",
+  "description": "Conventional Commits v1.0.0 specification with semantic versioning integration. Use when creating commits, writing commit messages, or maintaining changelog standards.",
+  "keywords": [
+    "git",
+    "commits",
+    "conventional-commits",
+    "semver"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}
