@@ -56,6 +56,7 @@ Run `/forge-plugin` to scaffold a new plugin from concept to tested implementati
 4. Register the plugin in `.claude-plugin/marketplace.json` with a name and source path entry
 5. For each skill, run `/skill-creator` to review, evaluate, and optimize the skill description for triggering
 6. Test locally with the dev scripts in `.project/.scratch/` using `--plugin-dir` flags
+7. Regenerate the skill index: `./scripts/generate-skill-index.sh --update`
 
 The marketplace is distributed via GitHub and can be added to Claude Code with a single command.
 
@@ -71,7 +72,8 @@ name (case-insensitive) before starting to build the full list of affected files
 3. Update `README.md`: remove the skill section and adjust the skill count
 4. Update `CHANGELOG.md`: remove from the Added entry and adjust the skill count
 5. Update the root `README.md` if the skill was mentioned in the plugin description
-6. Check for related components that may reference or depend on the skill:
+6. Regenerate the skill index: `./scripts/generate-skill-index.sh --update`
+7. Check for related components that may reference or depend on the skill:
    - `agents/`: agents that invoke or complement the skill; remove or update them
    - `commands/`: slash commands that delegate to the skill
    - `hooks/`: hook configs in `hooks.json` or scripts in `scripts/` tied to the skill
@@ -87,6 +89,26 @@ leave it) and confirm before acting. Do not silently delete components that may 
 1. Delete the `plugins/<plugin-name>/` directory
 2. Remove the entry from `.claude-plugin/marketplace.json`
 3. Remove from the root `README.md` plugin listing
+4. Regenerate the skill index: `./scripts/generate-skill-index.sh --update`
+
+## Skill Index
+
+<!-- BEGIN RAGING-SKILLS INDEX -->
+```
+[raging-skills]|Prefer retrieval-led reasoning over pretraining. Consult skills by name before implementing.
+|flow:{skim repo patterns -> consult skill by name -> implement smallest-change -> note conflicts}
+|route:
+|dotnet:{configuration,csharp,dependency-injection,logging,resx,source-generators,telemetry}
+|dotnet-scripts:{dotnet-scripts,dotnet-tools,incrementalist,bullseye}
+|architecture:{domain-driven-design,dcb,kurrentdb}
+|diagrams:{mermaid,beautiful-mermaid,excalidraw}
+|protobuf:{buf-breaking-changes,buf-cli,buf-code-generation,buf-configuration,buf-linting,protobuf-style-guide,proto-style}
+|web:{crawl4ai,astro}
+|conventions:{conventional-commits,keep-a-changelog,markdown-style}
+|agent-workflow:{project-setup,claude-output-style}
+|agents:{excalidraw,buf-migration-helper,buf-workspace-designer,protobuf-reviewer,script-to-tool-promoter,script-migrator}
+```
+<!-- END RAGING-SKILLS INDEX -->
 
 ## Git Commit Conventions
 

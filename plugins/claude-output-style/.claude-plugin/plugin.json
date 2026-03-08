@@ -1,5 +1,11 @@
 {
   "name": "claude-output-style",
   "description": "Create and review custom output styles for Claude Code. Teaches the format, conventions, and patterns for effective output styles that control how Claude formats responses.",
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "skills": [
+    "./skills/"
+  ],
+  "agents": [
+    "./agents/output-style-reviewer.md"
+  ]
 }
