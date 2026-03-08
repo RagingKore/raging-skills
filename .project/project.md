@@ -87,3 +87,7 @@ leave it) and confirm before acting. Do not silently delete components that may 
 1. Delete the `plugins/<plugin-name>/` directory
 2. Remove the entry from `.claude-plugin/marketplace.json`
 3. Remove from the root `README.md` plugin listing
+
+## Git Commit Conventions
+
+Follow the conventions in [.github/git-commit-instructions.md](.github/git-commit-instructions.md).
