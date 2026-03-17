@@ -14,7 +14,8 @@ description: |
 
 # .NET Dependency Injection Expert
 
-Comprehensive guidance for `Microsoft.Extensions.DependencyInjection` in .NET 9+ console apps, ASP.NET Core, and worker services.
+Comprehensive guidance for `Microsoft.Extensions.DependencyInjection` in .NET 9+ console apps, ASP.NET Core, and worker
+services.
 
 ## Quick Decision Matrix
 
@@ -54,7 +55,8 @@ Transient  * * * * * * * * * * * * * * * * * *
 | **Scoped**        | Scoped, Singleton            | —                                       |
 | **Singleton**     | Singleton only               | Scoped, Transient (captive dependency!) |
 
-> **Captive dependency**: A shorter-lived service captured by a longer-lived one. The scoped/transient service is held alive beyond its intended lifetime, causing stale data, connection leaks, and thread-safety bugs.
+> **Captive dependency**: A shorter-lived service captured by a longer-lived one. The scoped/transient service is held
+> alive beyond its intended lifetime, causing stale data, connection leaks, and thread-safety bugs.
 
 ### Enable Scope Validation (Development)
 
@@ -229,7 +231,9 @@ public sealed class OrderService(
 var repo = sp.GetRequiredService<IRepository<Order>>();
 ```
 
-**Closed registrations take priority over open generic registrations.** If both `IRepository<>` → `EfRepository<>` and `IRepository<Order>` → `CustomOrderRepository` are registered, resolving `IRepository<Order>` returns `CustomOrderRepository`.
+**Closed registrations take priority over open generic registrations.** If both `IRepository<>` → `EfRepository<>` and
+ `IRepository<Order>` → `CustomOrderRepository` are registered, resolving `IRepository<Order>` returns
+ `CustomOrderRepository`.
 
 ### TryAdd Semantics (Library Authors)
 
@@ -407,7 +411,8 @@ await service.DoWorkAsync();
 
 **Package:** `Microsoft.Extensions.DependencyInjection.AutoActivation`
 
-By default, singletons are lazy — not instantiated until first resolved. Auto-activation forces singleton construction **at host startup**, eliminating the need for boilerplate `IHostedService` warmup classes.
+By default, singletons are lazy — not instantiated until first resolved. Auto-activation forces singleton construction
+**at host startup**, eliminating the need for boilerplate `IHostedService` warmup classes.
 
 ```csharp
 using Microsoft.Extensions.DependencyInjection;
@@ -429,7 +434,8 @@ builder.Services.ActivateKeyedSingleton<ICache>("secondary");
 builder.Services.TryAddActivatedSingleton<ICacheWarmer, CacheWarmer>();
 ```
 
-Internally it registers an `IHostedService` that resolves all marked singletons during `StartAsync`, before the app begins processing requests. This replaces the manual pattern:
+Internally it registers an `IHostedService` that resolves all marked singletons during `StartAsync`, before the app
+begins processing requests. This replaces the manual pattern:
 
 ```csharp
 // BEFORE: boilerplate hosted service just to trigger construction
@@ -445,7 +451,8 @@ public class CacheWarmerInitializer(ICacheWarmer warmer) : IHostedService {
 builder.Services.AddActivatedSingleton<ICacheWarmer, CacheWarmer>();
 ```
 
-**Use when:** A singleton must be alive at startup — cache warming, connection pooling, metrics collectors, subscription listeners, or any service with side effects in its constructor.
+**Use when:** A singleton must be alive at startup — cache warming, connection pooling, metrics collectors, subscription
+ listeners, or any service with side effects in its constructor.
 
 ## Anti-Patterns and Pitfalls
 

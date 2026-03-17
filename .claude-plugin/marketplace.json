@@ -1,6 +1,6 @@
 {
   "name": "raging-skills",
-  "description": "Claude Code Marketplace with a collection of high-quality plugins for .NET development, architecture, event sourcing, diagrams, and skill development. Curated by Sérgio Silveira with a focus on expert-level skills and practical utility. Explore plugins for C# coding, Akka.NET, KurrentDB, Mermaid diagrams, excalidraw generation, domain-driven design, and more. Each plugin includes comprehensive skills and commands to enhance your Claude Code experience.",
+  "description": "A collection of high-quality plugins for .NET development, architecture, event sourcing, diagrams, and skill development. Curated by Sérgio Silveira with a focus on expert-level skills and practical utility. Explore plugins for C# coding, Akka.NET, KurrentDB, Mermaid diagrams, excalidraw generation, domain-driven design, and more. Each plugin includes comprehensive skills and commands to enhance your Claude Code experience.",
   "license": "MIT",
   "owner": {
     "name": "Sérgio Silveira",
@@ -8,24 +8,258 @@
   },
   "repository": "https://github.com/ragingkore/raging-skills",
   "plugins": [
-    { "name": "dotnet", "source": "./plugins/dotnet" },
-    { "name": "conventional-commits", "source": "./plugins/conventional-commits" },
-    { "name": "domain-driven-design", "source": "./plugins/domain-driven-design" },
-    { "name": "dcb", "source": "./plugins/dcb" },
-    { "name": "mermaid", "source": "./plugins/mermaid" },
-    { "name": "beautiful-mermaid", "source": "./plugins/beautiful-mermaid" },
-    { "name": "excalidraw", "source": "./plugins/excalidraw" },
-    { "name": "kurrentdb", "source": "./plugins/kurrentdb" },
-    { "name": "buf", "source": "./plugins/buf" },
-    { "name": "dotnet-scripts", "source": "./plugins/dotnet-scripts" },
-    { "name": "crawl4ai", "source": "./plugins/crawl4ai" },
-    { "name": "keep-a-changelog", "source": "./plugins/keep-a-changelog" },
-    { "name": "proto-style", "source": "./plugins/proto-style" },
-    { "name": "markdown-style", "source": "./plugins/markdown-style" },
-    { "name": "incrementalist", "source": "./plugins/incrementalist" },
-    { "name": "astro", "source": "./plugins/astro" },
-    { "name": "bullseye", "source": "./plugins/bullseye" },
-    { "name": "project-setup", "source": "./plugins/project-setup" },
-    { "name": "claude-output-style", "source": "./plugins/claude-output-style" }
+    {
+      "name": "dotnet",
+      "description": "C# 14, logging, configuration, DI, localization, source generators, and telemetry for .NET development",
+      "author": {
+        "name": "Sérgio Silveira",
+        "url": "https://github.com/ragingkore"
+      },
+      "source": "./plugins/dotnet",
+      "category": "development",
+      "homepage": "https://github.com/ragingkore/raging-skills/tree/main/plugins/dotnet"
+    },
+    {
+      "name": "conventional-commits",
+      "description": "Conventional Commits v1.0.0 with semantic versioning integration",
+      "author": {
+        "name": "Sérgio Silveira",
+        "url": "https://github.com/ragingkore"
+      },
+      "source": "./plugins/conventional-commits",
+      "category": "productivity",
+      "homepage": "https://github.com/ragingkore/raging-skills/tree/main/plugins/conventional-commits"
+    },
+    {
+      "name": "domain-driven-design",
+      "description": "DDD strategic and tactical patterns for aggregates, entities, value objects, and CQRS",
+      "author": {
+        "name": "Sérgio Silveira",
+        "url": "https://github.com/ragingkore"
+      },
+      "source": "./plugins/domain-driven-design",
+      "category": "development",
+      "homepage": "https://github.com/ragingkore/raging-skills/tree/main/plugins/domain-driven-design"
+    },
+    {
+      "name": "dcb",
+      "description": "Dynamic Consistency Boundary for event-driven systems with flexible query-based consistency",
+      "author": {
+        "name": "Sérgio Silveira",
+        "url": "https://github.com/ragingkore"
+      },
+      "source": "./plugins/dcb",
+      "category": "development",
+      "homepage": "https://github.com/ragingkore/raging-skills/tree/main/plugins/dcb"
+    },
+    {
+      "name": "mermaid",
+      "description": "Correct Mermaid diagram syntax for all 23+ diagram types",
+      "author": {
+        "name": "Sérgio Silveira",
+        "url": "https://github.com/ragingkore"
+      },
+      "source": "./plugins/mermaid",
+      "category": "development",
+      "homepage": "https://github.com/ragingkore/raging-skills/tree/main/plugins/mermaid"
+    },
+    {
+      "name": "beautiful-mermaid",
+      "description": "Render Mermaid diagrams as ASCII art or themed SVG files",
+      "author": {
+        "name": "Sérgio Silveira",
+        "url": "https://github.com/ragingkore"
+      },
+      "source": "./plugins/beautiful-mermaid",
+      "category": "development",
+      "homepage": "https://github.com/ragingkore/raging-skills/tree/main/plugins/beautiful-mermaid"
+    },
+    {
+      "name": "excalidraw",
+      "description": "Generate Excalidraw diagram JSON files that make visual arguments — architecture, workflows, concepts, and more",
+      "author": {
+        "name": "Sérgio Silveira",
+        "url": "https://github.com/ragingkore"
+      },
+      "source": "./plugins/excalidraw",
+      "category": "development",
+      "homepage": "https://github.com/ragingkore/raging-skills/tree/main/plugins/excalidraw"
+    },
+    {
+      "name": "kurrentdb",
+      "description": "KurrentDB event-native database development with streams, projections, and subscriptions",
+      "author": {
+        "name": "Sérgio Silveira",
+        "url": "https://github.com/ragingkore"
+      },
+      "source": "./plugins/kurrentdb",
+      "category": "database",
+      "homepage": "https://github.com/ragingkore/raging-skills/tree/main/plugins/kurrentdb"
+    },
+    {
+      "name": "buf",
+      "description": "Buf CLI and Protobuf style guide for linting, code generation, and breaking change detection",
+      "author": {
+        "name": "Sérgio Silveira",
+        "url": "https://github.com/ragingkore"
+      },
+      "source": "./plugins/buf",
+      "category": "development",
+      "homepage": "https://github.com/ragingkore/raging-skills/tree/main/plugins/buf"
+    },
+    {
+      "name": "dotnet-scripts",
+      "description": "Write and run single-file C# programs and create distributable .NET CLI tools",
+      "author": {
+        "name": "Sérgio Silveira",
+        "url": "https://github.com/ragingkore"
+      },
+      "source": "./plugins/dotnet-scripts",
+      "category": "development",
+      "homepage": "https://github.com/ragingkore/raging-skills/tree/main/plugins/dotnet-scripts"
+    },
+    {
+      "name": "crawl4ai",
+      "description": "Web crawling and structured data extraction using Crawl4AI",
+      "author": {
+        "name": "Sérgio Silveira",
+        "url": "https://github.com/ragingkore"
+      },
+      "source": "./plugins/crawl4ai",
+      "category": "development",
+      "homepage": "https://github.com/ragingkore/raging-skills/tree/main/plugins/crawl4ai"
+    },
+    {
+      "name": "keep-a-changelog",
+      "description": "Keep a Changelog 1.1.0 format for maintaining CHANGELOG.md files",
+      "author": {
+        "name": "Sérgio Silveira",
+        "url": "https://github.com/ragingkore"
+      },
+      "source": "./plugins/keep-a-changelog",
+      "category": "productivity",
+      "homepage": "https://github.com/ragingkore/raging-skills/tree/main/plugins/keep-a-changelog"
+    },
+    {
+      "name": "proto-style",
+      "description": "Protocol Buffer style conventions for edition 2023 based on Google AIPs",
+      "author": {
+        "name": "Sérgio Silveira",
+        "url": "https://github.com/ragingkore"
+      },
+      "source": "./plugins/proto-style",
+      "category": "development",
+      "homepage": "https://github.com/ragingkore/raging-skills/tree/main/plugins/proto-style"
+    },
+    {
+      "name": "markdown-style",
+      "description": "Markdown writing conventions for docs, plans, PRs, and commit messages",
+      "author": {
+        "name": "Sérgio Silveira",
+        "url": "https://github.com/ragingkore"
+      },
+      "source": "./plugins/markdown-style",
+      "category": "productivity",
+      "homepage": "https://github.com/ragingkore/raging-skills/tree/main/plugins/markdown-style"
+    },
+    {
+      "name": "incrementalist",
+      "description": "Git-based incremental builds and testing for .NET monorepos in GitHub Actions",
+      "author": {
+        "name": "Sérgio Silveira",
+        "url": "https://github.com/ragingkore"
+      },
+      "source": "./plugins/incrementalist",
+      "category": "development",
+      "homepage": "https://github.com/ragingkore/raging-skills/tree/main/plugins/incrementalist"
+    },
+{
+      "name": "bullseye",
+      "description": "Build automation with Bullseye target dependency graphs and SimpleExec",
+      "author": {
+        "name": "Sérgio Silveira",
+        "url": "https://github.com/ragingkore"
+      },
+      "source": "./plugins/bullseye",
+      "category": "development",
+      "homepage": "https://github.com/ragingkore/raging-skills/tree/main/plugins/bullseye"
+    },
+    {
+      "name": "agent-init",
+      "description": "Prepare a codebase for agent collaboration with AGENTS.md briefing and context files",
+      "author": {
+        "name": "Sérgio Silveira",
+        "url": "https://github.com/ragingkore"
+      },
+      "source": "./plugins/agent-init",
+      "category": "productivity",
+      "homepage": "https://github.com/ragingkore/raging-skills/tree/main/plugins/agent-init"
+    },
+    {
+      "name": "claude-output-style",
+      "description": "Create and review custom output styles for Claude Code responses",
+      "author": {
+        "name": "Sérgio Silveira",
+        "url": "https://github.com/ragingkore"
+      },
+      "source": "./plugins/claude-output-style",
+      "category": "productivity",
+      "homepage": "https://github.com/ragingkore/raging-skills/tree/main/plugins/claude-output-style"
+    },
+    {
+      "name": "aspire",
+      "description": ".NET Aspire cloud-native orchestration with AppHost, service defaults, testing, and deployment",
+      "author": {
+        "name": "Sérgio Silveira",
+        "url": "https://github.com/ragingkore"
+      },
+      "source": "./plugins/aspire",
+      "category": "development",
+      "homepage": "https://github.com/ragingkore/raging-skills/tree/main/plugins/aspire"
+    },
+    {
+      "name": "mockdown",
+      "description": "Interpret ASCII wireframes and generate framework-agnostic UI code",
+      "author": {
+        "name": "Sérgio Silveira",
+        "url": "https://github.com/ragingkore"
+      },
+      "source": "./plugins/mockdown",
+      "category": "design",
+      "homepage": "https://github.com/ragingkore/raging-skills/tree/main/plugins/mockdown"
+    },
+    {
+      "name": "cliwrap",
+      "description": "Comprehensive guidance for using CliWrap to interact with command-line interfaces in .NET",
+      "author": {
+        "name": "Sérgio Silveira",
+        "url": "https://github.com/ragingkore"
+      },
+      "source": "./plugins/cliwrap",
+      "category": "development",
+      "homepage": "https://github.com/ragingkore/raging-skills/tree/main/plugins/cliwrap"
+    },
+    {
+      "name": "act",
+      "description": "Run and debug GitHub Actions workflows locally with nektos/act",
+      "author": {
+        "name": "Sérgio Silveira",
+        "url": "https://github.com/ragingkore"
+      },
+      "source": "./plugins/act",
+      "category": "development",
+      "homepage": "https://github.com/ragingkore/raging-skills/tree/main/plugins/act"
+    },
+    {
+      "name": "starlight",
+      "description": "Build and deploy static documentation sites with Astro Starlight",
+      "author": {
+        "name": "Sérgio Silveira",
+        "url": "https://github.com/ragingkore"
+      },
+      "source": "./plugins/starlight",
+      "category": "development",
+      "homepage": "https://github.com/ragingkore/raging-skills/tree/main/plugins/starlight"
+    }
   ]
 }

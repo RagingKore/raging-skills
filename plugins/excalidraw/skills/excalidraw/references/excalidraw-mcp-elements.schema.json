@@ -1,0 +1,621 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://mcp.excalidraw.com/schemas/excalidraw-mcp-elements.schema.json",
+  "title": "Excalidraw MCP Elements",
+  "description": "Schema for the elements JSON array passed to the Excalidraw MCP create_view tool. Supports standard Excalidraw element skeletons (with label shorthand) plus MCP pseudo-elements (cameraUpdate, delete, restoreCheckpoint). Processed by convertToExcalidrawElements via the skeleton API.",
+  "type": "array",
+  "items": {
+    "$ref": "#/definitions/elementOrPseudo"
+  },
+  "definitions": {
+    "elementOrPseudo": {
+      "oneOf": [
+        { "$ref": "#/definitions/rectangleElement" },
+        { "$ref": "#/definitions/diamondElement" },
+        { "$ref": "#/definitions/ellipseElement" },
+        { "$ref": "#/definitions/textElement" },
+        { "$ref": "#/definitions/arrowElement" },
+        { "$ref": "#/definitions/lineElement" },
+        { "$ref": "#/definitions/freedrawElement" },
+        { "$ref": "#/definitions/imageElement" },
+        { "$ref": "#/definitions/frameElement" },
+        { "$ref": "#/definitions/magicframeElement" },
+        { "$ref": "#/definitions/embeddableElement" },
+        { "$ref": "#/definitions/iframeElement" },
+        { "$ref": "#/definitions/cameraUpdate" },
+        { "$ref": "#/definitions/deleteCommand" },
+        { "$ref": "#/definitions/restoreCheckpoint" }
+      ]
+    },
+    "cameraUpdate": {
+      "type": "object",
+      "description": "Pseudo-element that controls the viewport camera position and zoom. Not drawn. Use 4:3 aspect ratio (400x300, 600x450, 800x600, 1200x900, 1600x1200). Always emit BEFORE the elements it frames.",
+      "required": ["type", "width", "height", "x", "y"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "const": "cameraUpdate" },
+        "x": { "type": "number", "description": "Top-left X of visible area in scene coordinates." },
+        "y": { "type": "number", "description": "Top-left Y of visible area in scene coordinates." },
+        "width": { "type": "number", "description": "Width of visible area. Use 4:3 ratio." },
+        "height": { "type": "number", "description": "Height of visible area. Use 4:3 ratio." }
+      }
+    },
+    "deleteCommand": {
+      "type": "object",
+      "description": "Pseudo-element that removes elements by ID. Also removes bound text elements (matching containerId). Place AFTER elements to remove. Never reuse deleted IDs.",
+      "required": ["type", "ids"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "const": "delete" },
+        "ids": {
+          "type": "string",
+          "description": "Comma-separated list of element IDs to remove."
+        }
+      }
+    },
+    "restoreCheckpoint": {
+      "type": "object",
+      "description": "Pseudo-element that restores a previously saved diagram state. Must be the first element in the array. New elements are appended on top of the restored state.",
+      "required": ["type", "id"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "const": "restoreCheckpoint" },
+        "id": {
+          "type": "string",
+          "description": "Checkpoint ID returned from a previous create_view call."
+        }
+      }
+    },
+    "label": {
+      "type": "object",
+      "description": "Label shorthand for auto-centered text inside a shape or on an arrow. Eliminates the need for separate text elements with manual coordinate math.",
+      "required": ["text"],
+      "properties": {
+        "text": { "type": "string", "description": "The label text." },
+        "fontSize": {
+          "type": "number",
+          "minimum": 1,
+          "description": "Font size in pixels. Minimum readable: 14 (annotations), 16 (body), 20 (titles)."
+        },
+        "fontFamily": {
+          "$ref": "#/definitions/fontFamily",
+          "description": "Font family ID. Overridden to Excalifont (5) by the MCP widget."
+        },
+        "textAlign": {
+          "$ref": "#/definitions/textAlign",
+          "default": "center",
+          "description": "Horizontal alignment. Defaults to 'center' for labels."
+        },
+        "verticalAlign": {
+          "$ref": "#/definitions/verticalAlign",
+          "default": "middle",
+          "description": "Vertical alignment. Defaults to 'middle' for labels."
+        },
+        "strokeColor": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "point": {
+      "type": "array",
+      "items": { "type": "number" },
+      "minItems": 2,
+      "maxItems": 2,
+      "description": "A 2D point as [x, y]. For arrows/lines these are offsets from element x,y."
+    },
+    "fixedPointBinding": {
+      "type": "object",
+      "description": "Binding connecting an arrow endpoint to another element using normalized coordinates.",
+      "required": ["elementId", "fixedPoint"],
+      "properties": {
+        "elementId": {
+          "type": "string",
+          "description": "ID of the element the arrow is bound to."
+        },
+        "fixedPoint": {
+          "$ref": "#/definitions/point",
+          "description": "Normalized [x, y] on the bound element: top=[0.5,0], bottom=[0.5,1], left=[0,0.5], right=[1,0.5]."
+        },
+        "mode": {
+          "type": "string",
+          "enum": ["inside", "orbit", "skip"],
+          "description": "Binding mode."
+        }
+      },
+      "additionalProperties": true
+    },
+    "legacyBinding": {
+      "type": "object",
+      "description": "Legacy binding format with focus/gap. Migrated on restore.",
+      "required": ["elementId"],
+      "properties": {
+        "elementId": { "type": "string" },
+        "focus": { "type": "number" },
+        "gap": { "type": "number" }
+      },
+      "additionalProperties": true
+    },
+    "binding": {
+      "oneOf": [
+        { "$ref": "#/definitions/fixedPointBinding" },
+        { "$ref": "#/definitions/legacyBinding" },
+        { "type": "null" }
+      ]
+    },
+    "arrowhead": {
+      "type": "string",
+      "enum": [
+        "arrow", "bar", "dot", "circle", "circle_outline",
+        "triangle", "triangle_outline", "diamond", "diamond_outline",
+        "crowfoot_one", "crowfoot_many", "crowfoot_one_or_many"
+      ]
+    },
+    "fillStyle": {
+      "type": "string",
+      "enum": ["hachure", "cross-hatch", "solid", "zigzag"],
+      "default": "solid"
+    },
+    "strokeStyle": {
+      "type": "string",
+      "enum": ["solid", "dashed", "dotted"],
+      "default": "solid"
+    },
+    "fontFamily": {
+      "type": "integer",
+      "enum": [1, 2, 3, 5, 6, 7, 8, 9, 10],
+      "description": "1=Virgil, 2=Helvetica, 3=Cascadia, 5=Excalifont, 6=Nunito, 7=Lilita One, 8=Comic Shanns, 9=Liberation Sans, 10=Assistant. MCP forces Excalifont (5) on all text."
+    },
+    "textAlign": {
+      "type": "string",
+      "enum": ["left", "center", "right"]
+    },
+    "verticalAlign": {
+      "type": "string",
+      "enum": ["top", "middle", "bottom"]
+    },
+    "roundness": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": ["type"],
+          "properties": {
+            "type": {
+              "type": "integer",
+              "enum": [1, 2, 3],
+              "description": "1=legacy, 2=proportional radius, 3=adaptive radius (rounded corners)."
+            },
+            "value": { "type": "number" }
+          },
+          "additionalProperties": false
+        },
+        { "type": "null" }
+      ]
+    },
+    "baseProperties": {
+      "type": "object",
+      "description": "Optional common properties shared by all real elements. All have sensible defaults applied by convertToExcalidrawElements.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique element identifier. Required for bindings, delete, and checkpoint restore."
+        },
+        "x": { "type": "number", "description": "X position in scene coordinates." },
+        "y": { "type": "number", "description": "Y position in scene coordinates." },
+        "width": { "type": "number", "description": "Element width in pixels. Default: 100." },
+        "height": { "type": "number", "description": "Element height in pixels. Default: 100." },
+        "strokeColor": {
+          "type": "string",
+          "default": "#1e1e1e",
+          "description": "Stroke/border color (hex)."
+        },
+        "backgroundColor": {
+          "type": "string",
+          "default": "transparent",
+          "description": "Fill color (hex or 'transparent')."
+        },
+        "fillStyle": { "$ref": "#/definitions/fillStyle" },
+        "strokeWidth": {
+          "type": "number",
+          "default": 2,
+          "description": "Stroke width in pixels."
+        },
+        "strokeStyle": { "$ref": "#/definitions/strokeStyle" },
+        "roughness": {
+          "type": "integer",
+          "enum": [0, 1, 2],
+          "default": 1,
+          "description": "0=architect (smooth), 1=artist (default), 2=cartoonist (rough)."
+        },
+        "opacity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "default": 100,
+          "description": "Opacity from 0 to 100."
+        },
+        "angle": { "type": "number", "default": 0, "description": "Rotation angle in radians." },
+        "seed": { "type": "integer", "description": "Random seed for roughjs rendering." },
+        "version": { "type": "integer" },
+        "versionNonce": { "type": "integer" },
+        "index": { "type": ["string", "null"] },
+        "isDeleted": { "type": "boolean", "default": false },
+        "groupIds": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "frameId": { "type": ["string", "null"] },
+        "boundElements": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["id", "type"],
+                "properties": {
+                  "id": { "type": "string" },
+                  "type": { "type": "string", "enum": ["arrow", "text"] }
+                }
+              }
+            },
+            { "type": "null" }
+          ]
+        },
+        "updated": { "type": "number" },
+        "link": { "type": ["string", "null"] },
+        "locked": { "type": "boolean", "default": false },
+        "roundness": { "$ref": "#/definitions/roundness" },
+        "customData": { "type": "object", "additionalProperties": true }
+      }
+    },
+    "rectangleElement": {
+      "allOf": [
+        { "$ref": "#/definitions/baseProperties" },
+        {
+          "type": "object",
+          "required": ["type", "id", "x", "y"],
+          "properties": {
+            "type": { "const": "rectangle" },
+            "label": { "$ref": "#/definitions/label" }
+          }
+        }
+      ]
+    },
+    "diamondElement": {
+      "allOf": [
+        { "$ref": "#/definitions/baseProperties" },
+        {
+          "type": "object",
+          "required": ["type", "id", "x", "y"],
+          "properties": {
+            "type": { "const": "diamond" },
+            "label": { "$ref": "#/definitions/label" }
+          }
+        }
+      ]
+    },
+    "ellipseElement": {
+      "allOf": [
+        { "$ref": "#/definitions/baseProperties" },
+        {
+          "type": "object",
+          "required": ["type", "id", "x", "y"],
+          "properties": {
+            "type": { "const": "ellipse" },
+            "label": { "$ref": "#/definitions/label" }
+          }
+        }
+      ]
+    },
+    "textElement": {
+      "allOf": [
+        { "$ref": "#/definitions/baseProperties" },
+        {
+          "type": "object",
+          "required": ["type", "text", "x", "y"],
+          "properties": {
+            "type": { "const": "text" },
+            "text": {
+              "type": "string",
+              "description": "The text content to display."
+            },
+            "fontSize": {
+              "type": "number",
+              "minimum": 1,
+              "default": 20,
+              "description": "Font size in pixels."
+            },
+            "fontFamily": {
+              "$ref": "#/definitions/fontFamily",
+              "description": "Font family ID. MCP overrides to Excalifont."
+            },
+            "textAlign": { "$ref": "#/definitions/textAlign" },
+            "verticalAlign": { "$ref": "#/definitions/verticalAlign" },
+            "containerId": {
+              "type": ["string", "null"],
+              "description": "ID of the container this text is bound to. Note: containerId does NOT auto-position text in the MCP — use label shorthand instead."
+            },
+            "originalText": { "type": "string" },
+            "autoResize": { "type": "boolean", "default": true },
+            "lineHeight": { "type": "number" }
+          }
+        }
+      ]
+    },
+    "arrowElement": {
+      "allOf": [
+        { "$ref": "#/definitions/baseProperties" },
+        {
+          "type": "object",
+          "required": ["type", "id", "x", "y"],
+          "properties": {
+            "type": { "const": "arrow" },
+            "width": { "type": "number", "default": 100 },
+            "height": { "type": "number", "default": 0 },
+            "points": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/point" },
+              "minItems": 2,
+              "description": "Array of [dx, dy] offsets from element x,y. Defaults to [[0,0],[width,height]]."
+            },
+            "startBinding": { "$ref": "#/definitions/binding" },
+            "endBinding": { "$ref": "#/definitions/binding" },
+            "startArrowhead": {
+              "oneOf": [
+                { "$ref": "#/definitions/arrowhead" },
+                { "type": "null" }
+              ],
+              "default": null
+            },
+            "endArrowhead": {
+              "oneOf": [
+                { "$ref": "#/definitions/arrowhead" },
+                { "type": "null" }
+              ],
+              "default": "arrow"
+            },
+            "label": { "$ref": "#/definitions/label" },
+            "elbowed": { "type": "boolean" },
+            "fixedSegments": {
+              "oneOf": [
+                {
+                  "type": "array",
+                  "items": { "$ref": "#/definitions/fixedSegment" }
+                },
+                { "type": "null" }
+              ]
+            },
+            "startIsSpecial": { "type": ["boolean", "null"] },
+            "endIsSpecial": { "type": ["boolean", "null"] },
+            "start": {
+              "$ref": "#/definitions/skeletonBinding",
+              "description": "Skeleton API: create or reference an element to bind the arrow start to."
+            },
+            "end": {
+              "$ref": "#/definitions/skeletonBinding",
+              "description": "Skeleton API: create or reference an element to bind the arrow end to."
+            }
+          }
+        }
+      ]
+    },
+    "lineElement": {
+      "allOf": [
+        { "$ref": "#/definitions/baseProperties" },
+        {
+          "type": "object",
+          "required": ["type", "x", "y"],
+          "properties": {
+            "type": { "const": "line" },
+            "width": { "type": "number", "default": 100 },
+            "height": { "type": "number", "default": 0 },
+            "points": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/point" },
+              "minItems": 2,
+              "description": "Array of [dx, dy] offsets from element x,y."
+            },
+            "startBinding": { "$ref": "#/definitions/binding" },
+            "endBinding": { "$ref": "#/definitions/binding" },
+            "startArrowhead": {
+              "oneOf": [
+                { "$ref": "#/definitions/arrowhead" },
+                { "type": "null" }
+              ]
+            },
+            "endArrowhead": {
+              "oneOf": [
+                { "$ref": "#/definitions/arrowhead" },
+                { "type": "null" }
+              ]
+            },
+            "polygon": { "type": "boolean" },
+            "label": { "$ref": "#/definitions/label" },
+            "start": { "$ref": "#/definitions/skeletonBinding" },
+            "end": { "$ref": "#/definitions/skeletonBinding" }
+          }
+        }
+      ]
+    },
+    "freedrawElement": {
+      "allOf": [
+        { "$ref": "#/definitions/baseProperties" },
+        {
+          "type": "object",
+          "required": ["type"],
+          "properties": {
+            "type": { "const": "freedraw" },
+            "points": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/point" }
+            },
+            "pressures": {
+              "type": "array",
+              "items": { "type": "number" }
+            },
+            "simulatePressure": { "type": "boolean" }
+          }
+        }
+      ]
+    },
+    "imageElement": {
+      "allOf": [
+        { "$ref": "#/definitions/baseProperties" },
+        {
+          "type": "object",
+          "required": ["type", "x", "y", "fileId"],
+          "properties": {
+            "type": { "const": "image" },
+            "fileId": { "type": "string", "description": "Reference to file data." },
+            "status": {
+              "type": "string",
+              "enum": ["pending", "saved", "error"]
+            },
+            "scale": {
+              "type": "array",
+              "items": { "type": "number" },
+              "minItems": 2,
+              "maxItems": 2
+            },
+            "crop": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "x": { "type": "number" },
+                    "y": { "type": "number" },
+                    "width": { "type": "number" },
+                    "height": { "type": "number" },
+                    "naturalWidth": { "type": "number" },
+                    "naturalHeight": { "type": "number" }
+                  }
+                },
+                { "type": "null" }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "frameElement": {
+      "allOf": [
+        { "$ref": "#/definitions/baseProperties" },
+        {
+          "type": "object",
+          "required": ["type", "children"],
+          "properties": {
+            "type": { "const": "frame" },
+            "children": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "Array of element IDs that belong to this frame. Frame dimensions are auto-calculated from children if x/y/width/height are omitted."
+            },
+            "name": { "type": ["string", "null"] }
+          }
+        }
+      ]
+    },
+    "magicframeElement": {
+      "allOf": [
+        { "$ref": "#/definitions/baseProperties" },
+        {
+          "type": "object",
+          "required": ["type", "children"],
+          "properties": {
+            "type": { "const": "magicframe" },
+            "children": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "name": { "type": ["string", "null"] }
+          }
+        }
+      ]
+    },
+    "embeddableElement": {
+      "allOf": [
+        { "$ref": "#/definitions/baseProperties" },
+        {
+          "type": "object",
+          "required": ["type"],
+          "properties": {
+            "type": { "const": "embeddable" }
+          }
+        }
+      ]
+    },
+    "iframeElement": {
+      "allOf": [
+        { "$ref": "#/definitions/baseProperties" },
+        {
+          "type": "object",
+          "required": ["type"],
+          "properties": {
+            "type": { "const": "iframe" }
+          }
+        }
+      ]
+    },
+    "fixedSegment": {
+      "type": "object",
+      "required": ["start", "end", "index"],
+      "additionalProperties": false,
+      "properties": {
+        "start": { "$ref": "#/definitions/point" },
+        "end": { "$ref": "#/definitions/point" },
+        "index": { "type": "integer" }
+      }
+    },
+    "skeletonBinding": {
+      "description": "Skeleton API binding target: reference an existing element by ID, or inline-create a shape/text to bind to.",
+      "oneOf": [
+        {
+          "type": "object",
+          "description": "Reference an existing element by ID.",
+          "required": ["id"],
+          "properties": {
+            "id": { "type": "string" },
+            "type": {
+              "type": "string",
+              "enum": ["rectangle", "ellipse", "diamond", "text"]
+            },
+            "text": { "type": "string" },
+            "x": { "type": "number" },
+            "y": { "type": "number" },
+            "width": { "type": "number" },
+            "height": { "type": "number" }
+          },
+          "additionalProperties": true
+        },
+        {
+          "type": "object",
+          "description": "Create a new shape to bind to.",
+          "required": ["type"],
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["rectangle", "ellipse", "diamond"]
+            },
+            "id": { "type": "string" },
+            "x": { "type": "number" },
+            "y": { "type": "number" },
+            "width": { "type": "number" },
+            "height": { "type": "number" }
+          },
+          "additionalProperties": true
+        },
+        {
+          "type": "object",
+          "description": "Create a new text element to bind to.",
+          "required": ["type", "text"],
+          "properties": {
+            "type": { "const": "text" },
+            "text": { "type": "string" },
+            "id": { "type": "string" },
+            "x": { "type": "number" },
+            "y": { "type": "number" }
+          },
+          "additionalProperties": true
+        }
+      ]
+    }
+  }
+}

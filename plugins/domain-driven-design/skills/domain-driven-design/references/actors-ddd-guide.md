@@ -1,6 +1,7 @@
 # Actors and Domain-Driven Design: A Perfect Match
 
-Deep dive into why the Actor Model is the ideal runtime for DDD systems. Covers aggregate-per-actor patterns, distributed consistency, read-side actors, and practical implementation across frameworks.
+Deep dive into why the Actor Model is the ideal runtime for DDD systems. Covers aggregate-per-actor patterns,
+distributed consistency, read-side actors, and practical implementation across frameworks.
 
 ## Table of Contents
 

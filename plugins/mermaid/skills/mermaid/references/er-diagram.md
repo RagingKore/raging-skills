@@ -19,7 +19,8 @@ Each statement follows this pattern:
 <first-entity> [<relationship> <second-entity> : <relationship-label>]
 ```
 
-- `first-entity` -- required. The name of an entity. Supports unicode. Use double quotes for names with spaces (e.g., `"Customer Account"`).
+- `first-entity` -- required. The name of an entity. Supports unicode. Use double quotes for names with
+  spaces (e.g., `"Customer Account"`).
 - `relationship` -- how the two entities relate (cardinality + identification). See tables below.
 - `second-entity` -- the other entity in the relationship.
 - `relationship-label` -- describes the relationship from the first entity's perspective.
@@ -84,7 +85,8 @@ NAMED-DRIVER {
 
 ### Cardinality Markers
 
-Relationships use crow's foot notation. Each side has two characters: the outer character is the maximum, the inner is the minimum.
+Relationships use crow's foot notation. Each side has two characters: the outer character is the maximum,
+the inner is the minimum.
 
 | Left Marker | Right Marker | Meaning                       |
 |:-----------:|:------------:|-------------------------------|
@@ -117,7 +119,8 @@ Relationships use crow's foot notation. Each side has two characters: the outer 
 | `--`   | `to`             | Solid      | Identifying        |
 | `..`   | `optionally to`  | Dashed     | Non-identifying    |
 
-An **identifying** relationship means the child entity cannot exist without the parent. A **non-identifying** relationship means both entities can exist independently.
+An **identifying** relationship means the child entity cannot exist without the parent. A
+**non-identifying** relationship means both entities can exist independently.
 
 ### Full Relationship Examples
 
@@ -318,10 +321,13 @@ erDiagram
 
 ## Common Gotchas
 
-- **Relationship labels are required** when declaring a relationship. Omitting the `: label` part causes a parse error.
+- **Relationship labels are required** when declaring a relationship. Omitting the `: label` part causes a
+  parse error.
 - **Multi-word labels** must be wrapped in double quotes: `: "is assigned to"`.
-- **Entity names with spaces** must use double quotes: `"Order Line Item"`. When using aliases, the alias in brackets handles display names.
+- **Entity names with spaces** must use double quotes: `"Order Line Item"`. When using aliases, the alias
+  in brackets handles display names.
 - **Attribute comments cannot contain double quotes** -- the parser uses them as delimiters.
 - **Key constraints** (`PK`, `FK`, `UK`) do not support Markdown or unicode formatting.
 - **No nested references directories** -- keep reference files one level deep.
-- **The `:::` shorthand** for classes must appear directly adjacent to the entity name with no space before the colons.
+- **The `:::` shorthand** for classes must appear directly adjacent to the entity name with no space before
+  the colons.

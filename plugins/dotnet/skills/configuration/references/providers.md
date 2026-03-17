@@ -117,7 +117,8 @@ Use `__` (double underscore) as delimiter — works on all platforms. `:` does n
 
 ### launchSettings.json
 
-Environment variables in `launchSettings.json` override system environment variables during `dotnet run` / Visual Studio debugging.
+Environment variables in `launchSettings.json` override system environment variables during `dotnet run` / Visual Studio
+debugging.
 
 ---
 
@@ -259,7 +260,8 @@ if (builder.Environment.IsDevelopment()) {
 
 **Package:** `Microsoft.Extensions.Configuration.KeyPerFile`
 
-Each file in a directory becomes a key-value pair (filename = key, content = value). Common in Docker/Kubernetes for mounted secrets.
+Each file in a directory becomes a key-value pair (filename = key, content = value). Common in Docker/Kubernetes for
+mounted secrets.
 
 ```csharp
 builder.Configuration.AddKeyPerFile(
@@ -345,7 +347,8 @@ builder.Configuration.AddDatabase(
     builder.Configuration.GetConnectionString("ConfigDb")!);
 ```
 
-For full example with Entity Framework: `microsoft_docs_fetch(url="https://learn.microsoft.com/en-us/dotnet/core/extensions/custom-configuration-provider")`
+For full example with Entity Framework:
+`microsoft_docs_fetch(url="https://learn.microsoft.com/en-us/dotnet/core/extensions/custom-configuration-provider")`
 
 ---
 

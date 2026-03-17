@@ -1,0 +1,113 @@
+# markdownlint-cli2 configuration
+# Enforces conventions from .editorconfig and plugins/markdown-style/skills/markdown-style/SKILL.md
+
+config:
+  default: true
+
+  # --- Prose ---
+
+  # Line length: 120 chars (from .editorconfig max_line_length)
+  # Excludes headings and code blocks which can legitimately exceed the limit
+  MD013:
+    line_length: 120
+    heading_line_length: 120
+    code_block_line_length: 120
+    tables: false
+
+  # Trailing spaces: allow double-space line breaks only (.editorconfig trim_trailing_whitespace = false for .md)
+  MD009:
+    br_spaces: 2
+    strict: true
+
+  # --- Structure ---
+
+  # No skipping heading levels
+  MD001: true
+
+  # Consistent heading style (atx only: ## Heading)
+  MD003:
+    style: atx
+
+  # Blank lines around headings
+  MD022: true
+
+  # Blank lines around lists
+  MD032: true
+
+  # Blank lines around fenced code blocks
+  MD031: true
+
+  # No consecutive blank lines
+  MD012: true
+
+  # No decorative horizontal rules (disabled; SKILL.md forbids decorative separators)
+  MD035:
+    style: "---"
+
+  # First line does not need to be h1 (SKILL.md: use ## as top-level in most files)
+  MD041: false
+
+  # Files must end with a single newline (.editorconfig insert_final_newline = true)
+  MD047: true
+
+  # --- Lists ---
+
+  # Unordered lists use dash only
+  MD004:
+    style: dash
+
+  # List indentation: 2 spaces
+  MD007:
+    indent: 2
+
+  # Ordered list prefix: consecutive numbering only when sequence matters; use 1. otherwise
+  MD029:
+    style: one
+
+  # --- Code blocks ---
+
+  # Fenced code blocks must specify a language
+  MD040: true
+
+  # Consistent fenced code block style (backticks, not tildes)
+  MD048:
+    style: backtick
+
+  # --- Tables ---
+
+  # Table pipe style (leading and trailing pipes required)
+  MD055:
+    style: leading_and_trailing
+
+  # Table column count must be consistent
+  MD056: true
+
+  # --- HTML and emphasis ---
+
+  # No inline HTML (SKILL.md: do not wrap prose in HTML tags)
+  MD033: true
+
+  # Consistent emphasis style
+  MD049:
+    style: asterisk
+
+  # Consistent strong style
+  MD050:
+    style: asterisk
+
+  # --- Disabled rules ---
+
+  # Allow duplicate headings in different sections (common in changelogs and multi-section docs)
+  MD024: false
+
+  # Allow trailing punctuation in headings (sometimes needed for questions, etc.)
+  MD026: false
+
+  # Allow bold text as labels (common in skill files, agent instructions, structured docs)
+  MD036: false
+
+  # Allow flexible table column alignment (tables in blockquotes cannot always align)
+  MD060: false
+
+  # Disable inline config comments (noInlineConfig: true in the top-level config)
+noInlineConfig: true

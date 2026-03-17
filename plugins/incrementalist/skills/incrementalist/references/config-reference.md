@@ -148,8 +148,8 @@ The `target` and `skip` arrays use glob syntax to filter the final project list 
 ### Skip patterns and .gitignore
 
 Do not add skip patterns for paths already covered by `.gitignore` (e.g., `bin/`, `obj/`, `.worktrees/`).
-Incrementalist analyzes git diffs, so files excluded by `.gitignore` never appear in the diff and cannot
-affect the analysis. Adding redundant skip patterns adds noise.
+Incrementalist analyzes git diffs, so files excluded by `.gitignore` never appear in the diff and cannot affect
+the analysis. Adding redundant skip patterns adds noise.
 
 Only use `skip` for paths tracked in git but that should be excluded from CI builds: example projects,
 documentation-only projects, benchmark projects, or platform-specific projects.
@@ -160,13 +160,13 @@ documentation-only projects, benchmark projects, or platform-specific projects.
 2. If `target` is non-empty, only projects matching at least one target pattern survive
 3. Projects matching any `skip` pattern are removed
 
-Both filters are applied after dependency resolution. A project excluded by `skip` does not cause its
-dependents to be excluded; the filters operate on the flat list.
+Both filters are applied after dependency resolution. A project excluded by `skip` does not cause its dependents
+to be excluded; the filters operate on the flat list.
 
 ## Solution-wide changes
 
-Certain files affect every project. When Incrementalist detects changes to these files, it triggers a full
-build regardless of which `.csproj` files were modified.
+Certain files affect every project. When Incrementalist detects changes to these files, it triggers a full build
+regardless of which `.csproj` files were modified.
 
 Solution-wide files:
 
@@ -176,8 +176,8 @@ Solution-wide files:
 - `.sln` / `.slnx` solution files
 - `nuget.config`
 
-This is intentional. A change to `Directory.Build.props` can affect compilation of every project, so the
-safe default is to rebuild everything.
+This is intentional. A change to `Directory.Build.props` can affect compilation of every project, so the safe
+default is to rebuild everything.
 
 ## Troubleshooting
 
@@ -189,24 +189,25 @@ safe default is to rebuild everything.
 
 ### Timeout loading large solutions
 
-Increase `timeoutMinutes` in the config. The default is 2 minutes; large solutions with many projects may
-need 10-20 minutes for the initial Roslyn analysis.
+Increase `timeoutMinutes` in the config. The default is 2 minutes; large solutions with many projects may need
+10-20 minutes for the initial Roslyn analysis.
 
 ### All projects build despite small change
 
-Check if the changed file is solution-wide (see [Solution-wide changes](#solution-wide-changes)). Changes
-to `Directory.Build.props`, `global.json`, or `.sln` files intentionally trigger a full build.
+Check if the changed file is solution-wide (see [Solution-wide changes](#solution-wide-changes)). Changes to
+`Directory.Build.props`, `global.json`, or `.sln` files intentionally trigger a full build.
 
 ### Source generators and multi-TFM builds
 
 Source generator projects target `netstandard2.0`, not the same TFMs as the consuming projects. If the CI
 workflow uses a matrix strategy on TFM, the build step must use the solution's full TFM list (not just the
-matrix value) so source generator projects compile successfully. Alternatively, build once with all TFMs
-and pass `--no-build` to the test step.
+matrix value) so source generator projects compile successfully. Alternatively, build once with all TFMs and
+pass `--no-build` to the test step.
 
 ## Additional resources
 
 - [Incrementalist GitHub repository](https://github.com/petabridge/Incrementalist)
-- [Configuration schema](https://github.com/petabridge/Incrementalist/blob/dev/src/Incrementalist.Cmd/Config/incrementalist.schema.json)
+- [Configuration
+  schema](https://github.com/petabridge/Incrementalist/blob/dev/src/Incrementalist.Cmd/Config/incrementalist.schema.json)
 - [Real-world CI examples](https://github.com/petabridge/Incrementalist/blob/dev/docs/examples.md)
   (Akka.NET, Akka.Management, Azure DevOps)

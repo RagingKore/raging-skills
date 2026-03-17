@@ -1,7 +1,7 @@
 ## Output Style Gallery
 
-A curated gallery of output style patterns organized by use case. Each entry is a complete,
-copy-ready output style markdown file with YAML frontmatter and body instructions.
+A curated gallery of output style patterns organized by use case. Each entry is a complete, copy-ready output
+style markdown file with YAML frontmatter and body instructions.
 
 For the official output style documentation, see the
 [Claude Code output styles reference](https://code.claude.com/docs/en/output-styles).
@@ -34,16 +34,15 @@ For the official output style documentation, see the
 
 Two key decisions for every style:
 
-- Set `keep-coding-instructions: true` when the style enhances coding behavior. Claude retains
-  its default software engineering instructions and your style adds on top.
-- Set `keep-coding-instructions: false` (or omit it; false is the default) when the style
-  replaces Claude's coding persona entirely. Use this for non-coding agents like writers,
-  analysts, or tutors.
+- Set `keep-coding-instructions: true` when the style enhances coding behavior. Claude retains its default
+  software engineering instructions and your style adds on top.
+- Set `keep-coding-instructions: false` (or omit it; false is the default) when the style replaces Claude's
+  coding persona entirely. Use this for non-coding agents like writers, analysts, or tutors.
 
 ## Coding Enhancement Styles
 
-These styles layer on top of Claude Code's built-in software engineering instructions.
-They refine how Claude approaches coding tasks without removing any core capability.
+These styles layer on top of Claude Code's built-in software engineering instructions. They refine how Claude
+approaches coding tasks without removing any core capability.
 
 ### Security-First Reviewer
 
@@ -94,11 +93,10 @@ When reviewing code, structure your response as:
 - Do not assume inputs are trusted unless the caller explicitly guarantees it.
 ```
 
-**Why this works.** The severity markers give the reviewer a structured vocabulary that is
-scannable in long review threads. Referencing OWASP by category number ties findings to an
-external standard, making them actionable outside the conversation. The response format
-section ensures consistency across reviews, so the user always knows where to look for the
-most important information.
+**Why this works.** The severity markers give the reviewer a structured vocabulary that is scannable in long
+review threads. Referencing OWASP by category number ties findings to an external standard, making them
+actionable outside the conversation. The response format section ensures consistency across reviews, so the
+user always knows where to look for the most important information.
 
 ### TDD Coach
 
@@ -156,10 +154,9 @@ For every task, follow this exact sequence:
   "no refactoring needed" if that is the case.
 ```
 
-**Why this works.** The numbered cycle gives a predictable rhythm the user can follow along
-with. The "temptation" callouts in the communication section model the internal discipline
-that makes TDD effective. Naming refactoring patterns teaches vocabulary while keeping the
-output actionable.
+**Why this works.** The numbered cycle gives a predictable rhythm the user can follow along with. The
+"temptation" callouts in the communication section model the internal discipline that makes TDD effective.
+Naming refactoring patterns teaches vocabulary while keeping the output actionable.
 
 ### Verbose Explainer
 
@@ -210,16 +207,16 @@ When you choose an approach, structure your reasoning as:
   once, then reference back: "Same approach as the validation above."
 ```
 
-**Why this works.** The three-tier depth guideline prevents the style from drowning the user
-in explanations for trivial choices while ensuring complex decisions get full coverage. The
-"show your work" structure makes reasoning scannable. Telling the explainer what not to
-explain is just as important as telling it what to explain.
+**Why this works.** The three-tier depth guideline prevents the style from drowning the user in explanations
+for trivial choices while ensuring complex decisions get full coverage. The "show your work" structure makes
+reasoning scannable. Telling the explainer what not to explain is just as important as telling it what to
+explain.
 
 ## Non-Coding Personas
 
-These styles replace Claude Code's software engineering instructions entirely. They turn
-Claude Code into a non-coding agent that still has access to all tools (file I/O, bash,
-web search) but uses them for a different purpose.
+These styles replace Claude Code's software engineering instructions entirely. They turn Claude Code into a
+non-coding agent that still has access to all tools (file I/O, bash, web search) but uses them for a
+different purpose.
 
 ### Business Analyst
 
@@ -274,10 +271,9 @@ When producing a report, use this structure:
   "Assumption" or "Limitation" note at the end if needed.
 ```
 
-**Why this works.** Setting `keep-coding-instructions: false` removes the coding persona, so
-Claude does not default to showing code. The "lead with the insight" principle keeps outputs
-business-focused. The report structure gives the user a predictable format they can share
-directly with stakeholders.
+**Why this works.** Setting `keep-coding-instructions: false` removes the coding persona, so Claude does not
+default to showing code. The "lead with the insight" principle keeps outputs business-focused. The report
+structure gives the user a predictable format they can share directly with stakeholders.
 
 ### Technical Writer
 
@@ -341,10 +337,9 @@ When asked to document something:
   what is missing and where to find it.
 ```
 
-**Why this works.** The document type templates give the writer a clear structure for each
-common output. The formatting conventions section prevents the style from producing walls of
-text. The process section ensures the writer reads the source code before writing about it,
-which prevents hallucinated documentation.
+**Why this works.** The document type templates give the writer a clear structure for each common output. The
+formatting conventions section prevents the style from producing walls of text. The process section ensures
+the writer reads the source code before writing about it, which prevents hallucinated documentation.
 
 ### Research Assistant
 
@@ -404,17 +399,15 @@ When synthesizing multiple sources:
 - Do not editorialize. Present what the evidence shows, then note limitations separately.
 ```
 
-**Why this works.** The structured summarization template makes every paper summary comparable,
-which is essential when reviewing many sources. Organizing synthesis by theme rather than by
-paper prevents the common failure mode of literature reviews that are just a list of
-summaries. The explicit prohibition against inventing citations addresses a known weakness in
-language model outputs.
+**Why this works.** The structured summarization template makes every paper summary comparable, which is
+essential when reviewing many sources. Organizing synthesis by theme rather than by paper prevents the common
+failure mode of literature reviews that are just a list of summaries. The explicit prohibition against
+inventing citations addresses a known weakness in language model outputs.
 
 ## Creative and Novelty Styles
 
-These styles explore unusual interaction patterns. Some are fun experiments; others are
-genuine pedagogical tools. All set `keep-coding-instructions: false` because they fully
-replace the default persona.
+These styles explore unusual interaction patterns. Some are fun experiments; others are genuine pedagogical
+tools. All set `keep-coding-instructions: false` because they fully replace the default persona.
 
 ### Zen Master
 
@@ -468,10 +461,9 @@ path and let the user walk it.
 - Do not lecture about patience or the "journey." Meet the user where they are.
 ```
 
-**Why this works.** The escape hatch for frustrated users prevents the style from becoming
-an obstacle. The three-part response structure (Observation, Reflection, Nudge) keeps the
-contemplative tone from drifting into vagueness. Prohibiting empty crypticism forces the
-metaphors to carry real meaning.
+**Why this works.** The escape hatch for frustrated users prevents the style from becoming an obstacle. The
+three-part response structure (Observation, Reflection, Nudge) keeps the contemplative tone from drifting
+into vagueness. Prohibiting empty crypticism forces the metaphors to carry real meaning.
 
 ### Socratic Tutor
 
@@ -524,10 +516,10 @@ If the user has answered five or more questions without making progress toward t
 - Do not stack multiple questions in one response. One question, then wait.
 ```
 
-**Why this works.** The escalation policy prevents the Socratic method from becoming a trap
-when the user genuinely does not know the answer. Limiting to one question per response
-forces real dialogue instead of a quiz. Allowing the tutor to read files means the questions
-can be specific and grounded in the actual codebase rather than abstract.
+**Why this works.** The escalation policy prevents the Socratic method from becoming a trap when the user
+genuinely does not know the answer. Limiting to one question per response forces real dialogue instead of a
+quiz. Allowing the tutor to read files means the questions can be specific and grounded in the actual
+codebase rather than abstract.
 
 ### Minimalist
 
@@ -570,15 +562,15 @@ Use the fewest words possible. Do not explain unless the user asks you to explai
 - No meta-commentary: "I'll keep this brief." Your brevity speaks for itself.
 ```
 
-**Why this works.** The style is itself minimal, which demonstrates the aesthetic. The
-explicit rules for what to omit (preamble, sign-off, hedging) target the specific padding
-patterns that language models tend to produce. The escape hatch for explanations ensures the
-user can get detail when they need it without changing styles.
+**Why this works.** The style is itself minimal, which demonstrates the aesthetic. The explicit rules for
+what to omit (preamble, sign-off, hedging) target the specific padding patterns that language models tend to
+produce. The escape hatch for explanations ensures the user can get detail when they need it without changing
+styles.
 
 ## Specialized Workflow Styles
 
-These styles are tuned for specific development workflows. They keep coding instructions
-because the workflows are fundamentally about code.
+These styles are tuned for specific development workflows. They keep coding instructions because the
+workflows are fundamentally about code.
 
 ### PR Reviewer
 
@@ -637,10 +629,10 @@ For every PR, verify:
 - Do not block a PR over a nit.
 ```
 
-**Why this works.** The severity tags give both reviewer and author a shared framework for
-prioritizing feedback. The rule against blocking on nits prevents review cycles from stalling
-on cosmetic issues. Including `[praise]` as a severity level encourages balanced feedback,
-which keeps the review process constructive.
+**Why this works.** The severity tags give both reviewer and author a shared framework for prioritizing
+feedback. The rule against blocking on nits prevents review cycles from stalling on cosmetic issues.
+Including `[praise]` as a severity level encourages balanced feedback, which keeps the review process
+constructive.
 
 ### Pair Programmer
 
@@ -692,10 +684,9 @@ decision point.
 - Do not dump large blocks of code. Show small increments and discuss each one.
 ```
 
-**Why this works.** Framing Claude as the navigator (not the driver) preserves the user's
-agency while providing continuous guidance. The communication pattern examples are concrete
-enough to produce natural dialogue. Session awareness prevents the common failure of losing
-track of progress during long interactions.
+**Why this works.** Framing Claude as the navigator (not the driver) preserves the user's agency while
+providing continuous guidance. The communication pattern examples are concrete enough to produce natural
+dialogue. Session awareness prevents the common failure of losing track of progress during long interactions.
 
 ### Architecture Advisor
 
@@ -757,7 +748,7 @@ For every significant architectural decision, produce a brief record:
   approximately N requests per second before you need to shard."
 ```
 
-**Why this works.** The tradeoff documentation template produces artifacts the user can keep
-as architecture decision records. The "forces in tension" framing prevents advice that
-optimizes for one quality at the expense of another without acknowledging it. Requiring
-specific numbers for scalability claims prevents vague "it scales" assertions.
+**Why this works.** The tradeoff documentation template produces artifacts the user can keep as architecture
+decision records. The "forces in tension" framing prevents advice that optimizes for one quality at the
+expense of another without acknowledging it. Requiring specific numbers for scalability claims prevents vague
+"it scales" assertions.

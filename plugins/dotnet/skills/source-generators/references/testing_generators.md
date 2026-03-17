@@ -191,7 +191,8 @@ public class SnapshotTests {
 }
 ```
 
-On first run, Verify creates a `.verified.txt` file with the generated output. Subsequent runs compare against it. If the output changes, the test fails and shows a diff.
+On first run, Verify creates a `.verified.txt` file with the generated output. Subsequent runs compare against it. If
+the output changes, the test fails and shows a diff.
 
 ### Verify Configuration for Generators
 
@@ -345,7 +346,8 @@ public void ReportsDiagnosticForNonPartialClass() {
 </Project>
 ```
 
-**Important:** Reference the generator project as a normal `ProjectReference` (NOT with `OutputItemType="Analyzer"`). In tests, you instantiate the generator manually and pass it to `CSharpGeneratorDriver.Create()`.
+**Important:** Reference the generator project as a normal `ProjectReference` (NOT with `OutputItemType="Analyzer"`). In
+ tests, you instantiate the generator manually and pass it to `CSharpGeneratorDriver.Create()`.
 
 ## Roslyn Test Infrastructure
 
@@ -400,9 +402,11 @@ public class VerifierTests {
 
 ## Best Practices
 
-1. **Test the generator, not Roslyn** - Focus on your transform logic. Don't test that `ForAttributeWithMetadataName` works.
+1. **Test the generator, not Roslyn** - Focus on your transform logic. Don't test that `ForAttributeWithMetadataName`
+   works.
 
-2. **Use deterministic output** - Sort generated members alphabetically. Use consistent formatting. This makes snapshot tests stable.
+2. **Use deterministic output** - Sort generated members alphabetically. Use consistent formatting. This makes snapshot
+   tests stable.
 
 3. **Test edge cases:**
    - Nested classes

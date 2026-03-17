@@ -9,7 +9,8 @@ description: |
 
 # Protobuf Style Guide
 
-Buf's official style guide for Protobuf. This is a concise reference for writing consistent, maintainable `.proto` schemas. The requirements map directly to the `STANDARD` lint category in the Buf CLI.
+Buf's official style guide for Protobuf. This is a concise reference for writing consistent, maintainable `.proto`
+schemas. The requirements map directly to the `STANDARD` lint category in the Buf CLI.
 
 ## File Layout
 
@@ -116,7 +117,8 @@ enum Status {
 - Service names: **`PascalCase`**, suffixed with **`Service`**.
 - RPC names: **`PascalCase`**.
 - All RPC request/response messages MUST be **unique** across the schema.
-- Name request/response messages as `MethodNameRequest`/`MethodNameResponse` or `ServiceNameMethodNameRequest`/`ServiceNameMethodNameResponse`.
+- Name request/response messages as `MethodNameRequest`/`MethodNameResponse` or
+  `ServiceNameMethodNameRequest`/`ServiceNameMethodNameResponse`.
 
 ```protobuf
 service UserService {
@@ -176,7 +178,8 @@ message Address {
 
 - **Always set up breaking change detection** (`buf breaking`).
 - **Avoid widely used keywords** in package names (e.g., `internal` breaks Go imports).
-- **Avoid streaming RPCs** unless absolutely necessary — they require special proxy/firewall configuration. Prefer polling and pagination.
+- **Avoid streaming RPCs** unless absolutely necessary — they require special proxy/firewall configuration. Prefer
+  polling and pagination.
 
 ## Quick Reference: Naming Conventions
 

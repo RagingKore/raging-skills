@@ -2,7 +2,8 @@
 
 ## Declaration
 
-Start with the `radar-beta` keyword. Also known as spider chart, star chart, cobweb chart, polar chart, or Kiviat diagram.
+Start with the `radar-beta` keyword. Also known as spider chart, star chart, cobweb chart, polar chart, or
+Kiviat diagram.
 
 ```
 radar-beta
@@ -230,10 +231,16 @@ radar-beta
 - **Use `radar-beta`, not `radar`.** The keyword includes the `-beta` suffix as this is a beta feature.
 - **Number of curve values must match number of axes.** Mismatched counts will cause rendering errors.
 - **Curve colors cycle after 12** via `cScale0` through `cScale11`.
-- **`min` defaults to `0`**, not to the minimum data value. Set it explicitly if your data starts above zero and you want a tighter chart.
-- **`max` auto-calculates from data** if not specified. Set it explicitly for consistent scaling across charts.
-- **Radar theme variables nest under `themeVariables.radar`**, not directly under `themeVariables`. For example: `themeVariables.radar.curveOpacity`.
+- **`min` defaults to `0`**, not to the minimum data value. Set it explicitly if your data starts above
+  zero and you want a tighter chart.
+- **`max` auto-calculates from data** if not specified. Set it explicitly for consistent scaling across
+  charts.
+- **Radar theme variables nest under `themeVariables.radar`**, not directly under `themeVariables`. For
+  example: `themeVariables.radar.curveOpacity`.
 - **`curveTension: 0`** produces sharp polygon edges. Higher values produce smoother curves.
-- **`curveOpacity: 0`** makes the fill invisible, showing only the stroke lines -- useful for overlapping curves.
-- **Key-value curve syntax** (`axis_id: value`) allows out-of-order axis mapping, but axis ids must match defined axis ids exactly.
-- **Title can be set two ways**: via `title` keyword in the body or via YAML frontmatter `title: "text"`. Both work.
+- **`curveOpacity: 0`** makes the fill invisible, showing only the stroke lines -- useful for overlapping
+  curves.
+- **Key-value curve syntax** (`axis_id: value`) allows out-of-order axis mapping, but axis ids must match
+  defined axis ids exactly.
+- **Title can be set two ways**: via `title` keyword in the body or via YAML frontmatter `title: "text"`.
+  Both work.

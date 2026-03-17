@@ -14,7 +14,8 @@
 
 ## Events
 
-Events are **immutable state changes** — the fundamental unit of data in KurrentDB. Once written, an event cannot be modified or removed from the middle of a stream.
+Events are **immutable state changes** — the fundamental unit of data in KurrentDB. Once written, an event cannot be
+modified or removed from the middle of a stream.
 
 ### EventData Structure
 
@@ -54,7 +55,8 @@ var eventData = new EventData(
 
 ## Streams
 
-A stream is a **logical grouping of events** identified by a case-sensitive stream ID string. KurrentDB supports billions of streams natively.
+A stream is a **logical grouping of events** identified by a case-sensitive stream ID string. KurrentDB supports
+billions of streams natively.
 
 ### Naming Convention
 
@@ -68,7 +70,8 @@ invoice-2024-00451
 
 ### Design Guideline
 
-**One stream per entity instance** is the recommended approach. Each aggregate root or entity in your domain should have its own stream containing all events for that instance.
+**One stream per entity instance** is the recommended approach. Each aggregate root or entity in your domain should have
+ its own stream containing all events for that instance.
 
 ---
 
@@ -209,7 +212,8 @@ Metadata streams for system streams use a `$$$` prefix (e.g., `$$$$settings`).
 
 ## Projection Output Streams
 
-These streams are created and managed by the projection subsystem. **Never append to projection output streams** — doing so will fault the projection.
+These streams are created and managed by the projection subsystem. **Never append to projection output streams** — doing
+so will fault the projection.
 
 | Stream Pattern         | Source Projection     | Contents                                 |
 |------------------------|-----------------------|------------------------------------------|

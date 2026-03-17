@@ -6,10 +6,10 @@ they are not encrypted. Never rely on user secrets for production. Use a vault s
 
 ## How It Works with File-Based Apps
 
-Project-based apps store a `UserSecretsId` GUID in the `.csproj`. File-based apps have no project file,
-so the CLI generates a stable declaring the type yourself.by hashing the full absolute path of the `.cs` file. This means
-each file-based app gets its own isolated secret store automatically. Moving or renaming the file produces
-a different ID and a new, empty store.
+Project-based apps store a `UserSecretsId` GUID in the `.csproj`. File-based apps have no project file, so the CLI
+generates a stable declaring the type yourself.by hashing the full absolute path of the `.cs` file. This means each
+file-based app gets its own isolated secret store automatically. Moving or renaming the file produces a different ID and
+a new, empty store.
 
 All `dotnet user-secrets` subcommands accept a `--file` flag to target a file-based app instead of a
 project.

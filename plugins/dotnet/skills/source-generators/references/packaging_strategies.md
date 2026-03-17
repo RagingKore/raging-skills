@@ -17,13 +17,17 @@
 
 ## Overview
 
-Source generators ship inside NuGet packages using the `analyzers/dotnet/cs` folder convention. The compiler loads DLLs from this folder as Roslyn components. There are several packaging strategies depending on whether you ship runtime types alongside the generator.
+Source generators ship inside NuGet packages using the `analyzers/dotnet/cs` folder convention. The compiler loads DLLs
+from this folder as Roslyn components. There are several packaging strategies depending on whether you ship runtime
+types alongside the generator.
 
-**Critical constraint:** Generator DLLs MUST target `netstandard2.0`. The Roslyn compiler host loads them in its own process and only supports this target.
+**Critical constraint:** Generator DLLs MUST target `netstandard2.0`. The Roslyn compiler host loads them in its own
+ process and only supports this target.
 
 ## Strategy 1: Generator-Only Package
 
-The generator IS the package. No runtime types. Consumers get generated code at compile time with zero runtime footprint.
+The generator IS the package. No runtime types. Consumers get generated code at compile time with zero runtime
+footprint.
 
 ```xml
 <!-- MyGenerator.csproj -->
@@ -69,7 +73,8 @@ The generator IS the package. No runtime types. Consumers get generated code at 
 
 ## Strategy 2: Library with Embedded Generator
 
-You have a library (runtime types, interfaces, attributes) and want the generator to be invisible - consumers just reference the library and get generated code automatically.
+You have a library (runtime types, interfaces, attributes) and want the generator to be invisible - consumers just
+reference the library and get generated code automatically.
 
 ```
 MyLibrary/
@@ -125,11 +130,13 @@ MyLibrary/
 </Project>
 ```
 
-**Result:** Consumers install `MyLibrary`, get both runtime types AND compile-time generation. The generator DLL never appears as a runtime reference.
+**Result:** Consumers install `MyLibrary`, get both runtime types AND compile-time generation. The generator DLL never
+ appears as a runtime reference.
 
 ## Strategy 3: Runtime Types + Generator
 
-Same as Strategy 2 but the generator has its own identity. Useful when the generator is optional or can work with multiple libraries.
+Same as Strategy 2 but the generator has its own identity. Useful when the generator is optional or can work with
+multiple libraries.
 
 ```xml
 <!-- MyLibrary.csproj - ships ONLY runtime types -->
@@ -164,7 +171,8 @@ Consumer installs both:
 
 ## Strategy 4: Multi-Targeting Generator
 
-When your generator must support both old-style `.csproj` (Visual Studio analyzer VSIX) and new-style (NuGet), or needs to target multiple Roslyn versions:
+When your generator must support both old-style `.csproj` (Visual Studio analyzer VSIX) and new-style (NuGet), or needs
+to target multiple Roslyn versions:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
@@ -201,7 +209,8 @@ Target the lowest version you need. Generators must work with whatever Roslyn ve
 
 ## Embedding Generated Code in a Package
 
-**Scenario:** You want to ship pre-generated code as part of your library package, without exposing the generator to consumers. The generated code is "baked in" at your build time.
+**Scenario:** You want to ship pre-generated code as part of your library package, without exposing the generator to
+ consumers. The generated code is "baked in" at your build time.
 
 ### Approach A: Build-Time Generation → Pack as Content
 
@@ -239,7 +248,8 @@ spc.AddSource("InternalHelper.g.cs", """
     """);
 ```
 
-Combined with Strategy 2 (embedded generator), the generated code compiles into your library DLL. Consumers never see the generator or the generated source - they only see the public API.
+Combined with Strategy 2 (embedded generator), the generated code compiles into your library DLL. Consumers never see
+the generator or the generated source - they only see the public API.
 
 ### Approach C: Source-Only Package (contentFiles)
 
@@ -256,7 +266,8 @@ Ship generated source as content files that get compiled into the consumer's ass
 
 ## Bundling Generator Dependencies
 
-Generators run inside the compiler process. If your generator depends on third-party libraries (e.g., `Humanizer`, `Newtonsoft.Json`), those DLLs must be **embedded** in the package:
+Generators run inside the compiler process. If your generator depends on third-party libraries (e.g., `Humanizer`,
+`Newtonsoft.Json`), those DLLs must be **embedded** in the package:
 
 ```xml
 <PropertyGroup>
@@ -281,7 +292,8 @@ Generators run inside the compiler process. If your generator depends on third-p
 </ItemGroup>
 ```
 
-**Important:** All DLLs in the `analyzers/dotnet/cs` folder are loaded into the compiler's assembly load context. Name conflicts with the consumer's dependencies can cause issues. Keep dependencies minimal.
+**Important:** All DLLs in the `analyzers/dotnet/cs` folder are loaded into the compiler's assembly load context. Name
+ conflicts with the consumer's dependencies can cause issues. Keep dependencies minimal.
 
 ## NuGet Analyzer Folder Convention
 
@@ -303,7 +315,8 @@ package/
 └── MyPackage.nuspec
 ```
 
-**Language-agnostic analyzers:** Place DLLs directly in `analyzers/dotnet/` (without `cs/` or `vb/` subfolder) to load for any .NET language.
+**Language-agnostic analyzers:** Place DLLs directly in `analyzers/dotnet/` (without `cs/` or `vb/` subfolder) to load
+ for any .NET language.
 
 ## MSBuild Props and Targets
 
@@ -354,7 +367,8 @@ context.RegisterSourceOutput(combined, static (spc, pair) => {
 ### 2. Dependencies Leak to Consumer
 
 **Symptom:** Consumer sees `Microsoft.CodeAnalysis` in their dependency tree.
-**Fix:** Use `PrivateAssets="all"` on all generator `PackageReference` items. Use `SuppressDependenciesWhenPacking=true`.
+**Fix:** Use `PrivateAssets="all"` on all generator `PackageReference` items. Use
+ `SuppressDependenciesWhenPacking=true`.
 
 ### 3. Missing `ReferenceOutputAssembly="false"` on ProjectReference
 
@@ -364,12 +378,14 @@ context.RegisterSourceOutput(combined, static (spc, pair) => {
 ### 4. Generator Doesn't Load (Version Mismatch)
 
 **Symptom:** Generator silently does nothing.
-**Fix:** Ensure `Microsoft.CodeAnalysis.CSharp` version is compatible with the consumer's SDK. Target the lowest version needed.
+**Fix:** Ensure `Microsoft.CodeAnalysis.CSharp` version is compatible with the consumer's SDK. Target the lowest version
+ needed.
 
 ### 5. `[Generator]` Attribute Not Found
 
 **Symptom:** Compiler doesn't discover the generator.
-**Fix:** Ensure `Microsoft.CodeAnalysis.Analyzers` is referenced (it provides the attribute). Also check the generator targets `netstandard2.0`.
+**Fix:** Ensure `Microsoft.CodeAnalysis.Analyzers` is referenced (it provides the attribute). Also check the generator
+ targets `netstandard2.0`.
 
 ### 6. Dependency Conflict in Compiler Host
 

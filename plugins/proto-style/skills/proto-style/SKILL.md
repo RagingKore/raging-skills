@@ -3,10 +3,11 @@ name: proto-style
 description: |
   This skill should be used when writing, editing, or reviewing .proto files
   using Protocol Buffer edition 2023 syntax. Covers protobuf style conventions
-  based on Google AIPs: field naming (snake_case, booleans, abbreviations),
-  enum naming (UNSPECIFIED values, prefixed values), timestamp/duration patterns
-  (create_time, update_time, google.protobuf.Timestamp), comment style (block
-  vs line), pagination (page_size/page_token), resource identifiers, field
+  based on Google AIPs and the Buf style guide: field naming (snake_case,
+  booleans, abbreviations), enum naming (UNSPECIFIED values, prefixed values),
+  timestamp/duration patterns (create_time, update_time, google.protobuf.Timestamp),
+  comment style (// for all comments, Buf-aligned), pagination (page_size/page_token),
+  resource identifiers, field
   ordering, quantities (_count suffix, no unsigned types), oneof, and presence
   tracking. Also covers migrating proto3 to edition 2023 and protobuf editions
   feature flags (field_presence, EXPLICIT, IMPLICIT).
@@ -126,48 +127,44 @@ annotate those fields with `[features.field_presence = IMPLICIT]` to preserve th
 
 ## Comment Style
 
+Use `//` for all comments. Do not use `/* */` or `/** */` block comments. This aligns with the
+[Buf style guide](https://buf.build/docs/best-practices/style-guide/) and produces identical output in generated
+code (C# XML docs, Java Javadoc, Go doc comments all propagate from `//` comments).
+
 End all comments with a period. Use complete sentences. Document defaults, valid ranges, and behavior.
 
 ### Top-Level Comments
 
-All comments on services, RPCs, messages, and enums must use `/** */` block style, even for single-line docs.
-This establishes a clear visual hierarchy: block comments for top-level elements, line comments for fields within.
+Use `//` comments above services, RPCs, messages, and enums. Separate the comment block from the preceding
+element with a blank line for readability:
 
 ```protobuf
-/**
- * The processor service.
- */
+// The processor service.
 service Processors {
-    /**
-     * Get processor information.
-     */
+    // Get processor information.
     rpc GetProcessor(GetProcessorRequest) returns (GetProcessorResponse);
 }
 
-/**
- * Processor settings and configuration.
- */
+// Processor settings and configuration.
 message Processor {
     string processor_id = 1;
 }
 ```
 
-### Field Comments
+### Multi-Line Comments
 
-Use `//` for short field descriptions. Use `/** */` block comments for fields that need multi-line documentation:
+Use consecutive `//` lines for longer documentation. Separate paragraphs with a blank `//` line:
 
 ```protobuf
 // The processor identifier.
 string processor_id = 1;
 
-/**
- * Maximum parallelism (number of partitions) for this processor.
- *
- * This determines the number of partitions used to distribute state
- * across workers for KEY_SHARED subscriptions.
- *
- * Default: 128 (suitable for most use cases)
- */
+// Maximum parallelism (number of partitions) for this processor.
+//
+// This determines the number of partitions used to distribute state
+// across workers for KEY_SHARED subscriptions.
+//
+// Default: 128 (suitable for most use cases)
 int32 max_parallelism = 4;
 ```
 
@@ -176,15 +173,13 @@ int32 max_parallelism = 4;
 Tables within comments must use padded columns with aligned pipes:
 
 ```protobuf
-/**
- * Field behavior options.
- *
- * | Behavior | Description                 |
- * |----------|-----------------------------|
- * | OPTIONAL | Field is not required.      |
- * | REQUIRED | Field must be present.      |
- * | COMPUTED | Server computes this value. |
- */
+// Field behavior options.
+//
+// | Behavior | Description                 |
+// |----------|-----------------------------|
+// | OPTIONAL | Field is not required.      |
+// | REQUIRED | Field must be present.      |
+// | COMPUTED | Server computes this value. |
 message FieldOptions {
     string behavior = 1;
 }

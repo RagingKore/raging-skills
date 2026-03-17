@@ -21,7 +21,9 @@
 
 ## Overview
 
-Composite formatting allows you to create parameterized resource strings with placeholders (`{0}`, `{1}`, `{2}`, etc.) that are replaced with values at runtime. This is essential for creating flexible, localizable messages with dynamic content.
+Composite formatting allows you to create parameterized resource strings with placeholders (`{0}`, `{1}`, `{2}`, etc.)
+that are replaced with values at runtime. This is essential for creating flexible, localizable messages with dynamic
+content.
 
 ## Basic Syntax
 

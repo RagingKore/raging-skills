@@ -73,7 +73,8 @@ docker run --volume "$(pwd):/workspace" --workdir /workspace bufbuild/buf lint
 docker run --volume "$(pwd):/workspace" --workdir /workspace bufbuild/buf format -d
 ```
 
-The Docker image does NOT include `protoc` or plugins. For remote plugins, no extra config needed. For local plugins, build a custom image:
+The Docker image does NOT include `protoc` or plugins. For remote plugins, no extra config needed. For local plugins,
+build a custom image:
 
 ```dockerfile
 FROM bufbuild/buf:latest

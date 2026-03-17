@@ -1,8 +1,21 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+## [2.0.0] - 2026-03-15
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
+### Added
+
+- `/markdown-setup` skill: analyzes a repo's markdown conventions via parallel subagents and generates a tailored
+  `markdownlint-cli2` config and `.claude/rules/markdown.md` rules file
+- `markdown-expert` agent for on-demand deep style reviews (uses Haiku for cost efficiency)
+- PostToolUse command hook that runs `markdownlint-cli2 --fix` after every `.md` edit
+- Config template (`templates/markdownlint-cli2.yaml`) with all rules annotated
+- Rules template (`templates/claude-rules-markdown.md`) with `globs: ["*.md"]` for auto-loading
+
+### Changed
+
+- `markdown-style` skill now adapts to project config: checks `.claude/rules/markdown.md`,
+  `.markdownlint-cli2.yaml`, and `.editorconfig` before falling back to static defaults
+- Plugin description updated to reflect adaptive behavior
 
 ## [1.0.0] - 2026-03-08
 

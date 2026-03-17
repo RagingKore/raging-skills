@@ -2,7 +2,8 @@
 
 ## Core Concepts
 
-A **module** is a collection of Protobuf files configured, built, and versioned as a logical unit. A **workspace** contains one or more modules in a `buf.yaml` file.
+A **module** is a collection of Protobuf files configured, built, and versioned as a logical unit. A **workspace**
+contains one or more modules in a `buf.yaml` file.
 
 ## Workspace Layout
 
@@ -168,11 +169,13 @@ buf push                     # Push all named modules
 buf push --label v1.0.0      # Push with a label
 ```
 
-All modules in the workspace are pushed in dependency order. They must have `name` values that resolve to BSR repositories.
+All modules in the workspace are pushed in dependency order. They must have `name` values that resolve to BSR
+repositories.
 
 ## Module Documentation
 
-Add `README.md` at the module root. It's displayed as primary documentation on the BSR and triggers new commits when changed.
+Add `README.md` at the module root. It's displayed as primary documentation on the BSR and triggers new commits when
+changed.
 
 ## Migration
 

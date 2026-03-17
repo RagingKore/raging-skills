@@ -2,7 +2,9 @@
 
 ## Overview
 
-Mermaid provides five built-in themes and a comprehensive variable system for customizing diagram appearance. Only the `base` theme supports variable customization. Theme variables cascade: many colors are automatically derived from a handful of primary values, so small changes can restyle an entire diagram.
+Mermaid provides five built-in themes and a comprehensive variable system for customizing diagram appearance.
+Only the `base` theme supports variable customization. Theme variables cascade: many colors are automatically
+derived from a handful of primary values, so small changes can restyle an entire diagram.
 
 ## Available Themes
 
@@ -45,7 +47,8 @@ graph TD
 
 ## Customizing with themeVariables
 
-To create a custom theme, set `theme: base` and override variables via `themeVariables`. This is the only theme that accepts customizations.
+To create a custom theme, set `theme: base` and override variables via `themeVariables`. This is the only
+theme that accepts customizations.
 
 ```mermaid
 ---
@@ -75,11 +78,15 @@ graph TD
 
 ## Color Derivation
 
-Many theme variables are automatically calculated from a few primary values. For example, `primaryBorderColor` is derived from `primaryColor` by darkening or inverting it. This means setting just `primaryColor` restyls nodes, borders, and text in one step.
+Many theme variables are automatically calculated from a few primary values. For example, `primaryBorderColor`
+is derived from `primaryColor` by darkening or inverting it. This means setting just `primaryColor` restyls
+nodes, borders, and text in one step.
 
-Derivation operations include: color inversion, hue shifting, darkening/lightening by ~10%, and contrast calculation based on `darkMode`.
+Derivation operations include: color inversion, hue shifting, darkening/lightening by ~10%, and contrast
+calculation based on `darkMode`.
 
-**Important**: The theming engine only recognizes hex color values (`#ff0000`). CSS color names (`red`) are not supported.
+**Important**: The theming engine only recognizes hex color values (`#ff0000`). CSS color names (`red`) are
+not supported.
 
 ## Global Theme Variables
 
@@ -310,10 +317,17 @@ pie title Project Allocation
 
 ## Common Gotchas
 
-- **Only `base` theme is customizable**: Setting `themeVariables` with `default`, `dark`, `forest`, or `neutral` has no effect. Those themes ignore variable overrides entirely.
+- **Only `base` theme is customizable**: Setting `themeVariables` with `default`, `dark`, `forest`, or
+  `neutral` has no effect. Those themes ignore variable overrides entirely.
 - **Hex values only**: Use `"#ff0000"`, not `"red"`. The theming engine does not resolve CSS color names.
-- **Quote hex values in YAML frontmatter**: The `#` character starts a YAML comment. Always wrap hex colors in quotes: `primaryColor: "#ff0000"`.
-- **Derived colors auto-update**: Changing `primaryColor` automatically recalculates `primaryBorderColor`, `primaryTextColor`, `secondaryColor`, `tertiaryColor`, and many others. Override derived colors explicitly only when the auto-calculated value is unsatisfactory.
-- **`darkMode` changes derivation logic**: Setting `darkMode: true` inverts how text colors and borders are derived. Always set it explicitly when targeting dark backgrounds to ensure readable contrast.
-- **Pie section variables are fixed at 12**: Only `pie1` through `pie12` exist. If your pie chart has more than 12 sections, colors will cycle back to defaults.
-- **Font size values need units**: Variables like `fontSize`, `pieTitleTextSize`, and `pieSectionTextSize` require CSS units (e.g., `"16px"`, `"1.2em"`).
+- **Quote hex values in YAML frontmatter**: The `#` character starts a YAML comment. Always wrap hex colors
+  in quotes: `primaryColor: "#ff0000"`.
+- **Derived colors auto-update**: Changing `primaryColor` automatically recalculates `primaryBorderColor`,
+  `primaryTextColor`, `secondaryColor`, `tertiaryColor`, and many others. Override derived colors explicitly
+  only when the auto-calculated value is unsatisfactory.
+- **`darkMode` changes derivation logic**: Setting `darkMode: true` inverts how text colors and borders are
+  derived. Always set it explicitly when targeting dark backgrounds to ensure readable contrast.
+- **Pie section variables are fixed at 12**: Only `pie1` through `pie12` exist. If your pie chart has more
+  than 12 sections, colors will cycle back to defaults.
+- **Font size values need units**: Variables like `fontSize`, `pieTitleTextSize`, and `pieSectionTextSize`
+  require CSS units (e.g., `"16px"`, `"1.2em"`).

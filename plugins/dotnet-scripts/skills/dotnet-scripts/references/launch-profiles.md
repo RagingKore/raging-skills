@@ -1,8 +1,8 @@
 # Launch Profiles
 
-File-based apps support a flat launch settings file named `<app>.run.json` in the same directory.
-Each file-based app in a directory can have its own `.run.json`, so launch configuration
-stays co-located with the source file it belongs to.
+File-based apps support a flat launch settings file named `<app>.run.json` in the same directory. Each
+file-based app in a directory can have its own `.run.json`, so launch configuration stays co-located with
+the source file it belongs to.
 
 ## File Layout
 
@@ -16,8 +16,8 @@ myapps/
 
 ## Example `app.run.json`
 
-A single file can contain multiple profiles. The first profile in the file acts as the
-default when no explicit selection is made.
+A single file can contain multiple profiles. The first profile in the file acts as the default when no
+explicit selection is made.
 
 ```json
 {
@@ -48,8 +48,7 @@ The runtime resolves which profile to use in this order:
 2. The `DOTNET_LAUNCH_PROFILE` environment variable
 3. The first profile defined in the file (default)
 
-If none of these resolve to a valid profile name, the app starts without any launch
-profile settings applied.
+If none of these resolve to a valid profile name, the app starts without any launch profile settings applied.
 
 ## Usage
 
@@ -74,9 +73,9 @@ dotnet run app.cs
 
 ## Traditional `launchSettings.json`
 
-The traditional `Properties/launchSettings.json` file is also supported for file-based
-apps. If both `<app>.run.json` and `Properties/launchSettings.json` exist in the same
-directory, the traditional file takes priority and a warning is emitted.
+The traditional `Properties/launchSettings.json` file is also supported for file-based apps. If both
+`<app>.run.json` and `Properties/launchSettings.json` exist in the same directory, the traditional file
+takes priority and a warning is emitted.
 
-Prefer `.run.json` for file-based apps since it keeps configuration next to the source
-file and avoids the nested `Properties/` folder.
+Prefer `.run.json` for file-based apps since it keeps configuration next to the source file and avoids
+the nested `Properties/` folder.

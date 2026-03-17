@@ -23,9 +23,11 @@ Expert guidance for modeling complex business domains using strategic and tactic
 
 ## Core Philosophy
 
-DDD addresses the **complexity gap** between business reality and software models. It's about *understanding*, not patterns.
+DDD addresses the **complexity gap** between business reality and software models. It's about *understanding*, not
+patterns.
 
-**Core Insight**: Software fails when developers model *technology* instead of *business*. DDD inverts this: model the business first, let technology serve the model.
+**Core Insight**: Software fails when developers model *technology* instead of *business*. DDD inverts this: model the
+ business first, let technology serve the model.
 
 ### When to Use DDD
 

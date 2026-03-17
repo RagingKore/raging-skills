@@ -19,7 +19,9 @@
 
 ## Overview
 
-Culture fallback is the mechanism by which .NET resolves resources when an exact culture match isn't available. It follows a hierarchical search pattern from most specific to least specific culture, ensuring applications gracefully degrade to available resources.
+Culture fallback is the mechanism by which .NET resolves resources when an exact culture match isn't available. It
+follows a hierarchical search pattern from most specific to least specific culture, ensuring applications gracefully
+degrade to available resources.
 
 ## CultureInfo Hierarchy
 
@@ -541,4 +543,5 @@ string value = Resources.Message;  // null - no German, no default
 - **Parent Cultures**: Automatically traversed during fallback
 - **Best Practices**: Always provide defaults, use neutral cultures, test fallback paths
 
-Culture fallback ensures applications gracefully degrade when exact translations aren't available, providing the best available resource for any requested culture.
+Culture fallback ensures applications gracefully degrade when exact translations aren't available, providing the best
+available resource for any requested culture.

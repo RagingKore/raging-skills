@@ -2,7 +2,8 @@
 
 ## Declaration
 
-Use the keyword `treemap-beta` to start a treemap diagram. This is a newer diagram type whose syntax may evolve in future Mermaid versions.
+Use the keyword `treemap-beta` to start a treemap diagram. This is a newer diagram type whose syntax may evolve in
+future Mermaid versions.
 
 ```
 treemap-beta
@@ -10,7 +11,8 @@ treemap-beta
 
 ## Complete Syntax Reference
 
-Treemap diagrams display hierarchical data as nested rectangles where each rectangle's size is proportional to its value.
+Treemap diagrams display hierarchical data as nested rectangles where each rectangle's size is proportional to its
+value.
 
 ### Node Definition
 
@@ -114,7 +116,8 @@ config:
 
 ### Value Formatting
 
-The `valueFormat` option uses [D3 format specifiers](https://github.com/d3/d3-format#locale_format) plus some shorthand currency formats:
+The `valueFormat` option uses [D3 format specifiers](https://github.com/d3/d3-format#locale_format) plus some shorthand
+currency formats:
 
 | Format      | Description                                      | Example Input | Example Output |
 |-------------|--------------------------------------------------|---------------|----------------|
@@ -215,11 +218,15 @@ classDef highlight fill:#f96,stroke:#333,stroke-width:2px;
 ## Common Gotchas
 
 - **Beta status**: The keyword is `treemap-beta`, indicating the syntax may change in future Mermaid releases.
-- **Indentation defines hierarchy**: Unlike most Mermaid diagrams that use explicit nesting syntax, treemaps rely on indentation (like YAML). Inconsistent indentation will produce incorrect hierarchies.
+- **Indentation defines hierarchy**: Unlike most Mermaid diagrams that use explicit nesting syntax, treemaps rely on
+  indentation (like YAML). Inconsistent indentation will produce incorrect hierarchies.
 - **Node names must be quoted**: All node names must be wrapped in double quotes (`"Name"`).
 - **Values must be numeric**: Leaf node values must be numbers. Non-numeric values will cause parsing errors.
 - **Negative values are not supported**: Treemap diagrams cannot represent negative values meaningfully.
-- **Very small values may be invisible**: Rectangles for very small values relative to the total may be too small to see or label.
+- **Very small values may be invisible**: Rectangles for very small values relative to the total may be too small to see
+  or label.
 - **Deep hierarchies lose clarity**: More than 3-4 levels of nesting becomes difficult to read in treemap form.
-- **`:::` placement for leaves**: When styling a leaf node, the class annotation goes after the value: `"Name": 20:::className`.
-- **`classDef` goes after the tree data**: Place `classDef` statements after all node definitions, not inside the tree structure.
+- **`:::` placement for leaves**: When styling a leaf node, the class annotation goes after the value: `"Name":
+  20:::className`.
+- **`classDef` goes after the tree data**: Place `classDef` statements after all node definitions, not inside the tree
+  structure.

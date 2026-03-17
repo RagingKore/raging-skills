@@ -10,7 +10,8 @@ description: |
 
 # Buf Breaking Change Detection
 
-`buf breaking` detects breaking changes between your current Protobuf schema and a reference point (git branch, tag, BSR module, etc.). It ensures backward compatibility.
+`buf breaking` detects breaking changes between your current Protobuf schema and a reference point
+(git branch, tag, BSR module, etc.). It ensures backward compatibility.
 
 ## Quick Start
 
@@ -36,7 +37,8 @@ buf breaking --against '.git#branch=main' --error-format=json
 Four categories from strictest to most lenient:
 
 ### `FILE` (Default)
-Detects changes that move generated code between files. **Strictest.** Protects all generated languages including C++ and Python.
+Detects changes that move generated code between files. **Strictest.** Protects all generated languages
+including C++ and Python.
 
 Use when: you share `.proto` files or generated code with clients you don't control.
 
@@ -245,11 +247,13 @@ buf breaking --against 'https://github.com/org/repo.git#branch=main'
 buf breaking --against-registry
 ```
 
-CI services often do shallow clones, so local `git` branches may not be available. Use remote URLs or BSR references instead.
+CI services often do shallow clones, so local `git` branches may not be available. Use remote URLs or BSR
+references instead.
 
 ## Custom Options
 
-`buf breaking` does NOT detect changes to custom options (like `google.api.http`). Custom option semantics vary infinitely and can't be generically validated. Use Buf check plugins for custom option validation.
+`buf breaking` does NOT detect changes to custom options (like `google.api.http`). Custom option semantics
+vary infinitely and can't be generically validated. Use Buf check plugins for custom option validation.
 
 ## Rules Quick Reference
 
@@ -292,4 +296,5 @@ CI services often do shallow clones, so local `git` branches may not be availabl
 | RESERVED_ENUM_NO_DELETE                | x    | x   | x         | x    |
 | RESERVED_MESSAGE_NO_DELETE             | x    | x   | x         | x    |
 
-For the complete rules list with detailed descriptions, see [references/breaking-rules.md](references/breaking-rules.md).
+For the complete rules list with detailed descriptions, see
+[references/breaking-rules.md](references/breaking-rules.md).

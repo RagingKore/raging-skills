@@ -14,6 +14,7 @@
 
 ### JetBrains template
 .idea/
+*.DotSettings
 
 ### Windows template
 # Windows thumbnail cache files
@@ -95,6 +96,7 @@ settings.local.json
 # OpenAI Codex CLI
 .codex/
 AGENTS.md
+!**/templates/agents.md
 
 # Cline
 .cline/
@@ -128,3 +130,4 @@ AGENTS.md
 .tasks/
 tasks/
 .agents/
+.mcp.json

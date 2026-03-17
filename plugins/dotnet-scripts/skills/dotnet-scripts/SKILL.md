@@ -56,9 +56,9 @@ File-based apps require .NET 10+. If the version is below 10, use the
 
 ### Write the script
 
-Create a `.cs` file using top-level statements. When working inside a project or solution, place
-scripts in a `scripts/` folder at the repository root, isolated from any `.csproj`. If no such folder
-exists, create one. Never place scripts inside a project directory tree.
+Create a `.cs` file using top-level statements. When working inside a project or solution, place scripts in a
+`scripts/` folder at the repository root, isolated from any `.csproj`. If no such folder exists, create one.
+Never place scripts inside a project directory tree.
 
 ```csharp
 // hello.cs
@@ -72,15 +72,15 @@ await Console.Out.WriteLineAsync($"Sum: {numbers.Sum()}");
 Rules:
 
 - Use top-level statements (no `Main` method, class, or namespace boilerplate)
-- **Everything async.** Use `await` for all I/O (file, network, process). Top-level statements
-  support `await` directly. Never use synchronous console methods. The correct forms are:
+- **Everything async.** Use `await` for all I/O (file, network, process). Top-level statements support `await`
+  directly. Never use synchronous console methods. The correct forms are:
   - `await Console.Out.WriteLineAsync(...)` (not `Console.WriteLine`)
   - `await Console.Error.WriteLineAsync(...)` (not `Console.Error.WriteLine`)
   - `await Console.Out.WriteAsync(...)` (not `Console.Write`)
-- **Omit braces on single-statement blocks.** `if`, `foreach`, `for`, and other control flow with
-  a single-line body should not use curly braces. Scripts should be compact
-- **K&R brace style.** When braces are needed (multi-statement blocks, try/catch), place the
-  opening brace on the same line as the statement, not on the next line:
+- **Omit braces on single-statement blocks.** `if`, `foreach`, `for`, and other control flow with a single-line
+  body should not use curly braces. Scripts should be compact
+- **K&R brace style.** When braces are needed (multi-statement blocks, try/catch), place the opening brace on
+  the same line as the statement, not on the next line:
 
   ```csharp
   if (args.Length == 0) {
@@ -127,8 +127,8 @@ Directives configure the build. Place them at the top of the file, before any C#
 #:package Serilog@3.1.1
 ```
 
-Always specify a version (`@x.y.z`) or `@*` for latest, unless you use central package management
-with `Directory.Packages.props`.
+Always specify a version (`@x.y.z`) or `@*` for latest, unless you use central package management with
+`Directory.Packages.props`.
 
 ### `#:project` -- Reference another project
 
@@ -214,9 +214,8 @@ When a script outgrows a single file:
 dotnet project convert hello.cs
 ```
 
-Creates a new directory named after the app, containing a copy of the `.cs` file and a `.csproj` with
-equivalent SDK, properties, and package references from the `#:` directives. The original `.cs` file is
-left untouched.
+Creates a new directory named after the app, containing a copy of the `.cs` file and a `.csproj` with equivalent
+SDK, properties, and package references from the `#:` directives. The original `.cs` file is left untouched.
 
 ## Folder Layout
 
@@ -236,8 +235,7 @@ repo/
 
 ## Fallback for .NET 9 and Earlier
 
-If `dotnet --version` reports below 10.0, file-based apps are not available. Use a temporary console
-project:
+If `dotnet --version` reports below 10.0, file-based apps are not available. Use a temporary console project:
 
 ```bash
 mkdir -p /tmp/dotnet-script && cd /tmp/dotnet-script
@@ -270,16 +268,16 @@ Replace the generated `Program.cs` with the script content. Run with `dotnet run
 
 For advanced topics, read the relevant reference file in `references/`:
 
-- [AOT JSON serialization](references/aot-json-serialization.md): source-generated `JsonSerializerContext`
-  pattern required when publishing with native AOT (the default)
+- [AOT JSON serialization](references/aot-json-serialization.md): source-generated `JsonSerializerContext` pattern
+  required when publishing with native AOT (the default)
 - [Launch profiles](references/launch-profiles.md): `<app>.run.json` for environment variables and URLs
 - [User secrets](references/user-secrets.md): per-app secret storage via `dotnet user-secrets --file`
 - [Build caching](references/build-caching.md): cache location, cleanup commands, concurrent run handling
-- [Implicit build files](references/implicit-build-files.md): inherited MSBuild/NuGet config from parent
-  directories
+- [Implicit build files](references/implicit-build-files.md): inherited MSBuild/NuGet config from parent directories
 
 ## References
 
 - [File-based apps](https://learn.microsoft.com/en-us/dotnet/core/sdk/file-based-apps)
-- [Tutorial: Build file-based C# programs](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/tutorials/file-based-programs)
+- [Tutorial: Build file-based C#
+  programs](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/tutorials/file-based-programs)
 - [What's new in the SDK for .NET 10](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-10/sdk)

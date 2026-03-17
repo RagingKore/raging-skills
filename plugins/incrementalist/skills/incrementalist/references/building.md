@@ -158,4 +158,4 @@ dotnet pack -c Release -o bin/nuget --include-symbols
 
 # Verify package contents
 # Check bin/nuget/*.nupkg contents using NuGet Package Explorer or similar tool
-``` 
+```

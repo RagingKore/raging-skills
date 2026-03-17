@@ -14,7 +14,8 @@ description: |
 
 # .NET Configuration Expert
 
-Comprehensive guidance for `Microsoft.Extensions.Configuration` and the Options pattern in .NET 9+ console apps and ASP.NET Core.
+Comprehensive guidance for `Microsoft.Extensions.Configuration` and the Options pattern in .NET 9+ console apps and
+ASP.NET Core.
 
 ## Quick Decision Matrix
 
@@ -56,7 +57,8 @@ IConfigurationRoot config = new ConfigurationBuilder()
 string? value = config["Section:Key"];
 ```
 
-**Required packages:** `Microsoft.Extensions.Configuration.Json`, `Microsoft.Extensions.Configuration.EnvironmentVariables`, `Microsoft.Extensions.Configuration.CommandLine`
+**Required packages:** `Microsoft.Extensions.Configuration.Json`,
+ `Microsoft.Extensions.Configuration.EnvironmentVariables`, `Microsoft.Extensions.Configuration.CommandLine`
 
 ### With Generic Host (recommended)
 
@@ -164,11 +166,13 @@ public sealed class MonitorService(IOptionsMonitor<DatabaseOptions> monitor) {
 
 ## Validation
 
-See [references/validation.md](references/validation.md) for complete validation patterns including DataAnnotations, IValidateOptions, recursive validation, and compile-time source generation.
+See [references/validation.md](references/validation.md) for complete validation patterns including DataAnnotations,
+IValidateOptions, recursive validation, and compile-time source generation.
 
 ## Configuration Providers
 
-See [references/providers.md](references/providers.md) for detailed coverage of all built-in and custom configuration providers.
+See [references/providers.md](references/providers.md) for detailed coverage of all built-in and custom configuration
+providers.
 
 ## Hierarchical Keys
 
@@ -199,7 +203,8 @@ Enable the configuration binding source generator for Native AOT and trimming:
 </PropertyGroup>
 ```
 
-This intercepts `Bind()`, `Get<T>()`, and `Configure<T>()` calls and replaces reflection with generated code. Enabled by default when `PublishAot=true`.
+This intercepts `Bind()`, `Get<T>()`, and `Configure<T>()` calls and replaces reflection with generated code. Enabled by
+default when `PublishAot=true`.
 
 ## Learn More
 

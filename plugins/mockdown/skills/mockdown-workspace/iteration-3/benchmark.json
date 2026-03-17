@@ -1,0 +1,155 @@
+{
+  "metadata": {
+    "skill_name": "mockdown",
+    "skill_path": "plugins/mockdown/skills/mockdown/SKILL.md",
+    "executor_model": "claude-opus-4-6",
+    "timestamp": "2026-03-11T17:28:00Z",
+    "evals_run": ["wireframe-to-html", "wireframe-to-basecoat", "write-wireframe"],
+    "runs_per_configuration": 3
+  },
+  "runs": [
+    {
+      "eval_name": "wireframe-to-html",
+      "configuration": "with_skill",
+      "pass_rate": 1.0,
+      "passed": 8,
+      "total": 8,
+      "time_seconds": 39.5,
+      "tokens": 21515,
+      "expectations": [
+        {"text": "Uses semantic <nav> element for navigation bar", "passed": true},
+        {"text": "Contains email input with placeholder text 'Enter your email...'", "passed": true},
+        {"text": "Contains a Subscribe button", "passed": true},
+        {"text": "Checkbox is checked by default (checked attribute)", "passed": true},
+        {"text": "Card structure with 'Welcome' as the title/header", "passed": true},
+        {"text": "Contains navigation links: Home, About, Contact", "passed": true},
+        {"text": "Contains Sign Up button", "passed": true},
+        {"text": "No elaborate CSS framework or excessive styling beyond basic layout", "passed": true}
+      ]
+    },
+    {
+      "eval_name": "wireframe-to-html",
+      "configuration": "without_skill",
+      "pass_rate": 1.0,
+      "passed": 8,
+      "total": 8,
+      "time_seconds": 27.4,
+      "tokens": 12073,
+      "expectations": [
+        {"text": "Uses semantic <nav> element for navigation bar", "passed": true},
+        {"text": "Contains email input with placeholder text 'Enter your email...'", "passed": true},
+        {"text": "Contains a Subscribe button", "passed": true},
+        {"text": "Checkbox is checked by default (checked attribute)", "passed": true},
+        {"text": "Card structure with 'Welcome' as the title/header", "passed": true},
+        {"text": "Contains navigation links: Home, About, Contact", "passed": true},
+        {"text": "Contains Sign Up button", "passed": true},
+        {"text": "No elaborate CSS framework or excessive styling beyond basic layout", "passed": true}
+      ]
+    },
+    {
+      "eval_name": "wireframe-to-basecoat",
+      "configuration": "with_skill",
+      "pass_rate": 1.0,
+      "passed": 9,
+      "total": 9,
+      "time_seconds": 38.1,
+      "tokens": 20166,
+      "expectations": [
+        {"text": "Includes Basecoat CSS dependency (CDN or import)", "passed": true},
+        {"text": "Uses Basecoat 'tabs' and 'tab active' classes", "passed": true},
+        {"text": "Uses Lucide search icon (data-lucide='search')", "passed": true},
+        {"text": "Uses Basecoat 'table' class on table element", "passed": true},
+        {"text": "Uses Lucide chevron icons for pagination arrows", "passed": true},
+        {"text": "Page 3 is visually active/selected in pagination", "passed": true},
+        {"text": "Tab 1 is the active tab", "passed": true},
+        {"text": "Table rows contain realistic sample data", "passed": true},
+        {"text": "Calls lucide.createIcons() to initialize icons", "passed": true}
+      ]
+    },
+    {
+      "eval_name": "wireframe-to-basecoat",
+      "configuration": "without_skill",
+      "pass_rate": 0.778,
+      "passed": 7,
+      "total": 9,
+      "time_seconds": 24.8,
+      "tokens": 11821,
+      "expectations": [
+        {"text": "Includes Basecoat CSS dependency (CDN or import)", "passed": false},
+        {"text": "Uses Basecoat 'tabs' and 'tab active' classes", "passed": false},
+        {"text": "Uses Lucide search icon (data-lucide='search')", "passed": true},
+        {"text": "Uses Basecoat 'table' class on table element", "passed": true},
+        {"text": "Uses Lucide chevron icons for pagination arrows", "passed": true},
+        {"text": "Page 3 is visually active/selected in pagination", "passed": true},
+        {"text": "Tab 1 is the active tab", "passed": true},
+        {"text": "Table rows contain realistic sample data", "passed": true},
+        {"text": "Calls lucide.createIcons() to initialize icons", "passed": true}
+      ]
+    },
+    {
+      "eval_name": "write-wireframe",
+      "configuration": "with_skill",
+      "pass_rate": 0.875,
+      "passed": 7,
+      "total": 8,
+      "time_seconds": 25.2,
+      "tokens": 19121,
+      "expectations": [
+        {"text": "Uses box-drawing characters (┌ ─ ┐ │ └ ┘ or similar Unicode)", "passed": true},
+        {"text": "Split panel layout with sidebar and main content area", "passed": true},
+        {"text": "Sidebar contains Profile, Security, and Notifications items", "passed": true},
+        {"text": "Profile section is active/selected in sidebar", "passed": false},
+        {"text": "Main area contains Mockdown text input patterns ([___] or similar)", "passed": true},
+        {"text": "Contains an avatar/image placeholder", "passed": true},
+        {"text": "Contains a Save button using [ Save ] pattern", "passed": true},
+        {"text": "Output is wrapped in a code fence", "passed": true}
+      ]
+    },
+    {
+      "eval_name": "write-wireframe",
+      "configuration": "without_skill",
+      "pass_rate": 0.625,
+      "passed": 5,
+      "total": 8,
+      "time_seconds": 16.9,
+      "tokens": 10878,
+      "expectations": [
+        {"text": "Uses box-drawing characters (┌ ─ ┐ │ └ ┘ or similar Unicode)", "passed": false},
+        {"text": "Split panel layout with sidebar and main content area", "passed": true},
+        {"text": "Sidebar contains Profile, Security, and Notifications items", "passed": true},
+        {"text": "Profile section is active/selected in sidebar", "passed": true},
+        {"text": "Main area contains Mockdown text input patterns ([___] or similar)", "passed": false},
+        {"text": "Contains an avatar/image placeholder", "passed": true},
+        {"text": "Contains a Save button using [ Save ] pattern", "passed": false},
+        {"text": "Output is wrapped in a code fence", "passed": true}
+      ]
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "mean_pass_rate": 0.958,
+      "total_passed": 24,
+      "total_assertions": 25,
+      "mean_time_seconds": 34.3,
+      "mean_tokens": 20267
+    },
+    "without_skill": {
+      "mean_pass_rate": 0.800,
+      "total_passed": 20,
+      "total_assertions": 25,
+      "mean_time_seconds": 23.0,
+      "mean_tokens": 11591
+    },
+    "delta": {
+      "pass_rate": "+15.8%",
+      "time_seconds": "+11.3",
+      "tokens": "+8676"
+    }
+  },
+  "notes": [
+    "Basecoat without-skill used DaisyUI instead of Basecoat — model has no built-in knowledge of Basecoat UI",
+    "Write-wireframe with-skill missed active state indicator for Profile in sidebar (used • instead of ●)",
+    "HTML eval is non-discriminating — both configurations pass all assertions",
+    "Write-wireframe without-skill uses ASCII +--| characters instead of Unicode box-drawing"
+  ]
+}

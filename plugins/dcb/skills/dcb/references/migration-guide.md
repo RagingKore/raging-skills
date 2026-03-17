@@ -18,7 +18,8 @@ Step-by-step guide for migrating from aggregate-per-stream event sourcing to Dyn
 
 ### Key Insight
 
-DCB migration is primarily a **code change**, not a data migration. The fundamental shift is from "which stream does this event belong to?" to "which tags does this event carry?"
+DCB migration is primarily a **code change**, not a data migration. The fundamental shift is from "which stream does
+this event belong to?" to "which tags does this event carry?"
 
 ### Migration Approaches
 
@@ -34,7 +35,8 @@ DCB migration is primarily a **code change**, not a data migration. The fundamen
 
 ## Phase 1: Event Transformation
 
-Transform existing events to carry tags. This can be done at read time (no data migration) or write time (new events only).
+Transform existing events to carry tags. This can be done at read time (no data migration) or write time (new events
+only).
 
 ### Before: Traditional Event
 

@@ -1,0 +1,25 @@
+{
+  "name": "aspire",
+  "version": "1.0.0",
+  "description": "Comprehensive .NET Aspire development skills for cloud-native application orchestration with AppHost, service defaults, integrations, testing, deployment, and extensibility. Use when building Aspire applications, orchestrating distributed services, configuring service defaults, writing Aspire integration tests, deploying to Azure Container Apps or Kubernetes, creating custom resources, or migrating from Docker Compose to Aspire.",
+  "keywords": [
+    "aspire",
+    "dotnet-aspire",
+    "apphost",
+    "orchestration",
+    "cloud-native",
+    "service-defaults",
+    "service-discovery",
+    "distributed-application",
+    "azure-container-apps",
+    "kubernetes",
+    "integration-testing",
+    "docker-compose-migration"
+  ],
+  "skills": [
+    "./skills/"
+  ],
+  "agents": [
+    "./agents/aspire-migration-helper.md"
+  ]
+}

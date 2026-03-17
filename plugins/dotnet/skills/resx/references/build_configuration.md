@@ -17,7 +17,8 @@
 
 ## Overview
 
-Proper build configuration ensures resource files are correctly embedded, satellite assemblies are generated, and Designer.cs files are maintained. This guide covers MSBuild, .csproj configuration, and CI/CD pipeline setup.
+Proper build configuration ensures resource files are correctly embedded, satellite assemblies are generated, and
+Designer.cs files are maintained. This guide covers MSBuild, .csproj configuration, and CI/CD pipeline setup.
 
 ## .csproj Configuration
 

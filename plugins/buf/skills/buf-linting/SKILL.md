@@ -10,7 +10,8 @@ description: |
 
 # Buf Linting
 
-`buf lint` enforces Protobuf best practices through configurable rules organized into categories of increasing strictness.
+`buf lint` enforces Protobuf best practices through configurable rules organized into categories of increasing
+strictness.
 
 ## Quick Start
 
@@ -223,4 +224,5 @@ buf lint --config '{"version":"v2","lint":{"use":["BASIC"]}}'
 
 ## Complete Rules Reference
 
-For detailed descriptions of every rule, examples of violations, and their category memberships, see [references/lint-rules.md](references/lint-rules.md).
+For detailed descriptions of every rule, examples of violations, and their category memberships, see
+[references/lint-rules.md](references/lint-rules.md).

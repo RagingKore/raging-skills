@@ -1,0 +1,16 @@
+{
+  "eval_id": 2,
+  "eval_name": "wireframe-to-basecoat",
+  "prompt": "Convert this wireframe to Basecoat UI with Lucide icons:\n```\n[ Tab 1 ]   Tab 2   Tab 3\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n[/ Search...            ]\n\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 Name     \u2502 Email    \u2502 Role     \u2502\n\u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u253c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u253c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524\n\u2502          \u2502          \u2502          \u2502\n\u2502          \u2502          \u2502          \u2502\n\u2502          \u2502          \u2502          \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n\n< 1 2 [3] 4 5 ... >\n```",
+  "assertions": [
+    "Includes Basecoat CSS dependency (CDN or import)",
+    "Uses Basecoat 'tabs' and 'tab active' classes",
+    "Uses Lucide search icon (data-lucide='search')",
+    "Uses Basecoat 'table' class on table element",
+    "Uses Lucide chevron icons for pagination arrows",
+    "Page 3 is visually active/selected in pagination",
+    "Tab 1 is the active tab",
+    "Table rows contain realistic sample data (names, emails, roles) even though wireframe rows were empty \u2014 preserves wireframe content without fabricated data",
+    "Calls lucide.createIcons() to initialize icons"
+  ]
+}

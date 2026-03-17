@@ -64,7 +64,9 @@ Sections create visual separations in the diagram, helping to distinguish differ
 
 ## Styling & Configuration
 
-User journey diagrams use the default Mermaid theme. Score values (1-5) determine the color of each task bar automatically. There are no additional configuration parameters specific to user journey diagrams beyond the global Mermaid theme settings.
+User journey diagrams use the default Mermaid theme. Score values (1-5) determine the color of each task bar
+automatically. There are no additional configuration parameters specific to user journey diagrams beyond the global
+Mermaid theme settings.
 
 ## Practical Examples
 
@@ -172,7 +174,8 @@ journey
 - **Colons are structural** -- the format is strictly `Task name: score: actors`. Missing colons break parsing.
 - **At least one actor is required** per task. A task with no actor after the second colon will fail.
 - **No quotes needed** around task names or actor names, unlike entity or pie chart labels.
-- **Sections are optional** but strongly recommended for readability. Tasks without a section still render, but grouping is lost.
+- **Sections are optional** but strongly recommended for readability. Tasks without a section still render, but grouping
+  is lost.
 - **Actor names are case-sensitive** -- `Me` and `me` are treated as different actors and will receive different colors.
 - **Commas in actor lists** -- spaces after commas are trimmed, so `Me, Cat` and `Me,Cat` both work.
 - **No click events or interactivity** -- user journey diagrams do not support click handlers or links.

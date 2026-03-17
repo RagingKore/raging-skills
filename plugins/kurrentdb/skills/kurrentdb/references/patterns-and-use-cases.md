@@ -1,6 +1,7 @@
 # KurrentDB Patterns and Use Cases
 
-Practical patterns for building event-sourced systems with KurrentDB, including the outbox pattern, polyglot persistence, time travel, and connector integration.
+Practical patterns for building event-sourced systems with KurrentDB, including the outbox pattern, polyglot
+persistence, time travel, and connector integration.
 
 ## Table of Contents
 
@@ -15,7 +16,8 @@ Practical patterns for building event-sourced systems with KurrentDB, including 
 
 ## Event Sourcing Fundamentals
 
-Event sourcing stores every state change as an immutable event rather than overwriting current state. The event log is the single source of truth.
+Event sourcing stores every state change as an immutable event rather than overwriting current state. The event log is
+the single source of truth.
 
 ### Core Concepts
 
@@ -116,7 +118,9 @@ Category projections (using `$ce-` prefix) aggregate all streams of a type:
 
 ### The Problem: Dual Writes
 
-In traditional architectures, recording a business change requires writing to both a database and a message queue. This creates the **dual write problem**: if one write succeeds and the other fails, the system is left in an inconsistent state. Two-phase commits are fragile and slow.
+In traditional architectures, recording a business change requires writing to both a database and a message queue. This
+creates the **dual write problem**: if one write succeeds and the other fails, the system is left in an inconsistent
+state. Two-phase commits are fragile and slow.
 
 ```
 Traditional (BROKEN):
@@ -126,7 +130,9 @@ Traditional (BROKEN):
 
 ### KurrentDB Solution: "The Stream IS the Outbox"
 
-KurrentDB solves this by combining the database and message queue into a single construct: the **event stream**. Appending an event to a stream is a single atomic, durable, immediately consistent write. Subscribers then propagate changes asynchronously.
+KurrentDB solves this by combining the database and message queue into a single construct: the **event stream**.
+Appending an event to a stream is a single atomic, durable, immediately consistent write. Subscribers then propagate
+changes asynchronously.
 
 ```
 KurrentDB (CORRECT):
@@ -146,7 +152,8 @@ KurrentDB (CORRECT):
 
 ### Persistent Subscription with Consumer Groups
 
-Persistent subscriptions provide **competing consumers** – multiple instances process events from the same subscription, with the server distributing events across consumers.
+Persistent subscriptions provide **competing consumers** – multiple instances process events from the same subscription,
+with the server distributing events across consumers.
 
 ```csharp
 // Subscribe to the category projection for all order streams
@@ -215,11 +222,14 @@ async Task ProcessOrder(ResolvedEvent resolvedEvent) {
 
 ### The Problem: One Database Cannot Do Everything
 
-A single database cannot optimally serve all access patterns. Relational databases handle joins well but struggle with full-text search. Document stores handle flexible schemas but lack relational integrity. Key-value stores are fast but limited in query capability.
+A single database cannot optimally serve all access patterns. Relational databases handle joins well but struggle with
+full-text search. Document stores handle flexible schemas but lack relational integrity. Key-value stores are fast but
+limited in query capability.
 
 ### The Solution: KurrentDB as Central Event Hub
 
-Use KurrentDB as the authoritative event store and project events into purpose-built read stores via catch-up subscriptions.
+Use KurrentDB as the authoritative event store and project events into purpose-built read stores via catch-up
+subscriptions.
 
 ```
 KurrentDB (Source of Truth)
@@ -239,7 +249,8 @@ KurrentDB (Source of Truth)
 
 ### Exactly-Once Processing
 
-Achieve **exactly-once semantics** by atomically committing the read model update and the checkpoint in the same database transaction:
+Achieve **exactly-once semantics** by atomically committing the read model update and the checkpoint in the same
+database transaction:
 
 ```csharp
 // PostgreSQL example: atomic update + checkpoint in one transaction
@@ -301,15 +312,18 @@ await foreach (var resolvedEvent in subscription.Messages) {
 
 ### The Problem: Traditional Databases Only Store Current State
 
-Traditional databases overwrite previous values on every update. Once data is changed, the previous state is lost. This makes historical analysis, debugging, and auditing difficult or impossible.
+Traditional databases overwrite previous values on every update. Once data is changed, the previous state is lost. This
+makes historical analysis, debugging, and auditing difficult or impossible.
 
 ### The Solution: Immutable Event History
 
-Since KurrentDB stores every change as an immutable event, you can reconstruct the state of any entity at any point in time.
+Since KurrentDB stores every change as an immutable event, you can reconstruct the state of any entity at any point in
+time.
 
 ### Approach 1: Pre-Computed Snapshots
 
-Project events into **denormalized snapshot tables** at regular intervals (daily, monthly, etc.). Fast queries with configurable granularity.
+Project events into **denormalized snapshot tables** at regular intervals (daily, monthly, etc.). Fast queries with
+configurable granularity.
 
 ```csharp
 // Build daily snapshots from events

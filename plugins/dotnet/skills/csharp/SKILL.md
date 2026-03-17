@@ -5,7 +5,8 @@ description: Generate production-ready C# code with modern C# 14 features (exten
 
 # C# Craftsman Skill
 
-Expert-level C# and .NET development skill focused on code quality, modern language features, and performance. Generates production-ready code following established standards with complete documentation and appropriate test coverage.
+Expert-level C# and .NET development skill focused on code quality, modern language features, and performance. Generates
+production-ready code following established standards with complete documentation and appropriate test coverage.
 
 ## Purpose
 

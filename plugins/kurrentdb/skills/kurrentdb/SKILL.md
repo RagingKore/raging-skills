@@ -16,11 +16,16 @@ description: |
 
 ## Overview
 
-KurrentDB is an **event-native database** purpose-built for Event Sourcing, Event-Driven Architecture, and real-time event streaming. Formerly known as EventStoreDB (rebranded in v25.0), it stores every state change as an immutable event in an append-only log, providing a complete audit trail and enabling temporal queries, event replay, and real-time subscriptions.
+KurrentDB is an **event-native database** purpose-built for Event Sourcing, Event-Driven Architecture, and real-time
+event streaming. Formerly known as EventStoreDB (rebranded in v25.0), it stores every state change as an immutable event
+in an append-only log, providing a complete audit trail and enabling temporal queries, event replay, and real-time
+subscriptions.
 
 **Current LTS**: v26.0 (Jan 2026, .NET 10) | **Previous LTS**: v24.10 (Nov 2024)
 
-**Key Capabilities**: Immutable event log, individually indexed streams (billions supported), server-side projections (JavaScript), persistent subscriptions with competing consumers, built-in connectors, secondary and user-defined indexes, ad-hoc SQL queries, archiving to S3/Azure/GCP, multi-stream atomic appends, encryption-at-rest.
+**Key Capabilities**: Immutable event log, individually indexed streams (billions supported), server-side projections
+ (JavaScript), persistent subscriptions with competing consumers, built-in connectors, secondary and user-defined
+ indexes, ad-hoc SQL queries, archiving to S3/Azure/GCP, multi-stream atomic appends, encryption-at-rest.
 
 **Client SDKs**: .NET, Java, Go, Python, Node.js, Rust | **APIs**: gRPC (primary), HTTP/AtomPub (legacy)
 
@@ -72,7 +77,8 @@ await foreach (var msg in sub.Messages) {
 | `kurrentdb://`          | Direct single-node connection                                       |
 | `kurrentdb+discover://` | Cluster discovery via gossip (works with any topology since v22.10) |
 
-Key parameters: `tls` (true), `nodePreference` (leader/follower/random/readOnlyReplica), `tlsVerifyCert`, `tlsCaFile`, `defaultDeadline`, `keepAliveInterval`, `userCertFile`/`userKeyFile` (X.509).
+Key parameters: `tls` (true), `nodePreference` (leader/follower/random/readOnlyReplica), `tlsVerifyCert`, `tlsCaFile`,
+`defaultDeadline`, `keepAliveInterval`, `userCertFile`/`userKeyFile` (X.509).
 
 See [references/dotnet-client.md](references/dotnet-client.md) for complete API reference.
 
@@ -86,7 +92,8 @@ See [references/dotnet-client.md](references/dotnet-client.md) for complete API 
 | `$$streamname`   | `$$order-123`       | Stream metadata                 |
 | `$` prefix       | `$all`, `$settings` | System streams (admin access)   |
 
-**Rules**: Stream IDs are case-sensitive strings. Use `-` separator for categories. System streams (`$` prefix) require `$admins` access by default.
+**Rules**: Stream IDs are case-sensitive strings. Use `-` separator for categories. System streams (`$` prefix) require
+ `$admins` access by default.
 
 See [references/streams-and-events.md](references/streams-and-events.md) for complete stream documentation.
 
@@ -189,9 +196,11 @@ fromAll()
 **Actions**: `emit(stream, type, body, metadata)`, `linkTo(stream, event, metadata)`, `log(msg)`
 **Partitioning**: `foreachStream()`, `partitionBy(fn)`, `transformBy(fn)`, `filterBy(fn)`
 
-**System projections** (5 built-in): `$by_category`, `$by_event_type`, `$by_correlation_id`, `$stream_by_category`, `$streams`
+**System projections** (5 built-in): `$by_category`, `$by_event_type`, `$by_correlation_id`, `$stream_by_category`,
+ `$streams`
 
-**WARNING**: Projections cause write amplification. Enabling all system projections = 4x write operations per event. Only run on leader node.
+**WARNING**: Projections cause write amplification. Enabling all system projections = 4x write operations per event.
+ Only run on leader node.
 
 See [references/projections.md](references/projections.md) for complete JavaScript API.
 
@@ -234,7 +243,8 @@ Built-in server-side plugins that stream events to external systems. At-least-on
 |--------|----------|---------------------------------------|
 | Kafka  | Required | Consume topics into KurrentDB streams |
 
-**Management via REST**: `POST /connectors/{id}`, `POST /connectors/{id}/start`, `POST /connectors/{id}/stop`, `DELETE /connectors/{id}`
+**Management via REST**: `POST /connectors/{id}`, `POST /connectors/{id}/start`, `POST /connectors/{id}/stop`, `DELETE
+ /connectors/{id}`
 
 See [references/connectors.md](references/connectors.md) for configuration and all sink/source details.
 

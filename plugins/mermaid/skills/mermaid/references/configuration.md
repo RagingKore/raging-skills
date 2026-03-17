@@ -2,17 +2,20 @@
 
 ## Overview
 
-Mermaid configuration controls diagram rendering behavior, layout, security, and appearance. Configuration is resolved from three sources in priority order:
+Mermaid configuration controls diagram rendering behavior, layout, security, and appearance. Configuration is
+resolved from three sources in priority order:
 
 1. **Frontmatter** (highest priority) - per-diagram YAML config block
 2. **Site-level `initialize` call** - applied once by the site integrator
 3. **Built-in defaults** (lowest priority)
 
-Before each diagram render, Mermaid calls `configApi.reset()` to restore site-level config, then applies frontmatter on top. This means frontmatter always wins over site defaults.
+Before each diagram render, Mermaid calls `configApi.reset()` to restore site-level config, then applies
+frontmatter on top. This means frontmatter always wins over site defaults.
 
 ## Frontmatter Configuration (v10.5.0+)
 
-Frontmatter is the recommended way to configure individual diagrams. It uses a YAML block delimited by `---` at the very top of the diagram definition.
+Frontmatter is the recommended way to configure individual diagrams. It uses a YAML block delimited by `---`
+at the very top of the diagram definition.
 
 ### Syntax Rules
 
@@ -168,7 +171,8 @@ Note: `securityLevel` is a secure key and can only be set via `mermaid.initializ
 
 ### dagre (Default)
 
-The classic layout engine. Best for general-purpose layered/hierarchical graphs. Produces reliable results for most diagram sizes.
+The classic layout engine. Best for general-purpose layered/hierarchical graphs. Produces reliable results
+for most diagram sizes.
 
 ```mermaid
 ---
@@ -181,7 +185,8 @@ flowchart TD
 
 ### elk (Eclipse Layout Kernel)
 
-Advanced layout engine producing cleaner results for complex diagrams with many crossing edges. Requires the `@mermaid-js/layout-elk` package to be installed and registered by the site.
+Advanced layout engine producing cleaner results for complex diagrams with many crossing edges. Requires the
+`@mermaid-js/layout-elk` package to be installed and registered by the site.
 
 ```javascript
 import mermaid from 'mermaid';
@@ -208,11 +213,13 @@ flowchart TD
 
 ### tidy-tree
 
-Optimized for hierarchical tree structures with even spacing. Produces balanced trees with consistent node positioning.
+Optimized for hierarchical tree structures with even spacing. Produces balanced trees with consistent node
+positioning.
 
 ### cose-bilkent
 
-Force-directed layout from the Cytoscape ecosystem. Best for undirected or loosely structured graphs where hierarchical layout doesn't apply.
+Force-directed layout from the Cytoscape ecosystem. Best for undirected or loosely structured graphs where
+hierarchical layout doesn't apply.
 
 ## ELK Configuration
 
@@ -282,7 +289,8 @@ flowchart LR
 | `classic`   | Default clean vector-graphic style with solid lines and fills. |
 | `handDrawn` | Sketchy, hand-drawn appearance using rough.js rendering.       |
 
-The `handDrawnSeed` key controls reproducibility. With seed `0` (default), each render looks slightly different. Set a fixed seed for consistent output:
+The `handDrawnSeed` key controls reproducibility. With seed `0` (default), each render looks slightly
+different. Set a fixed seed for consistent output:
 
 ```mermaid
 ---
@@ -299,7 +307,8 @@ flowchart LR
 
 ## Diagram-Specific Configuration
 
-Diagram-specific options are nested under their diagram type key in frontmatter. All diagram configs inherit from `BaseDiagramConfig` which provides:
+Diagram-specific options are nested under their diagram type key in frontmatter. All diagram configs inherit
+from `BaseDiagramConfig` which provides:
 
 | Key           | Type    | Default | Description                                 |
 |---------------|---------|---------|---------------------------------------------|
@@ -469,7 +478,8 @@ config:
     <key>: <value>
 ```
 
-State diagrams primarily use `BaseDiagramConfig` properties (`useMaxWidth`, `useWidth`) and inherit layout/theme settings from top-level config.
+State diagrams primarily use `BaseDiagramConfig` properties (`useMaxWidth`, `useWidth`) and inherit
+layout/theme settings from top-level config.
 
 ### ER Diagram
 
@@ -559,7 +569,8 @@ config:
 | `c4ShapeInRow`    | number | `4`     | Maximum number of C4 shapes (persons, systems, containers, components) per row |
 | `c4BoundaryInRow` | number | `2`     | Maximum number of C4 boundaries per row                                        |
 
-C4 diagrams also support extensive font/size/color customization for each element type (person, system, container, component, database, queue, boundary, message) through theme variables.
+C4 diagrams also support extensive font/size/color customization for each element type (person, system,
+container, component, database, queue, boundary, message) through theme variables.
 
 ### Quadrant Chart
 
@@ -713,7 +724,8 @@ config:
     <key>: <value>
 ```
 
-Mindmap primarily uses `BaseDiagramConfig` properties and the top-level `layout` key. The mindmap layout works best with `tidy-tree`.
+Mindmap primarily uses `BaseDiagramConfig` properties and the top-level `layout` key. The mindmap layout
+works best with `tidy-tree`.
 
 ### Kanban
 
@@ -824,11 +836,13 @@ config:
 
 ### Journey, Requirement, Architecture, Block, Treemap, ZenUML
 
-These diagram types primarily use `BaseDiagramConfig` properties (`useMaxWidth`, `useWidth`) and inherit layout/theme/font settings from the top-level config. They do not have extensive diagram-specific config keys.
+These diagram types primarily use `BaseDiagramConfig` properties (`useMaxWidth`, `useWidth`) and inherit
+layout/theme/font settings from the top-level config. They do not have extensive diagram-specific config keys.
 
 ## Initialize Call (Site-Wide)
 
-The `mermaid.initialize()` call is applied once by the site integrator. It sets the site-level baseline that all diagrams inherit. Frontmatter overrides are applied on top.
+The `mermaid.initialize()` call is applied once by the site integrator. It sets the site-level baseline that
+all diagrams inherit. Frontmatter overrides are applied on top.
 
 ```javascript
 mermaid.initialize({
@@ -848,11 +862,13 @@ mermaid.initialize({
 });
 ```
 
-Secure keys (`securityLevel`, `startOnLoad`, `maxTextSize`, `maxEdges`, `suppressErrorRendering`) can **only** be set here - not via frontmatter.
+Secure keys (`securityLevel`, `startOnLoad`, `maxTextSize`, `maxEdges`, `suppressErrorRendering`) can
+**only** be set here - not via frontmatter.
 
 ## Directives (Deprecated)
 
-Inline `%%{init: ...}%%` blocks are deprecated since v10.5.0 in favor of frontmatter. They still function but frontmatter is preferred.
+Inline `%%{init: ...}%%` blocks are deprecated since v10.5.0 in favor of frontmatter. They still function
+but frontmatter is preferred.
 
 ```mermaid
 %%{init: { "theme": "forest", "logLevel": 2 } }%%
@@ -860,7 +876,8 @@ graph TD
   A --> B
 ```
 
-Both `init` and `initialize` keywords work. Multiple directives in a diagram are merged, with later values overriding earlier ones for the same key.
+Both `init` and `initialize` keywords work. Multiple directives in a diagram are merged, with later values
+overriding earlier ones for the same key.
 
 ## Configuration Resolution Chain
 
@@ -884,11 +901,13 @@ Understanding the full resolution order:
 5. Final render config used for this diagram
 ```
 
-Each diagram starts fresh from the site-level config. Frontmatter from one diagram does not affect other diagrams on the same page.
+Each diagram starts fresh from the site-level config. Frontmatter from one diagram does not affect other
+diagrams on the same page.
 
 ## Icon Packs
 
-Register icon packs for use in architecture diagrams. Icons come from the Iconify ecosystem (browse at [icones.js.org](https://icones.js.org/)).
+Register icon packs for use in architecture diagrams. Icons come from the Iconify ecosystem (browse at
+[icones.js.org](https://icones.js.org/)).
 
 ### Register via CDN
 
@@ -917,7 +936,8 @@ mermaid.registerIconPacks([
 
 ## Accessibility
 
-Add accessible titles and descriptions that generate `<title>` and `<desc>` SVG elements with proper ARIA attributes.
+Add accessible titles and descriptions that generate `<title>` and `<desc>` SVG elements with proper ARIA
+attributes.
 
 ```mermaid
 flowchart LR
@@ -1062,15 +1082,26 @@ gantt
 
 ## Common Gotchas
 
-- **Frontmatter requires `---` delimiters**: The YAML block must start and end with `---` on their own lines. The opening `---` must be the absolute first line. Missing delimiters silently ignore the config.
-- **`base` is the only customizable theme**: Setting `themeVariables` with any theme other than `base` has no effect. Always pair `themeVariables` with `theme: base`.
-- **Hex colors must be quoted in YAML**: Bare `#` starts a YAML comment. Always quote: `primaryColor: "#ff0000"`. The theming engine does not recognize CSS color names - use hex values only.
-- **Secure keys are silently ignored in frontmatter**: Keys like `securityLevel`, `maxTextSize`, `maxEdges` cannot be overridden via frontmatter. No error is shown.
-- **Case sensitivity**: All config keys are case-sensitive. `fontfamily` does nothing; `fontFamily` works. Misspelled keys are silently ignored.
+- **Frontmatter requires `---` delimiters**: The YAML block must start and end with `---` on their own lines.
+  The opening `---` must be the absolute first line. Missing delimiters silently ignore the config.
+- **`base` is the only customizable theme**: Setting `themeVariables` with any theme other than `base` has no
+  effect. Always pair `themeVariables` with `theme: base`.
+- **Hex colors must be quoted in YAML**: Bare `#` starts a YAML comment. Always quote:
+  `primaryColor: "#ff0000"`. The theming engine does not recognize CSS color names - use hex values only.
+- **Secure keys are silently ignored in frontmatter**: Keys like `securityLevel`, `maxTextSize`, `maxEdges`
+  cannot be overridden via frontmatter. No error is shown.
+- **Case sensitivity**: All config keys are case-sensitive. `fontfamily` does nothing; `fontFamily` works.
+  Misspelled keys are silently ignored.
 - **YAML indentation**: Use spaces, not tabs. Inconsistent indentation breaks the entire diagram.
-- **`initialize` is called once**: The site-level `initialize` call cannot be changed dynamically. Use frontmatter for per-diagram overrides.
-- **Layout engine availability**: `elk` requires `@mermaid-js/layout-elk` to be installed. If unavailable, it silently falls back to `dagre`.
-- **`configApi.reset`**: Called internally before each diagram render to reset to site-level config. Frontmatter is then applied on top. One diagram's frontmatter never leaks to another.
-- **Directives merge, not replace**: Multiple `%%{init: ...}%%` blocks in the same diagram are merged. Later values override earlier ones for the same key.
-- **`deterministicIds` for version control**: Without this, SVG IDs change on every render, causing unnecessary diffs. Set `deterministicIds: true` with a `deterministicIDSeed` for stable output.
-- **`handDrawnSeed: 0` is random**: The default seed produces different output each render. Set a non-zero seed for reproducible hand-drawn diagrams.
+- **`initialize` is called once**: The site-level `initialize` call cannot be changed dynamically. Use
+  frontmatter for per-diagram overrides.
+- **Layout engine availability**: `elk` requires `@mermaid-js/layout-elk` to be installed. If unavailable,
+  it silently falls back to `dagre`.
+- **`configApi.reset`**: Called internally before each diagram render to reset to site-level config.
+  Frontmatter is then applied on top. One diagram's frontmatter never leaks to another.
+- **Directives merge, not replace**: Multiple `%%{init: ...}%%` blocks in the same diagram are merged. Later
+  values override earlier ones for the same key.
+- **`deterministicIds` for version control**: Without this, SVG IDs change on every render, causing
+  unnecessary diffs. Set `deterministicIds: true` with a `deterministicIDSeed` for stable output.
+- **`handDrawnSeed: 0` is random**: The default seed produces different output each render. Set a non-zero
+  seed for reproducible hand-drawn diagrams.

@@ -11,7 +11,8 @@ description: |
 
 # Mermaid Diagram Syntax
 
-Expert-level reference for writing syntactically correct Mermaid diagrams. Covers all diagram types, configuration, theming, and layout options.
+Expert-level reference for writing syntactically correct Mermaid diagrams. Covers all diagram types,
+configuration, theming, and layout options.
 
 ## When to Use
 
@@ -109,7 +110,8 @@ flowchart LR
 
 ## Flowchart Essentials
 
-The most commonly used diagram type. Direction goes after keyword: `TD`/`TB` (top-down), `LR` (left-right), `BT` (bottom-top), `RL` (right-left).
+The most commonly used diagram type. Direction goes after keyword: `TD`/`TB` (top-down), `LR` (left-right),
+`BT` (bottom-top), `RL` (right-left).
 
 **Node shapes:**
 
@@ -214,11 +216,14 @@ flowchart TD
 
 ## Common Gotchas
 
-1. **`end` keyword** - The word "end" breaks flowcharts and sequence diagrams. Wrap in quotes: `A["End Process"]`
-2. **Special characters** - Characters like `()`, `{}`, `[]` in node text must be quoted or will be interpreted as shape syntax
+1. **`end` keyword** - The word "end" breaks flowcharts and sequence diagrams. Wrap in quotes:
+   `A["End Process"]`
+2. **Special characters** - Characters like `()`, `{}`, `[]` in node text must be quoted or will be
+   interpreted as shape syntax
 3. **Semicolons** - Optional line terminators, but mixing styles can cause issues
 4. **Case sensitivity** - Keywords like `flowchart`, `sequenceDiagram` are case-sensitive
-5. **Direction keyword** - Must be on the same line as `flowchart`/`graph`: `flowchart LR` (not on separate line)
+5. **Direction keyword** - Must be on the same line as `flowchart`/`graph`: `flowchart LR` (not on
+   separate line)
 6. **Misspellings** - Unknown keywords silently fail; parameters are case-sensitive
 7. **Nested shapes** - Nodes inside nodes confuse the parser; use quotes for complex text
 8. **`%%{}%%` in comments** - Curly braces in comments are parsed as directives; avoid them

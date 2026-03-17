@@ -18,7 +18,8 @@
 
 ## Overview
 
-This guide covers migrating from various localization approaches to `.resx`-based localization, including hardcoded strings, legacy resource formats, database-driven systems, and third-party libraries.
+This guide covers migrating from various localization approaches to `.resx`-based localization, including hardcoded
+strings, legacy resource formats, database-driven systems, and third-party libraries.
 
 ## Migrating from Hardcoded Strings
 
@@ -640,4 +641,5 @@ Update team documentation and provide training on new workflow.
 - **Strategy**: Use hybrid providers for gradual migration
 - **Checklist**: Follow pre-, during, and post-migration steps
 
-Migrating to .resx-based localization provides a standard, maintainable, and tooling-friendly approach to multi-language applications.
+Migrating to .resx-based localization provides a standard, maintainable, and tooling-friendly approach to multi-language
+applications.

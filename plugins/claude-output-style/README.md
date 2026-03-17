@@ -4,12 +4,12 @@ Create and review custom output styles for Claude Code.
 
 ## What it does
 
-Output styles are markdown files that control how Claude Code formats its responses.
-They can enhance coding behavior (security reviewer, TDD coach) or replace it entirely
-to turn Claude Code into a non-coding agent (business analyst, research assistant).
+Output styles are markdown files that control how Claude Code formats its responses. They can enhance coding
+behavior (security reviewer, TDD coach) or replace it entirely to turn Claude Code into a non-coding agent
+(business analyst, research assistant).
 
-This plugin teaches Claude how to write effective output styles and includes a reviewer
-agent that catches common mistakes before they cause unexpected behavior.
+This plugin teaches Claude how to write effective output styles and includes a reviewer agent that catches
+common mistakes before they cause unexpected behavior.
 
 ## Components
 
@@ -36,12 +36,10 @@ Returns a structured pass/fail report with concrete fixes.
 
 ## Reference guides
 
-- [writing-guide.md](skills/claude-output-style/references/writing-guide.md):
-  Deep guide on writing effective instructions with good/bad examples, decision
-  trees, and anti-patterns
-- [style-gallery.md](skills/claude-output-style/references/style-gallery.md):
-  12 curated output style templates organized by use case (coding enhancement,
-  non-coding personas, creative styles, specialized workflows)
+- [writing-guide.md](skills/claude-output-style/references/writing-guide.md): Deep guide on writing effective
+  instructions with good/bad examples, decision trees, and anti-patterns
+- [style-gallery.md](skills/claude-output-style/references/style-gallery.md): 12 curated output style templates
+  organized by use case (coding enhancement, non-coding personas, creative styles, specialized workflows)
 
 ## Installation
 
@@ -60,8 +58,8 @@ The skill loads automatically when you ask Claude to create or edit output style
 - "Turn Claude Code into a research assistant"
 - "Review my output style for issues"
 
-The reviewer agent triggers when you ask to review an output style or can be
-invoked after creating one to verify quality.
+The reviewer agent triggers when you ask to review an output style or can be invoked after creating one to
+verify quality.
 
 ## Quick start
 

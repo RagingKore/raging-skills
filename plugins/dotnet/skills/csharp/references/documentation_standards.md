@@ -2,7 +2,8 @@
 
 Last updated: 2025-07-01
 
-> **Usage**: Reference this guide when writing XML documentation, creating API references, or establishing documentation patterns for public APIs.
+> **Usage**: Reference this guide when writing XML documentation, creating API references, or establishing documentation
+> patterns for public APIs.
 
 ## Table of Contents
 
@@ -342,4 +343,5 @@ public class HighFrequencyTradingProcessor {
 - Provide performance context for optimization-sensitive code
 - Document business rules and constraints clearly
 
-Remember: Great documentation bridges the gap between code and business understanding. It should enable developers to make informed decisions about how to use APIs effectively in their specific contexts.
+Remember: Great documentation bridges the gap between code and business understanding. It should enable developers to
+make informed decisions about how to use APIs effectively in their specific contexts.

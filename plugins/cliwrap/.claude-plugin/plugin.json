@@ -1,0 +1,20 @@
+{
+  "name": "cliwrap",
+  "version": "1.0.0",
+  "description": "Comprehensive guidance for using CliWrap to interact with command-line interfaces in .NET",
+  "author": {
+    "name": "Sérgio Silveira",
+    "url": "https://github.com/ragingkore"
+  },
+  "repository": "https://github.com/ragingkore/raging-skills",
+  "license": "MIT",
+  "skills": ["skills"],
+  "keywords": [
+    "cliwrap",
+    "cli",
+    "process",
+    "command-line",
+    "piping",
+    "dotnet"
+  ]
+}

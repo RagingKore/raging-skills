@@ -19,15 +19,18 @@
 
 ## Embedded Web UI Overview
 
-**Available since v25.0.** The embedded Web UI provides visual cluster management, real-time monitoring, and ad-hoc SQL query capabilities directly in the browser — no external tools required.
+**Available since v25.0.** The embedded Web UI provides visual cluster management, real-time monitoring, and ad-hoc SQL
+ query capabilities directly in the browser — no external tools required.
 
-The new embedded UI replaces the legacy web interface (`/web`) which is reaching end of life. Feature parity is being split between the embedded UI and [Kurrent Navigator](https://navigator.kurrent.io/).
+The new embedded UI replaces the legacy web interface (`/web`) which is reaching end of life. Feature parity is being
+split between the embedded UI and [Kurrent Navigator](https://navigator.kurrent.io/).
 
 ---
 
 ## Accessing the Web UI
 
-Navigate to `http(s)://<SERVER_IP>:2113` in your browser. The embedded UI is served on the same port as the gRPC/HTTP API.
+Navigate to `http(s)://<SERVER_IP>:2113` in your browser. The embedded UI is served on the same port as the gRPC/HTTP
+API.
 
 Default credentials: `admin` / `changeit`
 
@@ -96,7 +99,8 @@ Link to download Kurrent Navigator, the desktop application that will replace th
 
 **Available since v25.1. Requires a license.**
 
-The query engine provides SQL-based ad-hoc querying of event data, powered by an embedded DuckDB instance. It is designed for **temporary, exploratory use** — not production workloads.
+The query engine provides SQL-based ad-hoc querying of event data, powered by an embedded DuckDB instance. It is
+designed for **temporary, exploratory use** — not production workloads.
 
 ### How It Works
 
@@ -106,14 +110,20 @@ SQL Query → DuckDB Engine → Predicate pushdown on indexed fields
                           → Result set returned to browser
 ```
 
-The secondary indexes feature builds an index table in DuckDB for default indexes (category and event type). The query engine uses this to offload predicates on indexed fields to DuckDB for fast filtering. Queries that access event `data` or `metadata` read events directly from the transaction log.
+The secondary indexes feature builds an index table in DuckDB for default indexes (category and event type). The query
+engine uses this to offload predicates on indexed fields to DuckDB for fast filtering. Queries that access event `data`
+or `metadata` read events directly from the transaction log.
 
 ### Important Constraints
 
-- **JSON only**: The engine only accesses `data` and `metadata` fields when both use JSON format. Binary-serialized events cannot be queried for their content.
-- **No advanced query planning**: KurrentDB can only use the default secondary indexes for predicate pushdown. Complex queries may not perform optimally.
-- **Sequential processing**: When reading event data/metadata, the engine processes events sequentially. Large datasets will be slow.
-- **Memory limits**: Queries that enumerate large result sets (e.g., `SELECT * FROM all_events`) can exhaust browser or server memory.
+- **JSON only**: The engine only accesses `data` and `metadata` fields when both use JSON format. Binary-serialized
+  events cannot be queried for their content.
+- **No advanced query planning**: KurrentDB can only use the default secondary indexes for predicate pushdown. Complex
+  queries may not perform optimally.
+- **Sequential processing**: When reading event data/metadata, the engine processes events sequentially. Large datasets
+  will be slow.
+- **Memory limits**: Queries that enumerate large result sets (e.g., `SELECT * FROM all_events`) can exhaust browser or
+  server memory.
 
 ---
 
@@ -153,7 +163,8 @@ These columns are stored in the DuckDB secondary index. Filtering on them uses p
 
 ### Data Fields (Slow — Requires Full Event Read)
 
-These columns require reading the actual event from the transaction log. Use sparingly and always combine with indexed field filters.
+These columns require reading the actual event from the transaction log. Use sparingly and always combine with indexed
+field filters.
 
 | Column     | Type | Description                   |
 |------------|------|-------------------------------|
@@ -162,7 +173,8 @@ These columns require reading the actual event from the transaction log. Use spa
 
 ### User-Defined Index Fields (v26.0+)
 
-When querying a user-defined index via `index:{name}`, additional columns are available based on the index definition. Field columns are prefixed with `field_`:
+When querying a user-defined index via `index:{name}`, additional columns are available based on the index definition.
+Field columns are prefixed with `field_`:
 
 | Column Pattern | Example         | Description                                     |
 |----------------|-----------------|-------------------------------------------------|
@@ -256,7 +268,8 @@ WHERE o.event_type = 'OrderPlaced'
   AND p.event_type = 'PaymentReceived';
 ```
 
-**Warning**: Joins involving `data` or `metadata` fields read events from both sides. This can generate massive IO on large datasets.
+**Warning**: Joins involving `data` or `metadata` fields read events from both sides. This can generate massive IO on
+ large datasets.
 
 ---
 
@@ -310,7 +323,8 @@ FROM stream:order-abc123;
 
 ### JSON + Indexed Field Combination (Best Practice)
 
-Always filter by indexed fields first, then by JSON fields. This minimizes the number of events that need to be read from the log:
+Always filter by indexed fields first, then by JSON fields. This minimizes the number of events that need to be read
+from the log:
 
 ```sql
 -- GOOD: Filter by event_type (indexed) first, then by JSON field
@@ -329,7 +343,8 @@ WHERE data->>'country' = 'Mauritius';
 
 ## Querying User-Defined Indexes
 
-**Available since v26.0.** User-defined indexes create queryable virtual tables accessible via the `index:{name}` syntax.
+**Available since v26.0.** User-defined indexes create queryable virtual tables accessible via the `index:{name}`
+ syntax.
 
 ### Reading via SQL
 
@@ -390,11 +405,13 @@ var mauritius = client.ReadAllAsync(Direction.Forwards, Position.Start,
 
 ### Best Practices
 
-1. **Always prefer indexed columns in `WHERE` clauses** — `stream`, `category`, `event_type`, `event_number`, `log_position`, `created_at`
+1. **Always prefer indexed columns in `WHERE` clauses** — `stream`, `category`, `event_type`, `event_number`,
+   `log_position`, `created_at`
 2. **Never use `SELECT *` on large datasets** — select only the columns you need
 3. **Use `stream:{name}` or `category:{name}` instead of `all_events`** to limit scan scope
 4. **Combine indexed + JSON filters** — filter by `event_type` or `category` first, then by JSON fields
-5. **Be cautious with `GROUP BY`/`ORDER BY`** — these require full result enumeration even with `LIMIT`, so ensure the base dataset is filtered down first
+5. **Be cautious with `GROUP BY`/`ORDER BY`** — these require full result enumeration even with `LIMIT`, so ensure the
+   base dataset is filtered down first
 6. **Avoid joins on data fields across large categories** — the IO cost compounds multiplicatively
 7. **Use user-defined indexes (v26.0+)** for frequently queried JSON fields instead of ad-hoc JSON filtering
 8. **For production workloads**, build read models or use projections instead of ad-hoc queries
@@ -431,7 +448,8 @@ var mauritius = client.ReadAllAsync(Direction.Forwards, Position.Start,
 
 ### Authentication
 
-The query feature requires the user to be part of the `$admins` group. This is because queries operate through the `$all` stream and secondary indexes, which require admin-level access.
+The query feature requires the user to be part of the `$admins` group. This is because queries operate through the
+`$all` stream and secondary indexes, which require admin-level access.
 
 ---
 

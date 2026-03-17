@@ -1,0 +1,15 @@
+{
+  "eval_id": 1,
+  "eval_name": "wireframe-to-html",
+  "run_type": "without_skill",
+  "expectations": [
+    {"text": "Uses semantic <nav> element for navigation bar", "passed": true, "evidence": "Line 182: <nav> nested in <header>"},
+    {"text": "Contains email input with placeholder text 'Enter your email...'", "passed": true, "evidence": "Line 201: placeholder=\"Enter your email...\""},
+    {"text": "Contains a Subscribe button", "passed": true, "evidence": "Line 202: <button type=\"submit\" class=\"btn-subscribe\">Subscribe</button>"},
+    {"text": "Checkbox is checked by default (checked attribute)", "passed": true, "evidence": "Line 205: <input type=\"checkbox\" id=\"terms\" checked>"},
+    {"text": "Card structure with 'Welcome' as the title/header", "passed": true, "evidence": "Lines 195-197: <div class=\"card\"> with <h1>Welcome</h1>"},
+    {"text": "Contains navigation links: Home, About, Contact", "passed": true, "evidence": "Lines 183-185: three <a> links"},
+    {"text": "Contains Sign Up button", "passed": true, "evidence": "Line 189: <button class=\"btn-signup\">Sign Up</button>"},
+    {"text": "No elaborate CSS framework or excessive styling beyond basic layout", "passed": true, "evidence": "Inline <style> block with CSS, no external frameworks"}
+  ]
+}

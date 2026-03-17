@@ -18,7 +18,8 @@
 
 ## Overview
 
-Projections are a **server-side subsystem** that processes events from streams and emits or links events to new streams. They are JavaScript-based and run in continuous mode, processing events as they arrive.
+Projections are a **server-side subsystem** that processes events from streams and emits or links events to new streams.
+They are JavaScript-based and run in continuous mode, processing events as they arrive.
 
 ### Key Constraints
 
@@ -31,7 +32,8 @@ Projections are a **server-side subsystem** that processes events from streams a
 
 ## Write Amplification Warning
 
-Projections create additional write operations for every event they process. This has direct impact on storage and throughput.
+Projections create additional write operations for every event they process. This has direct impact on storage and
+throughput.
 
 | Scenario                         | Write Amplification                                 |
 |----------------------------------|-----------------------------------------------------|
@@ -76,7 +78,8 @@ Links events to `$bc-{correlationId}` streams based on metadata.
 
 ### 4. $stream_by_category
 
-Links events to `$category-{category}` streams. Uses the same configuration as `$by_category` (separator and categoryPosition).
+Links events to `$category-{category}` streams. Uses the same configuration as `$by_category` (separator and
+categoryPosition).
 
 ### 5. $streams
 
@@ -162,7 +165,8 @@ Handlers are defined inside the `when({})` block.
 | `linkTo(streamId, event, metadata)`              | Writes a **link event** referencing an existing event |
 | `log(message)`                                   | Debug logging output                                  |
 
-**emit vs linkTo**: Use `linkTo` when you want to reference an existing event without duplicating data. Use `emit` when you need to create a new derived event with different data.
+**emit vs linkTo**: Use `linkTo` when you want to reference an existing event without duplicating data. Use `emit` when
+ you need to create a new derived event with different data.
 
 ### Chaining Methods
 
@@ -350,8 +354,10 @@ fromCategory("order")
 
 1. **JSON bodies required** — projections silently skip non-JSON events
 2. **Leader-only execution** — creates IO/CPU imbalance in clusters; follower nodes remain idle for projection work
-3. **Never append to projection output streams** — manually writing to `$ce-*`, `$et-*`, or other projection streams will fault the projection
-4. **Resetting a projection** soft-deletes its output streams and resets the checkpoint — all output is reprocessed from scratch
+3. **Never append to projection output streams** — manually writing to `$ce-*`, `$et-*`, or other projection streams
+   will fault the projection
+4. **Resetting a projection** soft-deletes its output streams and resets the checkpoint — all output is reprocessed from
+   scratch
 5. **Write amplification is real** — plan storage and throughput capacity with projections enabled
 6. **`trackemittedstreams` adds significant overhead** — creates an additional tracking event for every emitted event
 7. **Configuration changes require STOPPED state** — you cannot modify projection settings while it is running

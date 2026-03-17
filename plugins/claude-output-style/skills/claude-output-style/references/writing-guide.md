@@ -1,9 +1,8 @@
 ## Writing Guide for Claude Code Output Styles
 
-Output styles control how Claude Code communicates. They shape tone, structure, verbosity, and
-persona across an entire session. This guide covers the file format, the critical
-`keep-coding-instructions` decision, writing techniques, interactions with other features, common
-anti-patterns, and how to iterate toward a polished style.
+Output styles control how Claude Code communicates. They shape tone, structure, verbosity, and persona across
+an entire session. This guide covers the file format, the critical `keep-coding-instructions` decision, writing
+techniques, interactions with other features, common anti-patterns, and how to iterate toward a polished style.
 
 ## Contents
 
@@ -19,8 +18,8 @@ anti-patterns, and how to iterate toward a polished style.
 
 ## File Format
 
-An output style is a markdown file with YAML frontmatter. The frontmatter carries metadata; the
-body carries the behavioral instructions Claude will follow.
+An output style is a markdown file with YAML frontmatter. The frontmatter carries metadata; the body carries
+the behavioral instructions Claude will follow.
 
 ```markdown
 ---
@@ -48,17 +47,15 @@ Project styles override global styles when the names collide.
 
 Claude Code ships with three built-in styles:
 
-- **Default**: Standard coding assistant behavior. Concise responses, no extra explanation unless
-  asked.
-- **Explanatory**: Adds reasoning and context to every response. Useful when learning a new
-  codebase.
-- **Learning**: Teaches as it codes. Explains concepts, tradeoffs, and alternatives. Aimed at
-  developers building new skills.
+- **Default**: Standard coding assistant behavior. Concise responses, no extra explanation unless asked.
+- **Explanatory**: Adds reasoning and context to every response. Useful when learning a new codebase.
+- **Learning**: Teaches as it codes. Explains concepts, tradeoffs, and alternatives. Aimed at developers
+  building new skills.
 
 ## The keep-coding-instructions Decision
 
-This is the single most important decision in any output style. It controls whether Claude retains
-its software engineering personality or adopts an entirely new persona.
+This is the single most important decision in any output style. It controls whether Claude retains its
+software engineering personality or adopts an entirely new persona.
 
 ### Decision tree
 
@@ -86,15 +83,14 @@ Do you want Claude to write, review, or reason about code?
 - The software engineering persona and all associated behavioral rules
 - Default preferences around code structure and style
 
-Note: even with `false`, Claude retains full tool access. It can still read files, write files, run
-bash commands, and search the web. The style only changes the personality, not the capabilities.
+Note: even with `false`, Claude retains full tool access. It can still read files, write files, run bash
+commands, and search the web. The style only changes the personality, not the capabilities.
 
 ### Common mistake
 
-Forgetting that the default is `false`. If you write a style that says "Always explain your
-refactoring decisions" but omit `keep-coding-instructions`, Claude loses its SE behavior entirely.
-The style becomes a general-purpose assistant that happens to explain things. Always set this field
-explicitly.
+Forgetting that the default is `false`. If you write a style that says "Always explain your refactoring
+decisions" but omit `keep-coding-instructions`, Claude loses its SE behavior entirely. The style becomes a
+general-purpose assistant that happens to explain things. Always set this field explicitly.
 
 ## Writing Effective Instructions
 
@@ -169,40 +165,39 @@ When you encounter an error, fix it and explain what happened. Do not ask for pe
 
 ### Keep instructions concise
 
-Output styles work best when short and direct. Claude follows a few clear rules better than a wall
-of text. If your style exceeds 40-50 lines of body instructions, look for redundancy or
-over-specification.
+Output styles work best when short and direct. Claude follows a few clear rules better than a wall of text.
+If your style exceeds 40-50 lines of body instructions, look for redundancy or over-specification.
 
 ## How Output Styles Interact with Other Features
 
 ### CLAUDE.md
 
-CLAUDE.md is injected as a user message after the system prompt. It supplements the output style
-rather than conflicting with it. If your output style says "respond in bullet points" and CLAUDE.md
-says "keep lines under 120 characters", both apply. If they directly contradict, CLAUDE.md generally
-wins because it appears later in the context.
+CLAUDE.md is injected as a user message after the system prompt. It supplements the output style rather than
+conflicting with it. If your output style says "respond in bullet points" and CLAUDE.md says "keep lines under
+120 characters", both apply. If they directly contradict, CLAUDE.md generally wins because it appears later
+in the context.
 
 ### Skills
 
-Skills are task-specific instructions invoked on demand (e.g., `/markdown-style`). Output styles are
-always active for the entire session. They operate at different scopes: the output style sets the
-baseline tone and format; skills add domain knowledge for a particular task.
+Skills are task-specific instructions invoked on demand (e.g., `/markdown-style`). Output styles are always
+active for the entire session. They operate at different scopes: the output style sets the baseline tone and
+format; skills add domain knowledge for a particular task.
 
 ### Agents and subagents
 
-Output styles apply to the main conversation only. Subagents spawned via the Task tool have their
-own context and are not affected by the parent session's output style.
+Output styles apply to the main conversation only. Subagents spawned via the Task tool have their own context
+and are not affected by the parent session's output style.
 
 ### --append-system-prompt
 
-The `--append-system-prompt` flag appends text to the system prompt alongside the output style. Both
-are active simultaneously. Use `--append-system-prompt` for one-off instructions that do not warrant
-a full style file.
+The `--append-system-prompt` flag appends text to the system prompt alongside the output style. Both are
+active simultaneously. Use `--append-system-prompt` for one-off instructions that do not warrant a full style
+file.
 
 ### Hooks
 
-Hooks (pre/post-tool execution scripts) run independently of output styles. An output style cannot
-enable or disable hooks, and hooks cannot modify the active output style.
+Hooks (pre/post-tool execution scripts) run independently of output styles. An output style cannot enable or
+disable hooks, and hooks cannot modify the active output style.
 
 ## Anti-patterns
 
@@ -216,8 +211,8 @@ description: A helpful assistant
 Be helpful and clear.
 ```
 
-This adds nothing. Claude is already helpful and clear by default. Every instruction should change
-behavior in a measurable way.
+This adds nothing. Claude is already helpful and clear by default. Every instruction should change behavior
+in a measurable way.
 
 ### Too restrictive
 
@@ -231,8 +226,8 @@ Never use code blocks.
 Never show file paths.
 ```
 
-This breaks tool usage. Claude needs code blocks to show diffs and file paths to communicate what it
-changed. Restrict length and format loosely enough that tool output remains functional.
+This breaks tool usage. Claude needs code blocks to show diffs and file paths to communicate what it changed.
+Restrict length and format loosely enough that tool output remains functional.
 
 ### Conflicting with tool capabilities
 
@@ -244,9 +239,9 @@ description: Analysis without changes
 Never write files. Never run commands. Only analyze.
 ```
 
-If you actually want read-only behavior, use the `--allowedTools` flag to restrict tool access at
-the CLI level. An output style instruction to "never write files" is a soft suggestion that Claude
-may override when it judges a write is necessary.
+If you actually want read-only behavior, use the `--allowedTools` flag to restrict tool access at the CLI
+level. An output style instruction to "never write files" is a soft suggestion that Claude may override when
+it judges a write is necessary.
 
 ### Missing format specification
 
@@ -259,8 +254,8 @@ keep-coding-instructions: true
 Review code thoroughly.
 ```
 
-"Thoroughly" is subjective. Define what thorough means: line-by-line comments? A summary table?
-Severity ratings? Without format specification, output varies unpredictably between sessions.
+"Thoroughly" is subjective. Define what thorough means: line-by-line comments? A summary table? Severity
+ratings? Without format specification, output varies unpredictably between sessions.
 
 ### Forgetting the default for keep-coding-instructions
 
@@ -273,8 +268,8 @@ Explain every code decision in detail before implementing.
 Show alternatives you considered.
 ```
 
-Because `keep-coding-instructions` defaults to `false`, this style accidentally strips all SE
-behavior. Claude becomes a general explainer rather than a coding assistant that explains. The fix:
+Because `keep-coding-instructions` defaults to `false`, this style accidentally strips all SE behavior. Claude
+becomes a general explainer rather than a coding assistant that explains. The fix:
 
 ```markdown
 ---
@@ -298,10 +293,9 @@ When writing code, always consider performance implications...
 [...80 more lines of increasingly specific rules...]
 ```
 
-Long styles dilute focus. Claude follows a handful of clear directives more reliably than dozens of
-nuanced rules. If your style needs that much specification, consider splitting concerns: put coding
-rules in CLAUDE.md, domain knowledge in a skill, and only tone/format directives in the output
-style.
+Long styles dilute focus. Claude follows a handful of clear directives more reliably than dozens of nuanced
+rules. If your style needs that much specification, consider splitting concerns: put coding rules in CLAUDE.md,
+domain knowledge in a skill, and only tone/format directives in the output style.
 
 ## Testing and Iteration
 
@@ -316,14 +310,13 @@ style.
 - **Tone consistency**: Does Claude maintain the persona across different types of requests?
 - **Tool compatibility**: Can Claude still read, write, search, and run commands effectively?
 - **Format adherence**: Does the output match the structure you specified?
-- **Edge cases**: What happens when Claude encounters an error? A large file? A request outside the
-  style's focus area?
+- **Edge cases**: What happens when Claude encounters an error? A large file? A request outside the style's
+  focus area?
 
 ### Iteration approach
 
-Start minimal. A good first draft has 5-10 lines of body instructions. Use the style for a few
-sessions, then add constraints only where you notice gaps. Resist the urge to pre-specify
-everything.
+Start minimal. A good first draft has 5-10 lines of body instructions. Use the style for a few sessions, then
+add constraints only where you notice gaps. Resist the urge to pre-specify everything.
 
 ```
 Draft 1:  5 lines  → covers tone and format basics

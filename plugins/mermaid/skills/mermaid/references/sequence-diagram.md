@@ -467,8 +467,10 @@ sequenceDiagram
 
 - **The word "end"** can break the diagram. Wrap it: `(end)`, `[end]`, `{end}`, `"end"`.
 - **Semicolons in message text**: Use `#59;` entity code since semicolons can act as line separators.
-- **Actor creation/deletion errors** on older versions: Update to mermaid v10.7.0+ if you see "destroyed participant does not have an associated destroying message" errors.
+- **Actor creation/deletion errors** on older versions: Update to mermaid v10.7.0+ if you see "destroyed
+  participant does not have an associated destroying message" errors.
 - **`securityLevel='strict'`** disables click events and interactive links.
-- **Box names that are colors** (e.g., `box Aqua`): The word is treated as the box color. Use `box transparent Aqua` to force it as a label.
+- **Box names that are colors** (e.g., `box Aqua`): The word is treated as the box color. Use
+  `box transparent Aqua` to force it as a label.
 - **Bidirectional arrows** (`<<->>`, `<<-->>`) require v11.0.0+.
 - **`autonumber`** must appear right after `sequenceDiagram` to apply globally.

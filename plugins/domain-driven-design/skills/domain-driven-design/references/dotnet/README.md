@@ -69,7 +69,8 @@ Is domain logic complex?
 ### Part IV: Event-Sourced Implementation
 - [Event Store](part4-event-sourced.md#event-store) - KurrentDB, Marten ES
 - [CQRS & Projections](part4-event-sourced.md#cqrs--projections) - Read models, projectors
-- [Event Serialization & Versioning](part4-event-sourced.md#event-serialization--versioning) - Protobuf, schema evolution
+- [Event Serialization & Versioning](part4-event-sourced.md#event-serialization--versioning) - Protobuf, schema
+  evolution
 
 ### Part V: Advanced Patterns
 - [Actor Integration](part5-advanced.md#actor-integration) - Akka.NET with Decider pattern

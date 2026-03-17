@@ -18,7 +18,9 @@
 
 ## Overview
 
-Satellite assemblies are .NET assemblies that contain culture-specific resources (localized strings, images, etc.) separate from the main application assembly. They enable efficient deployment and loading of localized resources without modifying the main executable.
+Satellite assemblies are .NET assemblies that contain culture-specific resources (localized strings, images, etc.)
+separate from the main application assembly. They enable efficient deployment and loading of localized resources without
+modifying the main executable.
 
 ## Architecture
 

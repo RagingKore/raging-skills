@@ -10,7 +10,8 @@ description: |
 
 # Buf CLI
 
-The Buf CLI is the primary tool for modern, fast Protobuf API management. It replaces `protoc` with a simpler, faster workflow for building, linting, formatting, generating code, and detecting breaking changes.
+The Buf CLI is the primary tool for modern, fast Protobuf API management. It replaces `protoc` with a simpler, faster
+workflow for building, linting, formatting, generating code, and detecting breaking changes.
 
 ## Installation
 

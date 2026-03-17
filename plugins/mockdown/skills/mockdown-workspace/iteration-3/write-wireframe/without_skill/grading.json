@@ -1,0 +1,15 @@
+{
+  "eval_id": 3,
+  "eval_name": "write-wireframe",
+  "run_type": "without_skill",
+  "expectations": [
+    {"text": "Uses box-drawing characters (┌ ─ ┐ │ └ ┘ or similar Unicode)", "passed": false, "evidence": "Uses ASCII characters (+, -, |) instead of Unicode box-drawing characters"},
+    {"text": "Split panel layout with sidebar and main content area", "passed": true, "evidence": "Two-column layout with vertical divider between sidebar and main content"},
+    {"text": "Sidebar contains Profile, Security, and Notifications items", "passed": true, "evidence": "Lines 9, 11, 13-14: Profile, Security, Notifications listed"},
+    {"text": "Profile section is active/selected in sidebar", "passed": true, "evidence": "Line 9: '> Profile' with chevron indicating active state"},
+    {"text": "Main area contains Mockdown text input patterns ([___] or similar)", "passed": false, "evidence": "Uses +--+ bordered boxes with text inside, not the [___] Mockdown input pattern"},
+    {"text": "Contains an avatar/image placeholder", "passed": true, "evidence": "Lines 9-14: Avatar area with [Avatar] [Image] text placeholder"},
+    {"text": "Contains a Save button using [ Save ] pattern", "passed": false, "evidence": "Uses +--+ bordered box with 'Save' text inside, not the [ Save ] bracket pattern"},
+    {"text": "Output is wrapped in a code fence", "passed": true, "evidence": "Lines 1 and 33: triple backtick code fence"}
+  ]
+}

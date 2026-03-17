@@ -21,7 +21,8 @@ Returns per-node statistics in JSON format.
 
 ### Stats Stream
 
-Statistics are optionally written to the `$stats-{host:port}` system stream as `$statsCollected` events with a default TTL of **24 hours**.
+Statistics are optionally written to the `$stats-{host:port}` system stream as `$statsCollected` events with a default
+TTL of **24 hours**.
 
 | Setting          | Default | Description                        |
 |------------------|---------|------------------------------------|

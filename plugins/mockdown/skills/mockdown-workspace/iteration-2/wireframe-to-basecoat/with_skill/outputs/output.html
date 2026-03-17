@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Management</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/basecoat-css/dist/basecoat.cdn.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/basecoat-css/dist/js/all.min.js" defer></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="min-h-screen bg-background text-foreground p-8">
+
+  <div class="max-w-4xl mx-auto grid gap-6">
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <nav role="tablist">
+        <button role="tab" id="tab-1" aria-controls="panel-1" aria-selected="true">Tab 1</button>
+        <button role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false">Tab 2</button>
+        <button role="tab" id="tab-3" aria-controls="panel-3" aria-selected="false">Tab 3</button>
+      </nav>
+
+      <!-- Tab 1 Panel -->
+      <div role="tabpanel" id="panel-1" aria-labelledby="tab-1">
+        <div class="grid gap-6 pt-4">
+
+          <!-- Search Input -->
+          <div class="relative">
+            <div class="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none text-muted-foreground">
+              <i data-lucide="search" class="size-4"></i>
+            </div>
+            <input class="input pl-9" type="search" placeholder="Search...">
+          </div>
+
+          <!-- Table -->
+          <div class="overflow-x-auto">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="font-medium">Alice Johnson</td>
+                  <td>alice@example.com</td>
+                  <td>Admin</td>
+                </tr>
+                <tr>
+                  <td class="font-medium">Bob Smith</td>
+                  <td>bob@example.com</td>
+                  <td>Editor</td>
+                </tr>
+                <tr>
+                  <td class="font-medium">Carol Martinez</td>
+                  <td>carol@example.com</td>
+                  <td>Viewer</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pagination -->
+          <nav role="navigation" aria-label="pagination" class="mx-auto flex w-full justify-center">
+            <ul class="flex flex-row items-center gap-1">
+              <li>
+                <a href="#" class="btn-icon-ghost">
+                  <i data-lucide="chevron-left" class="size-4"></i>
+                </a>
+              </li>
+              <li><a href="#" class="btn-icon-ghost">1</a></li>
+              <li><a href="#" class="btn-icon-ghost">2</a></li>
+              <li><a href="#" class="btn-icon-outline" aria-current="page">3</a></li>
+              <li><a href="#" class="btn-icon-ghost">4</a></li>
+              <li><a href="#" class="btn-icon-ghost">5</a></li>
+              <li>
+                <div class="size-9 flex items-center justify-center">
+                  <i data-lucide="ellipsis" class="size-4"></i>
+                </div>
+              </li>
+              <li>
+                <a href="#" class="btn-icon-ghost">
+                  <i data-lucide="chevron-right" class="size-4"></i>
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+        </div>
+      </div>
+
+      <!-- Tab 2 Panel (hidden) -->
+      <div role="tabpanel" id="panel-2" aria-labelledby="tab-2" hidden>
+        <div class="pt-4">
+          <p class="text-muted-foreground">Tab 2 content</p>
+        </div>
+      </div>
+
+      <!-- Tab 3 Panel (hidden) -->
+      <div role="tabpanel" id="panel-3" aria-labelledby="tab-3" hidden>
+        <div class="pt-4">
+          <p class="text-muted-foreground">Tab 3 content</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>lucide.createIcons();</script>
+</body>
+</html>

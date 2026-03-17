@@ -276,7 +276,8 @@ public abstract record DomainEvent : IDomainEvent
 
 ## Domain Events
 
-Domain events are immutable facts that record what happened in the domain. The base types (`IDomainEvent`, `DomainEvent`) are defined in the Entities section above.
+Domain events are immutable facts that record what happened in the domain. The base types (`IDomainEvent`,
+`DomainEvent`) are defined in the Entities section above.
 
 ### Event Naming Conventions
 

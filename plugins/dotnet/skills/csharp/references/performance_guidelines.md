@@ -2,7 +2,8 @@
 
 Last updated: 2025-06-09
 
-> **Usage**: Reference this guide when working on performance-critical code, optimizing hot paths, or designing high-throughput systems.
+> **Usage**: Reference this guide when working on performance-critical code, optimizing hot paths, or designing
+> high-throughput systems.
 
 ## Table of Contents
 
@@ -20,7 +21,8 @@ Last updated: 2025-06-09
 
 ## ? Performance Optimization Principles
 
-High-performance applications often process large volumes of data, making performance optimization critical. These guidelines ensure efficient code that minimizes resource usage and maximizes throughput.
+High-performance applications often process large volumes of data, making performance optimization critical. These
+guidelines ensure efficient code that minimizes resource usage and maximizes throughput.
 
 ## ? Memory Management
 

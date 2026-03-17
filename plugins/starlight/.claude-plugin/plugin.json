@@ -1,0 +1,21 @@
+{
+  "name": "starlight",
+  "version": "1.0.0",
+  "description": "Expert guide for building and deploying static documentation sites with Astro Starlight. Use when creating doc sites, configuring Starlight sidebar, navigation, i18n, versioning, components, theming, or migrating from VuePress, Docusaurus, or MkDocs to Starlight.",
+  "keywords": [
+    "starlight",
+    "astro",
+    "documentation",
+    "docs-site",
+    "static-site",
+    "markdown",
+    "mdx",
+    "i18n",
+    "versioned-docs",
+    "vuepress-migration",
+    "docusaurus-migration"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}

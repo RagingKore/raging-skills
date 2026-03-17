@@ -189,3 +189,73 @@ clearance = 40-60px
   "elbowed": true
 }
 ```
+
+---
+
+## Render-Validate Loop (Mandatory)
+
+You cannot judge a diagram from JSON alone. After generating or editing the Excalidraw JSON, you MUST render
+it to PNG, view the image, and fix what you see — in a loop until it is right.
+
+### How to Render
+
+From the references directory that contains `render_excalidraw.py`:
+
+```bash
+uv run python render_excalidraw.py <path-to-file.excalidraw>
+```
+
+This outputs a PNG next to the `.excalidraw` file. Then use the **Read tool** on the PNG to view it.
+
+### First-Time Setup
+
+```bash
+uv sync
+uv run playwright install chromium
+```
+
+### The Loop
+
+**1. Render and View** — Run the render script, then Read the PNG.
+
+**2. Audit against your original vision** — Before looking for bugs, compare the rendered result to what you
+designed. Ask:
+
+- Does the visual structure match the conceptual structure you planned?
+- Does each section use the pattern you intended?
+- Does the eye flow through the diagram in the order you designed?
+- Is the visual hierarchy correct — hero elements dominant, supporting elements smaller?
+- For technical diagrams: are evidence artifacts readable and properly placed?
+
+**3. Check for visual defects:**
+
+- Text clipped by or overflowing its container
+- Text or shapes overlapping other elements
+- Arrows crossing through elements instead of routing around them
+- Arrows landing on the wrong element or pointing into empty space
+- Labels floating ambiguously (not anchored to what they describe)
+- Uneven spacing between elements that should be evenly spaced
+- Sections with too much whitespace next to cramped sections
+- Text too small to read at the rendered size
+- Overall composition feels lopsided or unbalanced
+
+**4. Fix** — Edit the JSON. Common fixes:
+
+- Widen containers when text is clipped
+- Adjust `x`/`y` coordinates to fix spacing and alignment
+- Add intermediate waypoints to arrow `points` arrays to route around elements
+- Reposition labels closer to the element they describe
+- Resize elements to rebalance visual weight across sections
+
+**5. Re-render and re-view** — Run the render script again and Read the new PNG.
+
+**6. Repeat** — Keep cycling until the diagram passes both the vision check (Step 2) and the defect check
+(Step 3). Typically takes 2-4 iterations.
+
+### When to Stop
+
+- The rendered diagram matches the conceptual design from your planning steps
+- No text is clipped, overlapping, or unreadable
+- Arrows route cleanly and connect to the right elements
+- Spacing is consistent and the composition is balanced
+- You would be comfortable showing it to someone without caveats

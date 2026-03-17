@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wireframe to Basecoat UI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* Basecoat-inspired design tokens */
+    :root {
+      --background: 0 0% 100%;
+      --foreground: 240 10% 3.9%;
+      --card: 0 0% 100%;
+      --card-foreground: 240 10% 3.9%;
+      --muted: 240 4.8% 95.9%;
+      --muted-foreground: 240 3.8% 46.1%;
+      --border: 240 5.9% 90%;
+      --input: 240 5.9% 90%;
+      --ring: 240 5.9% 10%;
+      --primary: 240 5.9% 10%;
+      --primary-foreground: 0 0% 98%;
+      --secondary: 240 4.8% 95.9%;
+      --secondary-foreground: 240 5.9% 10%;
+      --accent: 240 4.8% 95.9%;
+      --accent-foreground: 240 5.9% 10%;
+    }
+
+    .dark {
+      --background: 240 10% 3.9%;
+      --foreground: 0 0% 98%;
+      --card: 240 10% 3.9%;
+      --card-foreground: 0 0% 98%;
+      --muted: 240 3.7% 15.9%;
+      --muted-foreground: 240 5% 64.9%;
+      --border: 240 3.7% 15.9%;
+      --input: 240 3.7% 15.9%;
+      --ring: 240 4.9% 83.9%;
+      --primary: 0 0% 98%;
+      --primary-foreground: 240 5.9% 10%;
+      --secondary: 240 3.7% 15.9%;
+      --secondary-foreground: 0 0% 98%;
+      --accent: 240 3.7% 15.9%;
+      --accent-foreground: 0 0% 98%;
+    }
+
+    body {
+      background-color: hsl(var(--background));
+      color: hsl(var(--foreground));
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    /* Tabs */
+    .bc-tabs-list {
+      display: inline-flex;
+      height: 2.5rem;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0.5rem;
+      background-color: hsl(var(--muted));
+      padding: 0.25rem;
+      gap: 0.25rem;
+    }
+
+    .bc-tab-trigger {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      border-radius: 0.375rem;
+      padding: 0.375rem 0.75rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: hsl(var(--muted-foreground));
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .bc-tab-trigger:hover {
+      color: hsl(var(--foreground));
+    }
+
+    .bc-tab-trigger[data-state="active"] {
+      background-color: hsl(var(--background));
+      color: hsl(var(--foreground));
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    }
+
+    /* Input */
+    .bc-input {
+      display: flex;
+      height: 2.5rem;
+      width: 100%;
+      border-radius: 0.5rem;
+      border: 1px solid hsl(var(--input));
+      background-color: hsl(var(--background));
+      padding: 0.5rem 0.75rem;
+      font-size: 0.875rem;
+      color: hsl(var(--foreground));
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .bc-input::placeholder {
+      color: hsl(var(--muted-foreground));
+    }
+
+    .bc-input:focus {
+      border-color: hsl(var(--ring));
+      box-shadow: 0 0 0 2px hsl(var(--ring) / 0.2);
+    }
+
+    .bc-input-wrapper {
+      position: relative;
+      width: 100%;
+    }
+
+    .bc-input-icon {
+      position: absolute;
+      left: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: hsl(var(--muted-foreground));
+      pointer-events: none;
+    }
+
+    .bc-input-with-icon {
+      padding-left: 2.5rem;
+    }
+
+    /* Table */
+    .bc-table-wrapper {
+      width: 100%;
+      overflow: auto;
+      border-radius: 0.5rem;
+      border: 1px solid hsl(var(--border));
+    }
+
+    .bc-table {
+      width: 100%;
+      caption-side: bottom;
+      font-size: 0.875rem;
+      border-collapse: collapse;
+    }
+
+    .bc-table thead {
+      border-bottom: 1px solid hsl(var(--border));
+    }
+
+    .bc-table th {
+      height: 3rem;
+      padding: 0 1rem;
+      text-align: left;
+      font-weight: 500;
+      color: hsl(var(--muted-foreground));
+      background-color: hsl(var(--muted) / 0.5);
+    }
+
+    .bc-table td {
+      padding: 0.75rem 1rem;
+      vertical-align: middle;
+      color: hsl(var(--foreground));
+    }
+
+    .bc-table tbody tr {
+      border-bottom: 1px solid hsl(var(--border));
+      transition: background-color 0.15s;
+    }
+
+    .bc-table tbody tr:last-child {
+      border-bottom: none;
+    }
+
+    .bc-table tbody tr:hover {
+      background-color: hsl(var(--muted) / 0.5);
+    }
+
+    /* Badge */
+    .bc-badge {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 9999px;
+      padding: 0.125rem 0.625rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      line-height: 1.25rem;
+      border: 1px solid transparent;
+    }
+
+    .bc-badge-default {
+      background-color: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+    }
+
+    .bc-badge-secondary {
+      background-color: hsl(var(--secondary));
+      color: hsl(var(--secondary-foreground));
+      border-color: hsl(var(--border));
+    }
+
+    .bc-badge-outline {
+      background-color: transparent;
+      color: hsl(var(--foreground));
+      border-color: hsl(var(--border));
+    }
+
+    /* Pagination */
+    .bc-pagination {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.25rem;
+    }
+
+    .bc-pagination-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 0.5rem;
+      border: 1px solid hsl(var(--border));
+      background: transparent;
+      color: hsl(var(--foreground));
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s;
+      padding: 0 0.5rem;
+    }
+
+    .bc-pagination-btn:hover {
+      background-color: hsl(var(--accent));
+      color: hsl(var(--accent-foreground));
+    }
+
+    .bc-pagination-btn[data-active="true"] {
+      background-color: hsl(var(--primary));
+      color: hsl(var(--primary-foreground));
+      border-color: hsl(var(--primary));
+    }
+
+    .bc-pagination-btn:disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .bc-pagination-ellipsis {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 2.25rem;
+      height: 2.25rem;
+      color: hsl(var(--muted-foreground));
+      font-size: 0.875rem;
+      letter-spacing: 0.1em;
+    }
+  </style>
+</head>
+<body class="min-h-screen p-8">
+  <div class="mx-auto max-w-4xl space-y-6">
+
+    <!-- Tabs -->
+    <div>
+      <div class="bc-tabs-list">
+        <button class="bc-tab-trigger" data-state="active">Tab 1</button>
+        <button class="bc-tab-trigger" data-state="inactive">Tab 2</button>
+        <button class="bc-tab-trigger" data-state="inactive">Tab 3</button>
+      </div>
+    </div>
+
+    <!-- Search Input -->
+    <div class="bc-input-wrapper">
+      <div class="bc-input-icon">
+        <i data-lucide="search" style="width: 16px; height: 16px;"></i>
+      </div>
+      <input
+        type="text"
+        class="bc-input bc-input-with-icon"
+        placeholder="Search..."
+      />
+    </div>
+
+    <!-- Table -->
+    <div class="bc-table-wrapper">
+      <table class="bc-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="font-medium">Olivia Martin</td>
+            <td>olivia.martin@email.com</td>
+            <td><span class="bc-badge bc-badge-default">Admin</span></td>
+          </tr>
+          <tr>
+            <td class="font-medium">Jackson Lee</td>
+            <td>jackson.lee@email.com</td>
+            <td><span class="bc-badge bc-badge-secondary">Editor</span></td>
+          </tr>
+          <tr>
+            <td class="font-medium">Isabella Nguyen</td>
+            <td>isabella.nguyen@email.com</td>
+            <td><span class="bc-badge bc-badge-outline">Viewer</span></td>
+          </tr>
+          <tr>
+            <td class="font-medium">William Kim</td>
+            <td>william.kim@email.com</td>
+            <td><span class="bc-badge bc-badge-secondary">Editor</span></td>
+          </tr>
+          <tr>
+            <td class="font-medium">Sofia Davis</td>
+            <td>sofia.davis@email.com</td>
+            <td><span class="bc-badge bc-badge-outline">Viewer</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    <nav class="bc-pagination">
+      <button class="bc-pagination-btn" aria-label="Previous page">
+        <i data-lucide="chevron-left" style="width: 16px; height: 16px;"></i>
+      </button>
+      <button class="bc-pagination-btn">1</button>
+      <button class="bc-pagination-btn">2</button>
+      <button class="bc-pagination-btn" data-active="true">3</button>
+      <button class="bc-pagination-btn">4</button>
+      <button class="bc-pagination-btn">5</button>
+      <span class="bc-pagination-ellipsis">...</span>
+      <button class="bc-pagination-btn" aria-label="Next page">
+        <i data-lucide="chevron-right" style="width: 16px; height: 16px;"></i>
+      </button>
+    </nav>
+
+  </div>
+
+  <!-- Initialize Lucide icons -->
+  <script>
+    lucide.createIcons();
+
+    // Tab interaction
+    document.querySelectorAll('.bc-tab-trigger').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.bc-tab-trigger').forEach(t => t.setAttribute('data-state', 'inactive'));
+        tab.setAttribute('data-state', 'active');
+      });
+    });
+
+    // Pagination interaction
+    document.querySelectorAll('.bc-pagination-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (btn.textContent.trim().match(/^\d+$/)) {
+          document.querySelectorAll('.bc-pagination-btn').forEach(b => b.removeAttribute('data-active'));
+          btn.setAttribute('data-active', 'true');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

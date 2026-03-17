@@ -5,11 +5,14 @@ description: Use when localizing, internationalizing, or translating .NET applic
 
 # RESX Expert
 
-This skill provides guidance on effectively localizing applications using .NET resource files (.resx), localization covering the complete lifecycle from resource creation to deployment.
+This skill provides guidance on effectively localizing applications using .NET resource files (.resx), localization
+covering the complete lifecycle from resource creation to deployment.
 
-It covers best practices, patterns, and anti-patterns for creating, managing, and deploying localized resources in .NET applications.
+It covers best practices, patterns, and anti-patterns for creating, managing, and deploying localized resources in .NET
+applications.
 
-Covers ResourceManager, IStringLocalizer, satellite assemblies, composite formatting, culture fallback, ASP.NET Core integration, and best practices for multi-language applications.
+Covers ResourceManager, IStringLocalizer, satellite assemblies, composite formatting, culture fallback, ASP.NET Core
+integration, and best practices for multi-language applications.
 
 ## When to Use This Skill
 

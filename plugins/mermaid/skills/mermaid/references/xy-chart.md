@@ -38,7 +38,8 @@ Single-word titles do not require quotes. Multi-word titles must be wrapped in d
 | `x-axis title min --> max` | Numeric range | Numeric axis with title and range |
 | `x-axis "Title with spaces" min --> max` | Numeric range with quoted title | Quoted title with range |
 
-Category labels containing spaces must be wrapped in double quotes. The x-axis is optional; if omitted, Mermaid auto-generates it from the data.
+Category labels containing spaces must be wrapped in double quotes. The x-axis is optional; if omitted,
+Mermaid auto-generates it from the data.
 
 ### Y-Axis
 
@@ -140,7 +141,8 @@ config:
 | `yAxisLineColor` | Color of y-axis line |
 | `plotColorPalette` | Comma-separated hex colors for series (e.g. `"#f3456, #43445"`) |
 
-Colors in `plotColorPalette` are assigned sequentially to data series in the order they appear (first bar/line gets the first color, second gets the second, etc.).
+Colors in `plotColorPalette` are assigned sequentially to data series in the order they appear (first
+bar/line gets the first color, second gets the second, etc.).
 
 ## Practical Examples
 

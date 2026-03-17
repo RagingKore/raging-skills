@@ -159,11 +159,13 @@ Use PascalCase for template placeholders (they become property names in structur
 
 ## Bulk Migration with Analyzers
 
-The .NET SDK includes analyzer `SYSLIB1054` that suggests migration from `LoggerMessage.Define` to `[LoggerMessage]`. Enable it in `.editorconfig`:
+The .NET SDK includes analyzer `SYSLIB1054` that suggests migration from `LoggerMessage.Define` to `[LoggerMessage]`.
+Enable it in `.editorconfig`:
 
 ```ini
 [*.cs]
 dotnet_diagnostic.SYSLIB1054.severity = suggestion
 ```
 
-For migrating from `LoggerExtensions` (e.g., `LogInformation`), there's no built-in analyzer, but the pattern is mechanical: search and replace call sites, adding `partial` methods as you go.
+For migrating from `LoggerExtensions` (e.g., `LogInformation`), there's no built-in analyzer, but the pattern is
+mechanical: search and replace call sites, adding `partial` methods as you go.

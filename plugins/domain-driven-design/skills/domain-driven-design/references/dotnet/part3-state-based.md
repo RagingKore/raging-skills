@@ -4,7 +4,8 @@ Traditional persistence where current aggregate state is stored directly.
 
 ## Repositories
 
-Use repositories when persisting current aggregate state (not using event sourcing). For event-sourced persistence, see [Part IV](part4-event-sourced.md).
+Use repositories when persisting current aggregate state (not using event sourcing). For event-sourced persistence, see
+[Part IV](part4-event-sourced.md).
 
 ### Repository Interface
 
@@ -172,7 +173,8 @@ public static class MartenDocumentConfiguration
 
 ## Simple CQRS (Optional)
 
-For state-based systems, CQRS is optional. When read performance becomes a bottleneck, separate read models can be introduced without event sourcing.
+For state-based systems, CQRS is optional. When read performance becomes a bottleneck, separate read models can be
+introduced without event sourcing.
 
 ```csharp
 namespace MyDomain.Application.ReadModels;

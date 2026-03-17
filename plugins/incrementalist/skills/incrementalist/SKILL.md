@@ -33,9 +33,9 @@ description: |
 
 ## What Incrementalist does
 
-Incrementalist analyzes git diffs between the current branch and a target branch, maps changed files to
-affected `.csproj` projects through Roslyn-based dependency analysis, and executes dotnet commands against
-only those projects. This turns O(all-projects) CI builds into O(changed-projects) builds.
+Incrementalist analyzes git diffs between the current branch and a target branch, maps changed files to affected
+`.csproj` projects through Roslyn-based dependency analysis, and executes dotnet commands against only those
+projects. This turns O(all-projects) CI builds into O(changed-projects) builds.
 
 The analysis flow:
 
@@ -65,9 +65,9 @@ This adds an entry to `.config/dotnet-tools.json`. Commit it so CI can run `dotn
 
 #### `dnx` shorthand (.NET 10+)
 
-On .NET 10 and later, the SDK ships a `dnx` script that wraps `dotnet tool exec`. If the repo targets
-.NET 10+, you can invoke `dnx incrementalist run --dry` instead of `dotnet incrementalist run --dry`. Both
-are equivalent; `dnx` is shorter. Note this requires .NET 10 SDK installed on the runner.
+On .NET 10 and later, the SDK ships a `dnx` script that wraps `dotnet tool exec`. If the repo targets .NET 10+,
+you can invoke `dnx incrementalist run --dry` instead of `dotnet incrementalist run --dry`. Both are equivalent;
+`dnx` is shorter. Note this requires .NET 10 SDK installed on the runner.
 
 ### Phase 2: Repository analysis
 
@@ -93,20 +93,20 @@ Scan `.csproj` files for items that reference files outside the project director
 - `<Compile Include="../../shared/..." />` or `<Link>` items
 - `<None Include="..." CopyToOutputDirectory="..." />` pointing outside the project
 
-These files live outside all project directories. When only they change, Incrementalist cannot detect
-affected projects because its file-to-project mapping is directory-based.
+These files live outside all project directories. When only they change, Incrementalist cannot detect affected
+projects because its file-to-project mapping is directory-based.
 
 Report each external reference as a numbered finding with the source project and external path.
 
 #### Step 2.3: Detect source generators and multi-TFM requirements
 
-Check for source generator projects. These typically target `netstandard2.0` and are referenced as
-analyzers via `<ProjectReference ... OutputItemType="Analyzer" ReferenceOutputAssembly="false" />`.
+Check for source generator projects. These typically target `netstandard2.0` and are referenced as analyzers
+via `<ProjectReference ... OutputItemType="Analyzer" ReferenceOutputAssembly="false" />`.
 
-Source generators have an important implication for CI: a workflow matrix that tests across TFMs (e.g.,
-`net8.0`, `net9.0`, `net10.0`) must still build all TFMs first (including `netstandard2.0` for the
-generators). Do not assume a single TFM build is sufficient. Build once with the full solution, then run
-tests per-TFM with `--no-build`.
+Source generators have an important implication for CI: a workflow matrix that tests across TFMs (e.g., `net8.0`,
+`net9.0`, `net10.0`) must still build all TFMs first (including `netstandard2.0` for the generators). Do not
+assume a single TFM build is sufficient. Build once with the full solution, then run tests per-TFM with
+`--no-build`.
 
 #### Step 2.4: Identify test runner framework
 
@@ -116,8 +116,8 @@ Check the test projects' NuGet references and determine which test framework the
 - **TUnit**: Requires `dotnet run`, not `dotnet test`. Use Incrementalist in list-only mode.
 - **Expecto**: Requires `dotnet run`. Same approach as TUnit.
 
-Research the specific test framework CLI before finalizing the workflow. Do not assume `dotnet test` works
-for all runners.
+Research the specific test framework CLI before finalizing the workflow. Do not assume `dotnet test` works for
+all runners.
 
 #### Step 2.5: Identify example, benchmark, and non-test projects
 
@@ -165,8 +165,8 @@ Every setup needs at minimum `.incrementalist/incrementalist.json`:
 }
 ```
 
-Always include `skip` patterns for examples and benchmarks (or whatever the user decided in Step 2.5).
-Never leave configs without addressing these categories.
+Always include `skip` patterns for examples and benchmarks (or whatever the user decided in Step 2.5). Never
+leave configs without addressing these categories.
 
 #### Per-job configs
 
@@ -182,8 +182,8 @@ Create separate configs for each CI job that needs different project filtering:
 
 If the repo contains many projects that CI should never touch, use `AskUserQuestion`:
 
-> "The repo has N example/benchmark projects. Should I create a `.slnf` solution filter that excludes them
-> from CI builds entirely? This would mean Incrementalist only analyzes the filtered solution."
+> "The repo has N example/benchmark projects. Should I create a `.slnf` solution filter that excludes them from
+> CI builds entirely? This would mean Incrementalist only analyzes the filtered solution."
 
 If yes, create a `.slnf` and reference it via the `solutionFilePath` config field.
 
@@ -224,16 +224,16 @@ When Phase 1 found external file references (proto files, shared schemas), pair 
               - '*.slnx'
 ```
 
-When `steps.changes.outputs.external == 'true'` or `steps.changes.outputs.infra == 'true'`, skip
-Incrementalist and run a full build. This covers the edge case where only external files change and
-Incrementalist would report zero affected projects.
+When `steps.changes.outputs.external == 'true'` or `steps.changes.outputs.infra == 'true'`, skip Incrementalist
+and run a full build. This covers the edge case where only external files change and Incrementalist would report
+zero affected projects.
 
 #### Bundled scripts for test detection and execution
 
-The inline bash for detecting and running affected tests is complex. This skill bundles two template
-scripts at `scripts/detect-affected.sh` and `scripts/run-affected-tests.sh`. Read them, adapt for the
-repo's specifics (test runner, TFMs, project paths), and write them to the repo at a location like
-`.incrementalist/scripts/` or `scripts/ci/`. Then reference them from the workflow:
+The inline bash for detecting and running affected tests is complex. This skill bundles two template scripts at
+`scripts/detect-affected.sh` and `scripts/run-affected-tests.sh`. Read them, adapt for the repo's specifics
+(test runner, TFMs, project paths), and write them to the repo at a location like `.incrementalist/scripts/` or
+`scripts/ci/`. Then reference them from the workflow:
 
 ```yaml
       - name: Detect affected unit tests
@@ -251,14 +251,15 @@ This keeps the workflow YAML concise and the test logic reusable.
 #### Unified pipeline design
 
 The goal is a single pipeline that works for both full and incremental runs. Do not duplicate steps with mirrored
-`if:` conditions for full vs. incremental. Instead, determine the scope once and let the rest of the pipeline use it.
+`if:` conditions for full vs. incremental. Instead, determine the scope once and let the rest of the pipeline
+use it.
 
 The build step is always full (`dotnet build` on the whole solution). This is necessary because source generators
 need all TFMs compiled, NuGet pack needs the full output, and full builds are the simplest correctness guarantee.
 Incrementalist narrows only the **test execution** scope; it does not narrow the build.
 
-On a PR where only leaf projects changed, the build still runs fast (most projects are up-to-date and `dotnet build`
-skips them). The real savings come from running fewer test projects.
+On a PR where only leaf projects changed, the build still runs fast (most projects are up-to-date and `dotnet
+build` skips them). The real savings come from running fewer test projects.
 
 #### Decision point: single file vs. separate workflow files
 
@@ -266,13 +267,13 @@ Use `AskUserQuestion` to present this choice:
 
 > "For the CI pipeline, which structure do you prefer?"
 >
-> A. **Single workflow file** with a scope-determination step (full on main push or force-full; incremental on PR).
->    Simplest to maintain; one file, one set of steps.
+> A. **Single workflow file** with a scope-determination step (full on main push or force-full; incremental on
+>    PR). Simplest to maintain; one file, one set of steps.
 > B. **Separate workflow files** (`ci-main.yml` and `ci-pr.yml`). Each file is simpler on its own; no conditional
 >    logic. Better when main and PR pipelines diverge significantly (e.g., main publishes packages, PR does not).
 
-Proceed with the user's choice. Both are valid. The templates below show option A; for option B, split the template
-into two files with no `if:` conditions.
+Proceed with the user's choice. Both are valid. The templates below show option A; for option B, split the
+template into two files with no `if:` conditions.
 
 #### Workflow template (single unified file)
 
@@ -367,24 +368,24 @@ Adapt the template for the repo's test runner, TFMs, and project structure.
 
 ### Phase 5: Verification
 
-This is a mandatory checklist. Execute each step and verify the output before proceeding to the next.
-Do not skip steps. Do not present these as suggestions; run them.
+This is a mandatory checklist. Execute each step and verify the output before proceeding to the next. Do not
+skip steps. Do not present these as suggestions; run them.
 
-- [ ] **5.1 Dry run locally**: Run `dotnet incrementalist run --dry --verbose -- build -c Release` in the
-  repo root. Inspect the output. Confirm the correct projects are listed. If unexpected projects appear or
-  expected projects are missing, revisit the configs.
+- [ ] **5.1 Dry run locally**: Run `dotnet incrementalist run --dry --verbose -- build -c Release` in the repo
+  root. Inspect the output. Confirm the correct projects are listed. If unexpected projects appear or expected
+  projects are missing, revisit the configs.
 
 - [ ] **5.2 Validate skip patterns**: Run the dry run with each per-job config (`testsOnly.json`,
-  `integrationOnly.json`). Confirm examples and benchmarks are excluded. Confirm the target patterns match
-  only the intended projects.
+  `integrationOnly.json`). Confirm examples and benchmarks are excluded. Confirm the target patterns match only
+  the intended projects.
 
 - [ ] **5.3 Test external file detection**: If the repo has external files (proto, shared), verify the
   `dorny/paths-filter` or git-diff step would detect a proto-only change and force a full build. Check by
   inspecting the workflow conditions.
 
-- [ ] **5.4 Verify test runner compatibility**: If the repo uses a non-standard test runner (TUnit,
-  Expecto), run the detect-and-execute scripts locally against one test project. Confirm tests actually
-  execute and produce results.
+- [ ] **5.4 Verify test runner compatibility**: If the repo uses a non-standard test runner (TUnit, Expecto),
+  run the detect-and-execute scripts locally against one test project. Confirm tests actually execute and produce
+  results.
 
 - [ ] **5.5 Review multi-TFM build**: If the repo multi-targets, confirm the build step compiles all TFMs
   (including `netstandard2.0` for source generators). A per-TFM matrix build will fail if source generators
@@ -397,8 +398,8 @@ Once all checks pass, present the results to the user with the dry-run output.
 Every Incrementalist setup must produce these deliverables. Present them as a numbered summary to the user.
 
 1. **Dependency graph** — The project dependency graph with impact matrix (from Step 2.1)
-2. **Numbered findings** — External file references, source generator TFM requirements, test runner
-   framework, example/benchmark categorization
+2. **Numbered findings** — External file references, source generator TFM requirements, test runner framework,
+   example/benchmark categorization
 3. **Time savings estimate** — Per-scenario estimates (from Step 2.6)
 4. **Configuration files** — All `.incrementalist/*.json` configs
 5. **CI scripts** — `detect-affected.sh` and `run-affected-tests.sh` (adapted from templates)
@@ -411,9 +412,8 @@ Every Incrementalist setup must produce these deliverables. Present them as a nu
 When the user has an existing `incrementalist.json` and asks for modifications:
 
 1. Read the existing file and the Incrementalist schema (the `$schema` URL provides IDE validation)
-2. Apply changes using the exact field names from the schema. The parallel execution fields are
-   `runInParallel` (boolean) and `parallelLimit` (number); do not invent nested objects or alternative
-   names
+2. Apply changes using the exact field names from the schema. The parallel execution fields are `runInParallel`
+   (boolean) and `parallelLimit` (number); do not invent nested objects or alternative names
 3. Preserve all existing fields unchanged unless the user explicitly asks to modify them
 4. Verify the updated config is valid against the schema
 
@@ -423,16 +423,16 @@ For the full settings reference, read `references/config-reference.md`.
 
 ### Source generators and multi-TFM
 
-Source generator projects target `netstandard2.0`. If the CI workflow uses a per-TFM matrix for testing,
-the build step must compile all TFMs first. A matrix build that only compiles `net10.0` will fail because
-the source generator project cannot target `net10.0`. Build the full solution once, then use `--no-build`
-in the per-TFM test steps.
+Source generator projects target `netstandard2.0`. If the CI workflow uses a per-TFM matrix for testing, the
+build step must compile all TFMs first. A matrix build that only compiles `net10.0` will fail because the source
+generator project cannot target `net10.0`. Build the full solution once, then use `--no-build` in the per-TFM
+test steps.
 
 ### Files outside project directories
 
 Incrementalist maps files to projects by directory containment. Files in `proto/`, `shared/`, or similar
-top-level directories are invisible to this mapping. Use `dorny/paths-filter@v3` alongside Incrementalist
-to detect changes in these directories and force a full build when they change.
+top-level directories are invisible to this mapping. Use `dorny/paths-filter@v3` alongside Incrementalist to
+detect changes in these directories and force a full build when they change.
 
 ### Non-standard test runners
 
@@ -470,4 +470,5 @@ These are copies of the upstream docs bundled for offline reference:
 ### External links
 
 - [Incrementalist GitHub repository](https://github.com/petabridge/Incrementalist)
-- [Configuration schema](https://github.com/petabridge/Incrementalist/blob/dev/src/Incrementalist.Cmd/Config/incrementalist.schema.json)
+- [Configuration
+  schema](https://github.com/petabridge/Incrementalist/blob/dev/src/Incrementalist.Cmd/Config/incrementalist.schema.json)

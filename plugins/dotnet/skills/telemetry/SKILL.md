@@ -16,7 +16,8 @@ description: |
 
 # .NET Telemetry & Observability Expert
 
-Comprehensive guidance for the three pillars of .NET observability: **distributed tracing**, **metrics**, and **diagnostic events** – with OpenTelemetry integration and high-performance patterns.
+Comprehensive guidance for the three pillars of .NET observability: **distributed tracing**, **metrics**, and
+**diagnostic events** – with OpenTelemetry integration and high-performance patterns.
 
 ## Architecture Overview
 
@@ -126,7 +127,8 @@ public sealed class OrderTelemetry {
 builder.Services.AddSingleton<OrderTelemetry>();
 ```
 
-See [sample_codes/core-telemetry/unified-telemetry-service.cs](sample_codes/core-telemetry/unified-telemetry-service.cs) for the complete pattern with all three pillars.
+See [sample_codes/core-telemetry/unified-telemetry-service.cs](sample_codes/core-telemetry/unified-telemetry-service.cs)
+for the complete pattern with all three pillars.
 
 ## Distributed Tracing (ActivitySource / Activity)
 
@@ -168,7 +170,8 @@ if (activity?.IsAllDataRequested == true) {
 
 ### Sampling
 
-When no `ActivityListener` subscribes, `StartActivity()` returns `null` — **zero overhead**. This is the primary performance optimization for hot paths.
+When no `ActivityListener` subscribes, `StartActivity()` returns `null` — **zero overhead**. This is the primary
+performance optimization for hot paths.
 
 ```csharp
 // Custom sampling via ActivityListener
@@ -274,7 +277,8 @@ static void OnMeasurement<T>(Instrument instrument, T value,
 
 ## DiagnosticSource (Legacy + Advanced Scenarios)
 
-Use `DiagnosticSource` when you need to pass **rich, typed payloads** to in-process listeners. Many .NET libraries (HttpClient, ASP.NET Core, EF Core) emit diagnostic events.
+Use `DiagnosticSource` when you need to pass **rich, typed payloads** to in-process listeners. Many .NET libraries
+(HttpClient, ASP.NET Core, EF Core) emit diagnostic events.
 
 ```csharp
 // Listening to library diagnostic events
@@ -312,7 +316,8 @@ IDisposable subscription = DiagnosticListener.AllListeners.Subscribe(
 
 ## OpenTelemetry Setup
 
-See [references/opentelemetry-setup.md](references/opentelemetry-setup.md) for complete setup patterns including ASP.NET Core, console apps, Aspire integration, and exporter configuration.
+See [references/opentelemetry-setup.md](references/opentelemetry-setup.md) for complete setup patterns including ASP.NET
+Core, console apps, Aspire integration, and exporter configuration.
 
 Quick ASP.NET Core setup:
 

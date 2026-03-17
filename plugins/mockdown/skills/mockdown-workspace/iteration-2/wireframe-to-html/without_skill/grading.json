@@ -1,0 +1,50 @@
+{
+  "expectations": [
+    {
+      "text": "Uses semantic <nav> element for navigation bar",
+      "passed": true,
+      "evidence": "Line 150: <nav> inside <header>"
+    },
+    {
+      "text": "Contains email input with placeholder text 'Enter your email...'",
+      "passed": true,
+      "evidence": "Line 167: correct placeholder"
+    },
+    {
+      "text": "Contains a Subscribe button",
+      "passed": true,
+      "evidence": "Line 168: Subscribe button"
+    },
+    {
+      "text": "Checkbox is checked by default (checked attribute)",
+      "passed": true,
+      "evidence": "Line 171: checked attribute"
+    },
+    {
+      "text": "Card structure with 'Welcome' as the title/header",
+      "passed": true,
+      "evidence": "Line 162: h1 Welcome inside card"
+    },
+    {
+      "text": "Contains navigation links: Home, About, Contact",
+      "passed": true,
+      "evidence": "Lines 151-153: all three links"
+    },
+    {
+      "text": "Contains Sign Up button",
+      "passed": true,
+      "evidence": "Line 156: sign-up-btn"
+    },
+    {
+      "text": "No elaborate CSS framework or excessive styling beyond basic layout",
+      "passed": false,
+      "evidence": "144 lines of CSS with hover effects, background colors, border-radius, custom class names"
+    }
+  ],
+  "summary": {
+    "passed": 7,
+    "failed": 1,
+    "total": 8,
+    "pass_rate": 0.875
+  }
+}

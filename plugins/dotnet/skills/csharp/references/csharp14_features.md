@@ -1,6 +1,7 @@
 # C# 14 Features Comprehensive Reference
 
-Complete guide to C# 14 language features with practical examples and usage guidance. C# 14 is supported on .NET 10 (LTS release, November 2025).
+Complete guide to C# 14 language features with practical examples and usage guidance. C# 14 is supported on .NET 10 (LTS
+release, November 2025).
 
 ## Table of Contents
 
@@ -136,7 +137,8 @@ var combined = items + moreItems;  // Uses operator +
 
 ### Overview
 
-The `field` keyword provides access to the compiler-generated backing field without explicit declaration. Simplifies property declarations that need custom logic in one accessor.
+The `field` keyword provides access to the compiler-generated backing field without explicit declaration. Simplifies
+property declarations that need custom logic in one accessor.
 
 ### Syntax
 
@@ -260,7 +262,8 @@ class MyClass {
 
 ### Overview
 
-C# 14 introduces implicit conversions between `Span<T>`, `ReadOnlySpan<T>`, and `T[]`, making span types first-class citizens with natural usage patterns.
+C# 14 introduces implicit conversions between `Span<T>`, `ReadOnlySpan<T>`, and `T[]`, making span types first-class
+citizens with natural usage patterns.
 
 ### Implicit Conversions
 
@@ -380,7 +383,8 @@ public void ProcessSmallData() {
 
 ### Overview
 
-C# 14 allows parameter modifiers (`ref`, `out`, `in`, `scoped`, `ref readonly`) on lambda parameters without specifying types.
+C# 14 allows parameter modifiers (`ref`, `out`, `in`, `scoped`, `ref readonly`) on lambda parameters without specifying
+types.
 
 ### Syntax
 
@@ -517,7 +521,8 @@ public Type ResolveGenericType(string typeName, Type argumentType) {
 
 ### Overview
 
-The null-conditional operators (`?.` and `?[]`) can now be used on the left side of assignments and compound assignments.
+The null-conditional operators (`?.` and `?[]`) can now be used on the left side of assignments and compound
+assignments.
 
 ### Basic Assignment
 
@@ -621,7 +626,8 @@ public void UpdateFirstItem(List<Item>? items, Item newItem) {
 
 ### Overview
 
-C# 14 extends partial member support to instance constructors and events, complementing partial methods and properties from C# 13.
+C# 14 extends partial member support to instance constructors and events, complementing partial methods and properties
+from C# 13.
 
 ### Partial Constructors
 
@@ -745,7 +751,8 @@ public partial class Service {
 
 ### Overview
 
-C# 14 enables user-defined compound assignment operators (`+=`, `-=`, `*=`, `/=`, etc.) by defining the corresponding binary operator.
+C# 14 enables user-defined compound assignment operators (`+=`, `-=`, `*=`, `/=`, etc.) by defining the corresponding
+binary operator.
 
 ### Syntax
 
@@ -844,4 +851,5 @@ C# 14 brings significant language improvements:
 8. **Compound assignment** - Natural arithmetic for custom types
 
 **Adoption strategy: Aggressive**
-Use these features by default. They improve code clarity, reduce boilerplate, and leverage modern .NET performance characteristics.
+Use these features by default. They improve code clarity, reduce boilerplate, and leverage modern .NET performance
+characteristics.

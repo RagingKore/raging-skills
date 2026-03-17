@@ -16,7 +16,8 @@ Common dependency injection mistakes in .NET, how to detect them, and how to fix
 
 ## Captive Dependency
 
-A shorter-lived service captured by a longer-lived service. The scoped/transient becomes a de-facto singleton, causing stale data, thread-safety bugs, and connection leaks.
+A shorter-lived service captured by a longer-lived service. The scoped/transient becomes a de-facto singleton, causing
+stale data, thread-safety bugs, and connection leaks.
 
 ### The Problem
 
@@ -139,7 +140,8 @@ public sealed class OrderService(
 
 ## Disposable Transient Leaks
 
-The container tracks `IDisposable`/`IAsyncDisposable` transient services it creates. They are NOT disposed until the scope (or root provider) is disposed.
+The container tracks `IDisposable`/`IAsyncDisposable` transient services it creates. They are NOT disposed until the
+scope (or root provider) is disposed.
 
 ### The Problem
 
@@ -375,7 +377,8 @@ Problems:
 
 ### Fix
 
-Always use constructor injection. If you need DI in a place where constructor injection isn't available (e.g., static methods, entity classes), consider:
+Always use constructor injection. If you need DI in a place where constructor injection isn't available (e.g., static
+methods, entity classes), consider:
 
 1. Pass the dependency as a method parameter
 2. Use a domain event dispatcher pattern

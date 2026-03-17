@@ -413,4 +413,5 @@ public class RobustEventProcessor {
 }
 ```
 
-This comprehensive guide provides detailed examples for all the patterns that were removed from the core prompt, ensuring developers have access to complete formatting and organizational guidance when needed.
+This comprehensive guide provides detailed examples for all the patterns that were removed from the core prompt,
+ensuring developers have access to complete formatting and organizational guidance when needed.

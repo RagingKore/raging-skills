@@ -41,7 +41,7 @@ Diamond arrow connections are fundamentally broken in raw Excalidraw JSON:
 - Excalidraw applies `roundness` to diamond vertices during rendering
 - Visual edges appear offset from mathematical edge points
 - No offset formula reliably compensates
-- Arrows appear disconnected/floating
+- Arrows appear disconnected or floating
 
 **Use styled rectangles instead** for visual distinction:
 
@@ -71,7 +71,7 @@ Every element MUST have these properties:
   "fillStyle": "solid",
   "strokeWidth": 2,
   "strokeStyle": "solid",
-  "roughness": 1,
+  "roughness": 0,
   "opacity": 100,
   "groupIds": [],
   "frameId": null,
@@ -122,7 +122,7 @@ Every element MUST have these properties:
   "height": 50,
   "text": "{Component Name}\n{Subtitle}",
   "fontSize": 16,
-  "fontFamily": 1,
+  "fontFamily": 3,
   "textAlign": "center",
   "verticalAlign": "middle",
   "containerId": "{component-id}",

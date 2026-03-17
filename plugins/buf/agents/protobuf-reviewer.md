@@ -87,7 +87,8 @@ When reviewing `.proto` files, check ALL of the following:
 - [ ] Comments placed above the type, not inline
 
 ### 6. File Options Consistency
-- [ ] All files in the same package share identical values for: `go_package`, `java_package`, `java_multiple_files`, `csharp_namespace`, `php_namespace`, `ruby_package`, `swift_prefix`
+- [ ] All files in the same package share identical values for: `go_package`, `java_package`, `java_multiple_files`,
+  `csharp_namespace`, `php_namespace`, `ruby_package`, `swift_prefix`
 - [ ] Consider using managed mode instead of hard-coding file options
 
 ### 7. Package Hygiene

@@ -1,6 +1,7 @@
 # KurrentDB Connectors Reference
 
-Server-side plugins that use catch-up subscriptions to filter, transform, and push events to external systems. Connectors are pre-installed and enabled by default in KurrentDB.
+Server-side plugins that use catch-up subscriptions to filter, transform, and push events to external systems.
+Connectors are pre-installed and enabled by default in KurrentDB.
 
 ## Table of Contents
 
@@ -219,7 +220,8 @@ Every event flowing through a connector has this structure:
 
 ## Transformations
 
-Transformations use JavaScript functions to modify records before they reach the sink. The function must be named `transform` and must **mutate the record in-place** (do NOT return a new object).
+Transformations use JavaScript functions to modify records before they reach the sink. The function must be named
+`transform` and must **mutate the record in-place** (do NOT return a new object).
 
 ### Writing a Transform Function
 
@@ -272,9 +274,11 @@ Connectors use a **3-phase exponential backoff** strategy for error recovery:
 | Phase 2 | Exponential from 5s    | 10 minutes | Up to 1 hour                        |
 | Phase 3 | Exponential from 10m   | 1 hour     | Forever (until manual intervention) |
 
-All phase boundaries are configurable via `resilience:firstDelayBound`, `resilience:secondDelayBound`, and `resilience:thirdDelayBound`.
+All phase boundaries are configurable via `resilience:firstDelayBound`, `resilience:secondDelayBound`, and
+`resilience:thirdDelayBound`.
 
-**Note:** Kafka Sink, RabbitMQ Sink, and Pulsar Sink use their **own internal retry mechanisms** instead of the standard resilience backoff.
+**Note:** Kafka Sink, RabbitMQ Sink, and Pulsar Sink use their **own internal retry mechanisms** instead of the standard
+ resilience backoff.
 
 ---
 
@@ -324,7 +328,8 @@ Sensitive connector settings (passwords, tokens, connection strings) are protect
 | `Connectors:DataProtection:TokenFile` | Path to encryption token file |
 | `Connectors:DataProtection:Token`     | Inline encryption token       |
 
-**Critical:** The data protection token is **permanent**. Once set, it must never be changed or all encrypted settings will become unreadable. KurrentDB uses the Surge key vault internally for encryption.
+**Critical:** The data protection token is **permanent**. Once set, it must never be changed or all encrypted settings
+ will become unreadable. KurrentDB uses the Surge key vault internally for encryption.
 
 ---
 

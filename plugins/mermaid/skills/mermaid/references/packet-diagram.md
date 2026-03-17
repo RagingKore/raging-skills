@@ -53,7 +53,8 @@ Each line after the `packet` keyword (and optional title) defines a field in the
 
 ### Bit Positioning
 
-Bits are zero-indexed. Each row in the rendered diagram shows a fixed number of bits (typically 32 bits per row, based on the default configuration).
+Bits are zero-indexed. Each row in the rendered diagram shows a fixed number of bits (typically 32 bits per
+row, based on the default configuration).
 
 | Concept | Description |
 |---------|-------------|
@@ -64,7 +65,8 @@ Bits are zero-indexed. Each row in the rendered diagram shows a fixed number of 
 
 ### Bit Count Syntax (v11.7.0+)
 
-The `+count` syntax auto-calculates the start position based on the previous field's end. This simplifies editing since adding or removing fields does not require recalculating all subsequent positions.
+The `+count` syntax auto-calculates the start position based on the previous field's end. This simplifies
+editing since adding or removing fields does not require recalculating all subsequent positions.
 
 | Syntax | Equivalent | Description |
 |--------|------------|-------------|
@@ -122,7 +124,8 @@ config:
 
 ### Theme Variables
 
-Note: Theme variable propagation may be limited due to known issues. The following variables are defined but may not take effect in all versions.
+Note: Theme variable propagation may be limited due to known issues. The following variables are defined
+but may not take effect in all versions.
 
 | Property | Description | Default |
 |----------|-------------|---------|

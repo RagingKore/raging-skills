@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Management</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/basecoat-css@0.3.11/dist/basecoat.cdn.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/basecoat-css@0.3.11/dist/js/all.min.js" defer></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 3rem 1rem;
+    }
+    .page-container {
+      width: 100%;
+      max-width: 960px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-container">
+
+    <!-- Tabs -->
+    <div class="tabs w-full" id="main-tabs">
+      <nav role="tablist" aria-orientation="horizontal" class="w-full">
+        <button type="button" role="tab" id="main-tabs-tab-1" aria-controls="main-tabs-panel-1" aria-selected="true" tabindex="0">
+          <i data-lucide="users" class="size-4"></i>
+          Users
+        </button>
+        <button type="button" role="tab" id="main-tabs-tab-2" aria-controls="main-tabs-panel-2" aria-selected="false" tabindex="0">
+          <i data-lucide="shield" class="size-4"></i>
+          Roles
+        </button>
+        <button type="button" role="tab" id="main-tabs-tab-3" aria-controls="main-tabs-panel-3" aria-selected="false" tabindex="0">
+          <i data-lucide="settings" class="size-4"></i>
+          Settings
+        </button>
+      </nav>
+
+      <!-- Tab 1: Users -->
+      <div role="tabpanel" id="main-tabs-panel-1" aria-labelledby="main-tabs-tab-1" tabindex="-1" aria-selected="true">
+        <div class="flex flex-col gap-6 pt-6">
+
+          <!-- Search -->
+          <div class="relative w-full max-w-sm">
+            <input type="text" class="input pl-9" placeholder="Search users...">
+            <div class="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none text-muted-foreground [&>svg]:size-4">
+              <i data-lucide="search"></i>
+            </div>
+          </div>
+
+          <!-- Table -->
+          <div class="relative w-full overflow-x-auto">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Status</th>
+                  <th class="text-right">Joined</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="font-medium">Olivia Martin</td>
+                  <td>olivia.martin@acme.com</td>
+                  <td><span class="badge">Admin</span></td>
+                  <td><span class="badge-outline text-emerald-600">Active</span></td>
+                  <td class="text-right">Jan 12, 2024</td>
+                </tr>
+                <tr>
+                  <td class="font-medium">Jackson Lee</td>
+                  <td>jackson.lee@acme.com</td>
+                  <td><span class="badge-secondary">Editor</span></td>
+                  <td><span class="badge-outline text-emerald-600">Active</span></td>
+                  <td class="text-right">Feb 3, 2024</td>
+                </tr>
+                <tr>
+                  <td class="font-medium">Isabella Nguyen</td>
+                  <td>isabella.nguyen@acme.com</td>
+                  <td><span class="badge-secondary">Viewer</span></td>
+                  <td><span class="badge-outline text-emerald-600">Active</span></td>
+                  <td class="text-right">Mar 18, 2024</td>
+                </tr>
+                <tr>
+                  <td class="font-medium">William Kim</td>
+                  <td>william.kim@acme.com</td>
+                  <td><span class="badge-secondary">Editor</span></td>
+                  <td><span class="badge-outline text-amber-600">Pending</span></td>
+                  <td class="text-right">Apr 7, 2024</td>
+                </tr>
+                <tr>
+                  <td class="font-medium">Sofia Davis</td>
+                  <td>sofia.davis@acme.com</td>
+                  <td><span class="badge-secondary">Viewer</span></td>
+                  <td><span class="badge-outline text-red-600">Inactive</span></td>
+                  <td class="text-right">May 22, 2024</td>
+                </tr>
+                <tr>
+                  <td class="font-medium">Liam Johnson</td>
+                  <td>liam.johnson@acme.com</td>
+                  <td><span class="badge">Admin</span></td>
+                  <td><span class="badge-outline text-emerald-600">Active</span></td>
+                  <td class="text-right">Jun 14, 2024</td>
+                </tr>
+                <tr>
+                  <td class="font-medium">Emma Wilson</td>
+                  <td>emma.wilson@acme.com</td>
+                  <td><span class="badge-secondary">Editor</span></td>
+                  <td><span class="badge-outline text-emerald-600">Active</span></td>
+                  <td class="text-right">Jul 30, 2024</td>
+                </tr>
+                <tr>
+                  <td class="font-medium">Noah Brown</td>
+                  <td>noah.brown@acme.com</td>
+                  <td><span class="badge-secondary">Viewer</span></td>
+                  <td><span class="badge-outline text-amber-600">Pending</span></td>
+                  <td class="text-right">Aug 5, 2024</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pagination -->
+          <nav role="navigation" aria-label="pagination" class="mx-auto flex w-full justify-center">
+            <ul class="flex flex-row items-center gap-1">
+              <li>
+                <a href="#" class="btn-ghost">
+                  <i data-lucide="chevron-left" class="size-4"></i>
+                  Previous
+                </a>
+              </li>
+              <li>
+                <a href="#" class="btn-ghost size-9">1</a>
+              </li>
+              <li>
+                <a href="#" class="btn-ghost size-9">2</a>
+              </li>
+              <li>
+                <a href="#" class="btn-outline size-9" aria-current="page">3</a>
+              </li>
+              <li>
+                <a href="#" class="btn-ghost size-9">4</a>
+              </li>
+              <li>
+                <a href="#" class="btn-ghost size-9">5</a>
+              </li>
+              <li>
+                <a href="#" class="btn-icon-ghost">
+                  <i data-lucide="ellipsis" class="size-4"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="btn-ghost">
+                  Next
+                  <i data-lucide="chevron-right" class="size-4"></i>
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+        </div>
+      </div>
+
+      <!-- Tab 2: Roles (placeholder) -->
+      <div role="tabpanel" id="main-tabs-panel-2" aria-labelledby="main-tabs-tab-2" tabindex="-1" aria-selected="false" hidden>
+        <div class="flex flex-col items-center justify-center gap-3 py-16 text-muted-foreground">
+          <i data-lucide="shield" class="size-10"></i>
+          <p class="text-sm">Role management coming soon.</p>
+        </div>
+      </div>
+
+      <!-- Tab 3: Settings (placeholder) -->
+      <div role="tabpanel" id="main-tabs-panel-3" aria-labelledby="main-tabs-tab-3" tabindex="-1" aria-selected="false" hidden>
+        <div class="flex flex-col items-center justify-center gap-3 py-16 text-muted-foreground">
+          <i data-lucide="settings" class="size-10"></i>
+          <p class="text-sm">Settings panel coming soon.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

@@ -75,7 +75,8 @@ All files must be in a directory that matches their package name.
 ### PACKAGE_NO_IMPORT_CYCLE
 **Categories:** MINIMAL (v2), BASIC (v2), STANDARD (v2)
 
-Detects package import cycles. The Protobuf compiler outlaws circular file imports, but it's still possible to introduce package cycles. This causes problems for languages that rely on package-based imports (like Go).
+Detects package import cycles. The Protobuf compiler outlaws circular file imports, but it's still possible to introduce
+package cycles. This causes problems for languages that rely on package-based imports (like Go).
 
 ### PACKAGE_SAME_DIRECTORY
 **Categories:** MINIMAL, BASIC, STANDARD
@@ -183,7 +184,9 @@ Package names must be lower_snake_case.
 ### PACKAGE_SAME_<file_option>
 **Categories:** BASIC, STANDARD
 
-All files in the same package must share the same value for language-specific file options. Seven rules: `PACKAGE_SAME_CSHARP_NAMESPACE`, `PACKAGE_SAME_GO_PACKAGE`, `PACKAGE_SAME_JAVA_MULTIPLE_FILES`, `PACKAGE_SAME_JAVA_PACKAGE`, `PACKAGE_SAME_PHP_NAMESPACE`, `PACKAGE_SAME_RUBY_PACKAGE`, `PACKAGE_SAME_SWIFT_PREFIX`.
+All files in the same package must share the same value for language-specific file options. Seven rules:
+`PACKAGE_SAME_CSHARP_NAMESPACE`, `PACKAGE_SAME_GO_PACKAGE`, `PACKAGE_SAME_JAVA_MULTIPLE_FILES`,
+`PACKAGE_SAME_JAVA_PACKAGE`, `PACKAGE_SAME_PHP_NAMESPACE`, `PACKAGE_SAME_RUBY_PACKAGE`, `PACKAGE_SAME_SWIFT_PREFIX`.
 
 ### PACKAGE_VERSION_SUFFIX
 **Categories:** STANDARD
@@ -198,7 +201,8 @@ All protovalidate constraints must be valid (CEL expressions compile, types matc
 ### RPC_REQUEST_STANDARD_NAME / RPC_RESPONSE_STANDARD_NAME
 **Categories:** STANDARD
 
-Request messages must be named `MethodNameRequest` or `ServiceNameMethodNameRequest`. Response messages follow the same pattern with `Response`.
+Request messages must be named `MethodNameRequest` or `ServiceNameMethodNameRequest`. Response messages follow the same
+pattern with `Response`.
 
 ### RPC_REQUEST_RESPONSE_UNIQUE
 **Categories:** STANDARD
@@ -223,7 +227,8 @@ Stable versioned packages (e.g., `v1`) must not import unstable packages (e.g., 
 ### COMMENT_* Rules
 **Categories:** COMMENTS
 
-Seven rules enforcing non-empty leading comments on: `COMMENT_ENUM`, `COMMENT_ENUM_VALUE`, `COMMENT_FIELD`, `COMMENT_MESSAGE`, `COMMENT_ONEOF`, `COMMENT_RPC`, `COMMENT_SERVICE`.
+Seven rules enforcing non-empty leading comments on: `COMMENT_ENUM`, `COMMENT_ENUM_VALUE`, `COMMENT_FIELD`,
+`COMMENT_MESSAGE`, `COMMENT_ONEOF`, `COMMENT_RPC`, `COMMENT_SERVICE`.
 
 ### RPC_NO_CLIENT_STREAMING / RPC_NO_SERVER_STREAMING
 **Categories:** UNARY_RPC

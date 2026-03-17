@@ -1,6 +1,7 @@
 # How Incrementalist Works
 
-Incrementalist is designed to optimize build processes in large .NET solutions by intelligently determining which projects need to be rebuilt based on changes in your Git repository.
+Incrementalist is designed to optimize build processes in large .NET solutions by intelligently determining
+which projects need to be rebuilt based on changes in your Git repository.
 
 ## Basic Workflow
 
@@ -10,7 +11,7 @@ flowchart TD
     B --> C{Analyze Changes}
     C -->|Solution-wide changes| D[Build All Projects]
     C -->|Specific changes| E[Build Affected Projects]
-    
+
     style B fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
@@ -24,13 +25,13 @@ flowchart LR
     C -->|No| E[Project Analysis]
     E --> F[Find Dependencies]
     F --> G[Generate Build List]
-    
+
     subgraph "Solution-wide Changes"
         H[Directory.Build.props]
         I[global.json]
         J[.sln files]
     end
-    
+
     H --> C
     I --> C
     J --> C
@@ -45,12 +46,12 @@ flowchart TD
     B -->|list-affected-folders| D[List Affected Folders]
     B -->|run| E[Execute dotnet Commands]
     B -->|create-config| F[Create Config File]
-    
+
     C --> G[Save to File]
     D --> G
     E --> H[Build/Test Projects]
     F --> I[Save Configuration]
-    
+
     style A fill:#f96,stroke:#333,stroke-width:4px
 ```
 
@@ -97,4 +98,4 @@ The output can be integrated with various build systems:
 - Build scripts (e.g., FAKE, CAKE, etc.)
 - Custom build tooling
 
-For detailed build instructions and setup, see [Building Incrementalist](building.md). 
+For detailed build instructions and setup, see [Building Incrementalist](building.md).

@@ -1,16 +1,21 @@
 {
   "name": "markdown-style",
-  "version": "1.0.0",
-  "description": "Markdown writing conventions. Use before writing or editing any .md file, plan, doc, PR description, commit message, report, or any markdown content. Covers prose, structure, links, lists, code blocks, and tables.",
+  "version": "2.0.0",
+  "description": "Adaptive markdown conventions with markdownlint integration. Discovers a project's existing patterns, generates tailored linter config and Claude Code rules, and enforces them via a PostToolUse hook. Includes a markdown-expert agent for on-demand deep reviews.",
   "keywords": [
     "markdown",
     "style-guide",
     "formatting",
     "documentation",
     "writing",
-    "conventions"
+    "conventions",
+    "markdownlint",
+    "linting"
   ],
   "skills": [
     "./skills/"
+  ],
+  "agents": [
+    "./agents/markdown-expert.md"
   ]
 }

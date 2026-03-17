@@ -143,5 +143,7 @@ pie title Annual Budget Allocation
 - **`showData` must come before `title`** on the `pie` declaration line.
 - **No percentage syntax** -- provide raw numbers and Mermaid calculates percentages automatically.
 - **Decimal precision** -- only up to two decimal places are supported.
-- **Slice ordering** -- slices render clockwise in the order they appear in the source. There is no automatic sorting by value.
-- **The `title` keyword** is part of the `pie` line or the line immediately after. It is not a standalone directive like in Gantt charts.
+- **Slice ordering** -- slices render clockwise in the order they appear in the source. There is no
+  automatic sorting by value.
+- **The `title` keyword** is part of the `pie` line or the line immediately after. It is not a standalone
+  directive like in Gantt charts.

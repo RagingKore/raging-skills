@@ -12,7 +12,8 @@
 
 ## Scavenging
 
-Scavenging removes deleted and expired events from disk to reclaim space. It is a **destructive** operation — scavenged events cannot be recovered.
+Scavenging removes deleted and expired events from disk to reclaim space. It is a **destructive** operation — scavenged
+events cannot be recovered.
 
 ### Starting and Stopping
 
@@ -144,7 +145,8 @@ Follow this order to ensure consistency:
 
 **License Required — Available since v25.0**
 
-Archive chunk files to cloud object storage (S3, Azure Blob, GCP Cloud Storage) for cold storage. All cluster nodes can transparently read from the archive.
+Archive chunk files to cloud object storage (S3, Azure Blob, GCP Cloud Storage) for cold storage. All cluster nodes can
+transparently read from the archive.
 
 ### Architecture
 
@@ -201,7 +203,8 @@ Auth options: `Default`, `ConnectionString`, `SystemAssigned`, `UserAssigned`.
 
 ### Retention
 
-The `RetainAtLeast` setting ensures a minimum amount of data is always available locally. At minimum, `MaxMemTableSize` events are kept locally.
+The `RetainAtLeast` setting ensures a minimum amount of data is always available locally. At minimum, `MaxMemTableSize`
+events are kept locally.
 
 ### Critical Rules
 
@@ -219,4 +222,6 @@ The `RetainAtLeast` setting ensures a minimum amount of data is always available
 
 ## Redaction (GDPR)
 
-KurrentDB supports event redaction for GDPR data erasure requirements. Redaction replaces event data with a redaction marker while preserving the event's position in the stream. Refer to the KurrentDB documentation for detailed redaction procedures.
+KurrentDB supports event redaction for GDPR data erasure requirements. Redaction replaces event data with a redaction
+marker while preserving the event's position in the stream. Refer to the KurrentDB documentation for detailed redaction
+procedures.

@@ -1,0 +1,18 @@
+{
+  "name": "act",
+  "version": "1.0.0",
+  "description": "Run GitHub Actions workflows locally with nektos/act. Use when testing CI/CD pipelines, debugging workflow failures, configuring .actrc or secrets, simulating GitHub events, choosing runner images, or authoring GitHub Actions workflows for local validation.",
+  "keywords": [
+    "act",
+    "github-actions",
+    "ci-cd",
+    "local-testing",
+    "workflows",
+    "docker",
+    "runners",
+    "nektos"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}

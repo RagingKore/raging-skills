@@ -1,0 +1,16 @@
+{
+  "eval_id": 2,
+  "eval_name": "wireframe-to-basecoat",
+  "run_type": "with_skill",
+  "expectations": [
+    {"text": "Includes Basecoat CSS dependency (CDN or import)", "passed": true, "evidence": "Line 7: basecoat-css@0.3/dist/basecoat.cdn.min.css via jsdelivr CDN"},
+    {"text": "Uses Basecoat 'tabs' and 'tab active' classes", "passed": true, "evidence": "Line 16: <div class=\"tabs\"> with role=\"tablist\" and role=\"tab\" buttons, aria-selected=\"true\" on Tab 1"},
+    {"text": "Uses Lucide search icon (data-lucide='search')", "passed": true, "evidence": "Line 29: <i data-lucide=\"search\" class=\"size-4\">"},
+    {"text": "Uses Basecoat 'table' class on table element", "passed": true, "evidence": "Line 37: <table class=\"table\">"},
+    {"text": "Uses Lucide chevron icons for pagination arrows", "passed": true, "evidence": "Lines 71 and 86: data-lucide=\"chevron-left\" and data-lucide=\"chevron-right\""},
+    {"text": "Page 3 is visually active/selected in pagination", "passed": true, "evidence": "Line 76: <a class=\"btn-icon-outline\" aria-current=\"page\">3</a> — outline style distinguishes active page"},
+    {"text": "Tab 1 is the active tab", "passed": true, "evidence": "Line 18: aria-selected=\"true\" on Tab 1 button"},
+    {"text": "Table rows contain realistic sample data (names, emails, roles) even though wireframe rows were empty", "passed": true, "evidence": "Lines 46-61: Alice Johnson/alice.johnson@example.com/Admin, Bob Smith/Editor, Carol Martinez/Viewer"},
+    {"text": "Calls lucide.createIcons() to initialize icons", "passed": true, "evidence": "Line 101: <script>lucide.createIcons();</script>"}
+  ]
+}

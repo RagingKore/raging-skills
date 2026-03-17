@@ -1,0 +1,16 @@
+{
+  "eval_id": 2,
+  "eval_name": "wireframe-to-basecoat",
+  "prompt": "Convert this wireframe to Basecoat UI with Lucide icons:\n```\n[ Tab 1 ]   Tab 2   Tab 3\n──────────────────────────\n\n[/ Search...            ]\n\n┌──────────┬──────────┬──────────┐\n│ Name     │ Email    │ Role     │\n├──────────┼──────────┼──────────┤\n│          │          │          │\n│          │          │          │\n│          │          │          │\n└──────────┴──────────┴──────────┘\n\n< 1 2 [3] 4 5 ... >",
+  "assertions": [
+    {"text": "Includes Basecoat CSS dependency (CDN or import)", "type": "check"},
+    {"text": "Uses Basecoat 'tabs' and 'tab active' classes", "type": "check"},
+    {"text": "Uses Lucide search icon (data-lucide='search')", "type": "check"},
+    {"text": "Uses Basecoat 'table' class on table element", "type": "check"},
+    {"text": "Uses Lucide chevron icons for pagination arrows", "type": "check"},
+    {"text": "Page 3 is visually active/selected in pagination", "type": "check"},
+    {"text": "Tab 1 is the active tab", "type": "check"},
+    {"text": "Table rows contain realistic sample data (names, emails, roles) even though wireframe rows were empty", "type": "check"},
+    {"text": "Calls lucide.createIcons() to initialize icons", "type": "check"}
+  ]
+}

@@ -16,7 +16,9 @@
 
 ## Overview
 
-Resource files (`.resx`) are XML-based files that store localizable resources for .NET applications. They support strings, images, icons, audio files, and other binary data that needs to be localized or configured separately from code.
+Resource files (`.resx`) are XML-based files that store localizable resources for .NET applications. They support
+strings, images, icons, audio files, and other binary data that needs to be localized or configured separately from
+code.
 
 ## File Structure
 

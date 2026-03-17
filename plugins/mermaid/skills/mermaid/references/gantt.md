@@ -91,7 +91,8 @@ Tags can be combined: `crit, done` or `crit, active`.
 
 Tasks are sequential by default -- a task's start date defaults to the end date of the preceding task.
 
-The `after` keyword can reference multiple tasks: `after taskA taskB taskC`. The start date will be the latest end date among all referenced tasks.
+The `after` keyword can reference multiple tasks: `after taskA taskB taskC`. The start date will be the
+latest end date among all referenced tasks.
 
 The `until` keyword (v10.9.0+) defines a task that runs until another task or milestone starts.
 
@@ -211,7 +212,8 @@ excludes weekends, 2024-12-25
 excludes sunday
 ```
 
-Accepted values: specific dates in `YYYY-MM-DD`, day names (`sunday`, `monday`, etc.), or `weekends`. The keyword `weekdays` is NOT supported.
+Accepted values: specific dates in `YYYY-MM-DD`, day names (`sunday`, `monday`, etc.), or `weekends`. The
+keyword `weekdays` is NOT supported.
 
 ### Weekend Configuration (v11.0+)
 
@@ -381,13 +383,17 @@ gantt
 
 ## Common Gotchas
 
-- **`excludes weekdays` does not work** -- only `weekends`, specific day names, and specific dates are supported.
-- **Excluded days extend task bars** -- they do not create gaps. The bar shifts right to maintain the specified duration.
+- **`excludes weekdays` does not work** -- only `weekends`, specific day names, and specific dates are
+  supported.
+- **Excluded days extend task bars** -- they do not create gaps. The bar shifts right to maintain the
+  specified duration.
 - **Task IDs must be unique** across the entire diagram, not just within a section.
 - **The `after` keyword** references task IDs, not task names. If a task has no ID, it cannot be referenced.
 - **`until` requires v10.9.0+** -- it will silently fail on older versions.
 - **`tickInterval` does not support `year` or `decade`** -- unsupported units are silently ignored.
 - **Section names are required** -- `section` without a name causes a parse error.
-- **Milestone position** is calculated as `start_date + duration / 2`, so use `0d` duration for exact placement.
-- **Compact mode** is set via YAML frontmatter (`displayMode: compact`), not as a directive inside the `gantt` block.
+- **Milestone position** is calculated as `start_date + duration / 2`, so use `0d` duration for exact
+  placement.
+- **Compact mode** is set via YAML frontmatter (`displayMode: compact`), not as a directive inside the
+  `gantt` block.
 - **Click events** require `securityLevel: 'loose'` -- they are disabled in strict mode.

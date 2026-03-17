@@ -1,6 +1,7 @@
 # Advanced DI Patterns
 
-Advanced dependency injection patterns for .NET including decorators, composites, conditional registration, and service descriptor manipulation.
+Advanced dependency injection patterns for .NET including decorators, composites, conditional registration, and service
+descriptor manipulation.
 
 ## Table of Contents
 
@@ -126,7 +127,9 @@ public sealed class CompositeNotifier(IEnumerable<INotifier> notifiers) : INotif
 }
 ```
 
-> **Warning**: If the composite itself is registered as `INotifier`, resolving `IEnumerable<INotifier>` inside the composite will include the composite itself → infinite recursion. Register concrete types separately and resolve them explicitly.
+> **Warning**: If the composite itself is registered as `INotifier`, resolving `IEnumerable<INotifier>` inside the
+> composite will include the composite itself → infinite recursion. Register concrete types separately and resolve them
+> explicitly.
 
 ### Safe Composite Registration
 

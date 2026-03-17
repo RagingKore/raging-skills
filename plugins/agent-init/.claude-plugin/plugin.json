@@ -1,0 +1,15 @@
+{
+  "name": "agent-init",
+  "version": "1.0.0",
+  "description": "Prepare a codebase for agent collaboration. Generates AGENTS.md briefing and .agents/context/ reference files for onboarding, initialization, or refreshing stale agent context.",
+  "keywords": [
+    "agent",
+    "initialization",
+    "onboarding",
+    "context",
+    "setup"
+  ],
+  "skills": [
+    "./skills/"
+  ]
+}

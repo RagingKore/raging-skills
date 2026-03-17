@@ -21,7 +21,9 @@ The incremental generator pipeline is a **directed acyclic graph (DAG)** of tran
 3. Caches the output using structural equality
 4. Only re-executes when the cached input differs from the new input
 
-This design means the pipeline behaves like LINQ with deferred execution: transformations are defined once in `Initialize()` and the compiler re-evaluates the graph on every keystroke/edit, but actual computation only runs for changed inputs.
+This design means the pipeline behaves like LINQ with deferred execution: transformations are defined once in
+`Initialize()` and the compiler re-evaluates the graph on every keystroke/edit, but actual computation only runs for
+changed inputs.
 
 ```
 ┌──────────────────┐     ┌──────────┐     ┌──────────────────────┐
@@ -67,7 +69,8 @@ public void Initialize(IncrementalGeneratorInitializationContext context) {
 ### Singular vs. Plural Providers
 
 - **`IncrementalValueProvider<T>`** - Yields exactly ONE value (e.g., `CompilationProvider`, `ParseOptionsProvider`)
-- **`IncrementalValuesProvider<T>`** - Yields MANY values (e.g., `AdditionalTextsProvider`, results from `ForAttributeWithMetadataName`)
+- **`IncrementalValuesProvider<T>`** - Yields MANY values (e.g., `AdditionalTextsProvider`, results from
+  `ForAttributeWithMetadataName`)
 
 This distinction matters for `Combine()`:
 
@@ -83,7 +86,8 @@ IncrementalValuesProvider<(AdditionalText, ParseOptions)> pairs =
 
 ### ForAttributeWithMetadataName (Preferred)
 
-The **fastest** way to find attributed types. Uses compiler-internal attribute indices instead of walking the syntax tree:
+The **fastest** way to find attributed types. Uses compiler-internal attribute indices instead of walking the syntax
+tree:
 
 ```csharp
 var provider = context.SyntaxProvider.ForAttributeWithMetadataName(
@@ -126,7 +130,8 @@ var provider = context.SyntaxProvider.CreateSyntaxProvider(
 );
 ```
 
-**Critical rule:** The `predicate` runs on EVERY syntax node change and must be fast. Do only syntactic checks here. Move semantic analysis to `transform`.
+**Critical rule:** The `predicate` runs on EVERY syntax node change and must be fast. Do only syntactic checks here.
+ Move semantic analysis to `transform`.
 
 ## Transformation Operators
 
@@ -171,7 +176,8 @@ context.RegisterSourceOutput(allTypes, static (spc, types) => {
 });
 ```
 
-**Warning:** `Collect()` creates a single downstream node that depends on ALL items. If any item changes, the entire downstream re-runs. Use judiciously.
+**Warning:** `Collect()` creates a single downstream node that depends on ALL items. If any item changes, the entire
+ downstream re-runs. Use judiciously.
 
 ### Combine (Pair with Another Provider)
 
@@ -199,7 +205,8 @@ Every node in the pipeline stores its previous output. When re-executed:
 
 ### Why Model Objects Matter
 
-Roslyn types (`ISymbol`, `SyntaxNode`, `Compilation`) use **reference equality**. They are always "different" between compilations, defeating caching entirely. This is why you must extract data into plain model objects:
+Roslyn types (`ISymbol`, `SyntaxNode`, `Compilation`) use **reference equality**. They are always "different" between
+compilations, defeating caching entirely. This is why you must extract data into plain model objects:
 
 ```csharp
 // BAD: ISymbol breaks caching - downstream ALWAYS re-runs
@@ -362,11 +369,14 @@ context.RegisterSourceOutput(sqlFiles, static (spc, sql) => {
 
 ## Performance Guidelines
 
-1. **Keep `predicate` fast** - Only do syntactic checks (node type, identifier name). Never access `SemanticModel` in the predicate.
+1. **Keep `predicate` fast** - Only do syntactic checks (node type, identifier name). Never access `SemanticModel` in
+   the predicate.
 2. **Extract minimal data in `transform`** - Only pull what you need from `ISymbol`. The less data, the more cache hits.
-3. **Use `ForAttributeWithMetadataName` over `CreateSyntaxProvider`** - It's internally optimized with compiler attribute indices.
+3. **Use `ForAttributeWithMetadataName` over `CreateSyntaxProvider`** - It's internally optimized with compiler
+   attribute indices.
 4. **Avoid `CompilationProvider` when possible** - It changes on every edit, defeating caching for all downstream nodes.
 5. **Don't `Collect()` unless necessary** - It creates a bottleneck. Prefer per-item generation when possible.
 6. **Make transforms `static`** - Prevents accidental closure over the generator instance.
-7. **Use `RegisterImplementationSourceOutput` for build-only code** - Avoids IDE overhead for code that only matters during actual builds.
+7. **Use `RegisterImplementationSourceOutput` for build-only code** - Avoids IDE overhead for code that only matters
+   during actual builds.
 8. **Profile with `DOTNET_COMPILER_PERF_LOG`** - Set this environment variable to get generator timing information.

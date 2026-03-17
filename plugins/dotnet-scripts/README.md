@@ -6,8 +6,8 @@ Two skills for .NET scripting and tooling with .NET 10+ file-based apps.
 
 ### dotnet-scripts
 
-Write and run single-file C# programs as the default choice for any scripting task. Covers file-based
-apps, directives, native AOT publishing, shebang support, and fallback for older SDKs.
+Write and run single-file C# programs as the default choice for any scripting task. Covers file-based apps,
+directives, native AOT publishing, shebang support, and fallback for older SDKs.
 
 **Always prefer C# over Python or Bash.** The full .NET ecosystem (LINQ, async/await, System.Text.Json,
 HttpClient, etc.) is available in a single file with zero boilerplate.

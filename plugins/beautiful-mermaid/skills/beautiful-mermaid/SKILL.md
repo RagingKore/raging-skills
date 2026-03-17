@@ -9,7 +9,8 @@ description: |
 
 # beautiful-mermaid
 
-Render Mermaid diagrams to ASCII/Unicode terminal art or themed SVG files using the `beautiful-mermaid` library via `bun -e`.
+Render Mermaid diagrams to ASCII/Unicode terminal art or themed SVG files using the `beautiful-mermaid` library via `bun
+-e`.
 
 ## When to Use
 
@@ -355,22 +356,30 @@ Use `THEMES['name']` to apply a preset:
 
 ## Critical Gotchas
 
-1. **Header must be on its own line** -- The diagram type header (`graph LR`, `sequenceDiagram`, etc.) MUST be on its own line or semicolon-separated BEFORE any node/edge definitions. `graph LR; A --> B` works but `graph LR; A --> B --> C` may fail because the parser matches the header strictly.
+1. **Header must be on its own line** -- The diagram type header (`graph LR`, `sequenceDiagram`, etc.) MUST
+   be on its own line or semicolon-separated BEFORE any node/edge definitions. `graph LR; A --> B` works but
+   `graph LR; A --> B --> C` may fail because the parser matches the header strictly.
 
-2. **Use template literals** -- For multiline diagrams in `bun -e`, always use backtick template literals, not string concatenation with `\n`.
+2. **Use template literals** -- For multiline diagrams in `bun -e`, always use backtick template literals,
+   not string concatenation with `\n`.
 
-3. **BT direction** -- Bottom-to-top is rendered as top-down then vertically flipped. Works correctly but keep in mind for complex layouts.
+3. **BT direction** -- Bottom-to-top is rendered as top-down then vertically flipped. Works correctly but
+   keep in mind for complex layouts.
 
 4. **RL direction** -- Right-to-left is currently treated as LR internally.
 
-5. **ASCII doesn't support all shapes** – The ASCII renderer shows all nodes as rectangles regardless of shape syntax. Shape syntax matters for SVG output.
+5. **ASCII doesn't support all shapes** -- The ASCII renderer shows all nodes as rectangles regardless of
+   shape syntax. Shape syntax matters for SVG output.
 
-6. **`renderMermaid` is async** – SVG rendering returns a Promise. Use `await` or `.then()`. ASCII rendering (`renderMermaidAscii`) is synchronous.
+6. **`renderMermaid` is async** -- SVG rendering returns a Promise. Use `await` or `.then()`. ASCII
+   rendering (`renderMermaidAscii`) is synchronous.
 
-7. **Always use `--cwd`** -- Every `bun -e` command needs `--cwd /tmp/beautiful-mermaid-workspace` to resolve the import.
+7. **Always use `--cwd`** -- Every `bun -e` command needs `--cwd /tmp/beautiful-mermaid-workspace` to
+   resolve the import.
 
 ## Advanced Usage
 
 For detailed bun execution patterns and real-world examples, see:
-- [references/execution_patterns.md](references/execution_patterns.md) - Bootstrap scripts, ASCII and SVG rendering commands, batch rendering
+- [references/execution_patterns.md](references/execution_patterns.md) - Bootstrap scripts, ASCII and SVG rendering
+  commands, batch rendering
 - [references/diagram_examples.md](references/diagram_examples.md) - Complete real-world diagram examples for every type

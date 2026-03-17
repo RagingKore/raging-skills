@@ -5,13 +5,17 @@ description: Dynamic Consistency Boundary (DCB) - a modern approach to consisten
 
 # Dynamic Consistency Boundary (DCB)
 
-DCB shifts consistency enforcement from rigid stream-based aggregate boundaries to flexible query-based boundaries established at runtime. Created by Sara Pellegrini (AxonIQ, 2023).
+DCB shifts consistency enforcement from rigid stream-based aggregate boundaries to flexible query-based boundaries
+established at runtime. Created by Sara Pellegrini (AxonIQ, 2023).
 
 ## Core Concept
 
-Traditional event sourcing: one aggregate = one stream = one consistency boundary. DCB decouples these: events carry **multiple tags** representing domain concepts, and consistency boundaries form dynamically based on **what invariants each operation needs to enforce**.
+Traditional event sourcing: one aggregate = one stream = one consistency boundary. DCB decouples these: events carry
+**multiple tags** representing domain concepts, and consistency boundaries form dynamically based on **what invariants
+each operation needs to enforce**.
 
-**The fundamental insight**: Consistency boundaries should be determined by the operation being performed, not by how events are stored.
+**The fundamental insight**: Consistency boundaries should be determined by the operation being performed, not by how
+ events are stored.
 
 ## When to Use DCB
 
@@ -92,7 +96,8 @@ await eventStore.AppendAsync(
 
 ## Decision Model Pattern
 
-Decision models replace aggregates as the runtime consistency mechanism. They're **temporary constructs built for a single operation**, composed from small focused projections.
+Decision models replace aggregates as the runtime consistency mechanism. They're **temporary constructs built for a
+single operation**, composed from small focused projections.
 
 ### Projections (State Builders)
 
@@ -158,11 +163,15 @@ The `BuildDecisionModelAsync` function:
 
 ## Reference Files
 
-- **[references/implementation-patterns.md](references/implementation-patterns.md)**: Complete C#/.NET implementation patterns with KurrentDB/Marten integration
-- **[references/anti-patterns.md](references/anti-patterns.md)**: Common mistakes and how to avoid them with bad/good code comparisons
-- **[references/event-store-adapters.md](references/event-store-adapters.md)**: Adapting different event stores (KurrentDB, Marten, PostgreSQL) for DCB
+- **[references/implementation-patterns.md](references/implementation-patterns.md)**: Complete C#/.NET implementation
+  patterns with KurrentDB/Marten integration
+- **[references/anti-patterns.md](references/anti-patterns.md)**: Common mistakes and how to avoid them with bad/good
+  code comparisons
+- **[references/event-store-adapters.md](references/event-store-adapters.md)**: Adapting different event stores
+  (KurrentDB, Marten, PostgreSQL) for DCB
 - **[references/migration-guide.md](references/migration-guide.md)**: Migrating from traditional event sourcing to DCB
-- **[references/research-report.md](references/research-report.md)**: Original research covering DCB theory, ecosystem, community, and resources
+- **[references/research-report.md](references/research-report.md)**: Original research covering DCB theory, ecosystem,
+  community, and resources
 
 ## Quick Reference
 
@@ -205,18 +214,24 @@ new AppendCondition(
 
 ## Key Principles
 
-1. **One fact, one event**: A `StudentSubscribedToCourse` event is tagged with both student and course, not duplicated across streams
+1. **One fact, one event**: A `StudentSubscribedToCourse` event is tagged with both student and course, not duplicated
+   across streams
 
-2. **Boundaries in code, not storage**: Event stream structure never changes; refactor boundaries by changing projection composition
+2. **Boundaries in code, not storage**: Event stream structure never changes; refactor boundaries by changing projection
+   composition
 
 3. **Compose for the operation**: Each operation builds exactly the decision model it needs—no more, no less
 
-4. **Fine-grained conflict detection**: Only operations affecting the same tags conflict; unrelated operations on the same entity proceed in parallel
+4. **Fine-grained conflict detection**: Only operations affecting the same tags conflict; unrelated operations on the
+   same entity proceed in parallel
 
 ## Trade-offs
 
-**Requires global ordering**: DCB needs a single sequence position across the bounded context, making horizontal partitioning difficult
+**Requires global ordering**: DCB needs a single sequence position across the bounded context, making horizontal
+ partitioning difficult
 
-**Query performance**: Multi-dimensional tag queries require sophisticated indexing; expect ~1,000 events/second with PostgreSQL
+**Query performance**: Multi-dimensional tag queries require sophisticated indexing; expect ~1,000 events/second with
+ PostgreSQL
 
-**Mental model shift**: Teams accustomed to aggregate-centric design may find use-case-oriented organization unfamiliar initially
+**Mental model shift**: Teams accustomed to aggregate-centric design may find use-case-oriented organization unfamiliar
+ initially

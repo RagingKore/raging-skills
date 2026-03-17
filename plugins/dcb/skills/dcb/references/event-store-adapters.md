@@ -1,6 +1,7 @@
 # DCB Event Store Adapters
 
-Implementing DCB with various event stores. DCB requires tag-based querying and conditional append—traditional stream-based stores need adaptation layers.
+Implementing DCB with various event stores. DCB requires tag-based querying and conditional append—traditional
+stream-based stores need adaptation layers.
 
 ## Table of Contents
 
@@ -240,7 +241,8 @@ public class PostgresDcbEventStore : IDcbEventStore
 
 ## KurrentDB Adapter
 
-KurrentDB (formerly EventStoreDB) uses streams with metadata. DCB adapter stores all events in a single stream with tags in metadata.
+KurrentDB (formerly EventStoreDB) uses streams with metadata. DCB adapter stores all events in a single stream with tags
+in metadata.
 
 ### Event Metadata Schema
 

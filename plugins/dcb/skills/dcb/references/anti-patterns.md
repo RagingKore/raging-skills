@@ -64,7 +64,8 @@ public class PreciseEnrollmentHandler
 }
 ```
 
-**Why it matters**: Broad boundaries cause false conflicts. Operations on unrelated students/courses will fail unnecessarily, destroying throughput.
+**Why it matters**: Broad boundaries cause false conflicts. Operations on unrelated students/courses will fail
+ unnecessarily, destroying throughput.
 
 ---
 
@@ -108,7 +109,8 @@ public record StudentSubscribedToCourse(
 }
 ```
 
-**Why it matters**: Tags determine queryability. Without `student:s1` tag, you can't build a decision model for "all of student s1's enrollments."
+**Why it matters**: Tags determine queryability. Without `student:s1` tag, you can't build a decision model for "all of
+ student s1's enrollments."
 
 ---
 
@@ -157,7 +159,8 @@ public class RetryingHandler
 }
 ```
 
-**Why it matters**: Concurrent operations on overlapping tags WILL conflict. Retry is not optional—it's fundamental to DCB's optimistic concurrency model.
+**Why it matters**: Concurrent operations on overlapping tags WILL conflict. Retry is not optional—it's fundamental to
+ DCB's optimistic concurrency model.
 
 ---
 
@@ -210,7 +213,8 @@ public record StudentSubscribedToCourse(
 }
 ```
 
-**Why it matters**: DCB's core value proposition is "one fact, one event." Duplicating events defeats the purpose and reintroduces coordination problems.
+**Why it matters**: DCB's core value proposition is "one fact, one event." Duplicating events defeats the purpose and
+ reintroduces coordination problems.
 
 ---
 
@@ -269,7 +273,8 @@ public class CourseCommandHandler
 }
 ```
 
-**Why it matters**: DCB decision models are ephemeral. Building stateful aggregate objects with cached state defeats the retry mechanism and introduces stale data bugs.
+**Why it matters**: DCB decision models are ephemeral. Building stateful aggregate objects with cached state defeats the
+ retry mechanism and introduces stale data bugs.
 
 ---
 
@@ -322,7 +327,8 @@ public class RightConsistencyHandler
 }
 ```
 
-**Why it matters**: DCB makes strong consistency easier, but strong consistency isn't always needed. Compose only the projections that guard invariants relevant to the operation.
+**Why it matters**: DCB makes strong consistency easier, but strong consistency isn't always needed. Compose only the
+ projections that guard invariants relevant to the operation.
 
 ---
 
@@ -384,7 +390,8 @@ public class StudentSubscriptionCountProjection : IDcbProjection<int>
 }
 ```
 
-**Why it matters**: Tag construction is infrastructure. Business logic should work with domain concepts, not tag strings.
+**Why it matters**: Tag construction is infrastructure. Business logic should work with domain concepts, not tag
+ strings.
 
 ---
 
@@ -430,7 +437,8 @@ var (states, condition) = await MultiProjectionDecisionModel.BuildAsync(
 );
 ```
 
-**Why it matters**: Small projections enable precise consistency boundaries. Monolithic projections force broad queries that cause unnecessary conflicts.
+**Why it matters**: Small projections enable precise consistency boundaries. Monolithic projections force broad queries
+ that cause unnecessary conflicts.
 
 ---
 

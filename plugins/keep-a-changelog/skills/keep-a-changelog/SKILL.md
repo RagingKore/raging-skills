@@ -13,9 +13,11 @@ description: |
 
 # Keep a Changelog
 
-Guide for creating and maintaining changelogs following the [Keep a Changelog 1.1.0](https://keepachangelog.com/en/1.1.0/) specification.
+Guide for creating and maintaining changelogs following the [Keep a Changelog
+1.1.0](https://keepachangelog.com/en/1.1.0/) specification.
 
-A changelog is a curated, chronologically ordered list of notable changes for each version of a project. It is written for humans, not machines.
+A changelog is a curated, chronologically ordered list of notable changes for each version of a project. It is written
+for humans, not machines.
 
 ## When to Use
 
@@ -66,7 +68,8 @@ Only include sections that have entries. Do not add empty sections.
 - Another new feature with [#123](link-to-issue) reference
 ```
 
-Write entries as complete sentences or clear phrases. Each entry gets its own bullet. Reference issue/PR numbers where applicable.
+Write entries as complete sentences or clear phrases. Each entry gets its own bullet. Reference issue/PR numbers where
+applicable.
 
 ## Creating a New Changelog
 
@@ -83,11 +86,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ```
 
-The `[Unreleased]` section captures changes that have not yet been assigned to a version. Add entries here as development progresses.
+The `[Unreleased]` section captures changes that have not yet been assigned to a version. Add entries here as
+development progresses.
 
 ## Adding Entries
 
-Place new entries under `[Unreleased]` in the appropriate section type. Create the section heading if it does not exist yet.
+Place new entries under `[Unreleased]` in the appropriate section type. Create the section heading if it does not exist
+yet.
 
 ```markdown
 ## [Unreleased]
@@ -150,7 +155,8 @@ To release a version, move `[Unreleased]` contents to a new versioned section:
 
 ## Version Comparison Links
 
-At the bottom of `CHANGELOG.md`, maintain comparison links for every version. These let readers click a version header to see the full diff.
+At the bottom of `CHANGELOG.md`, maintain comparison links for every version. These let readers click a version header
+to see the full diff.
 
 ```markdown
 [Unreleased]: https://github.com/user/repo/compare/v1.2.0...HEAD
@@ -164,7 +170,8 @@ At the bottom of `CHANGELOG.md`, maintain comparison links for every version. Th
 - The first version links to its release tag (no comparison)
 - Update the `[Unreleased]` link when cutting a new release
 
-Infer the repository URL and tag format from the project's existing git remote and tags. Common tag formats: `v1.2.0`, `1.2.0`, `release/1.2.0`.
+Infer the repository URL and tag format from the project's existing git remote and tags. Common tag formats: `v1.2.0`,
+`1.2.0`, `release/1.2.0`.
 
 ## Yanked Releases
 

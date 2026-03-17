@@ -1,0 +1,685 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://excalidraw.com/schemas/excalidraw-file.schema.json",
+  "title": "Excalidraw File",
+  "description": "Schema for Excalidraw .excalidraw files (version 2). Derived from the TypeScript types in the excalidraw/excalidraw repository.",
+  "type": "object",
+  "required": ["type", "version", "source", "elements"],
+  "additionalProperties": false,
+  "properties": {
+    "type": {
+      "const": "excalidraw",
+      "description": "Identifies this as an Excalidraw file."
+    },
+    "version": {
+      "type": "integer",
+      "const": 2,
+      "description": "Excalidraw schema version."
+    },
+    "source": {
+      "type": "string",
+      "description": "The origin URL of the Excalidraw application that created this file."
+    },
+    "elements": {
+      "type": "array",
+      "description": "Array of all elements on the canvas.",
+      "items": { "$ref": "#/definitions/element" }
+    },
+    "appState": {
+      "$ref": "#/definitions/exportedAppState",
+      "description": "Exported application state (only the subset that is persisted to file)."
+    },
+    "files": {
+      "type": "object",
+      "description": "Map of file IDs to binary file data, used by image elements.",
+      "additionalProperties": { "$ref": "#/definitions/binaryFileData" }
+    }
+  },
+  "definitions": {
+    "exportedAppState": {
+      "type": "object",
+      "description": "Only the appState keys where export=true are serialized to .excalidraw files.",
+      "additionalProperties": false,
+      "properties": {
+        "gridSize": {
+          "type": "integer",
+          "default": 20,
+          "description": "Grid cell size in pixels."
+        },
+        "gridStep": {
+          "type": "integer",
+          "default": 5,
+          "description": "Number of grid cells per major grid line."
+        },
+        "gridModeEnabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether the grid is visible."
+        },
+        "viewBackgroundColor": {
+          "type": "string",
+          "default": "#ffffff",
+          "description": "Canvas background color."
+        },
+        "lockedMultiSelections": {
+          "type": "object",
+          "description": "Map of temporary group IDs used for locking multiple elements together.",
+          "additionalProperties": { "const": true }
+        }
+      }
+    },
+    "binaryFileData": {
+      "type": "object",
+      "required": ["mimeType", "id", "dataURL", "created"],
+      "additionalProperties": false,
+      "properties": {
+        "mimeType": {
+          "type": "string",
+          "enum": [
+            "image/svg+xml", "image/png", "image/jpeg", "image/gif",
+            "image/webp", "image/bmp", "image/x-icon", "image/avif",
+            "image/jfif", "application/octet-stream"
+          ],
+          "description": "MIME type of the file."
+        },
+        "id": {
+          "type": "string",
+          "description": "Unique file identifier."
+        },
+        "dataURL": {
+          "type": "string",
+          "description": "Base64-encoded data URL of the file content."
+        },
+        "created": {
+          "type": "number",
+          "description": "Epoch timestamp in milliseconds when the file was created."
+        },
+        "lastRetrieved": {
+          "type": "number",
+          "description": "Epoch timestamp in milliseconds when the file was last loaded onto the scene."
+        },
+        "version": {
+          "type": "integer",
+          "description": "File version, used to detect changes across schema migrations."
+        }
+      }
+    },
+    "elementBase": {
+      "type": "object",
+      "description": "Properties common to every Excalidraw element.",
+      "required": [
+        "type", "id", "x", "y", "width", "height",
+        "strokeColor", "backgroundColor", "fillStyle",
+        "strokeWidth", "strokeStyle", "roughness", "opacity",
+        "angle", "seed", "version", "versionNonce", "isDeleted",
+        "groupIds", "boundElements", "link", "locked"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique element identifier."
+        },
+        "x": { "type": "number", "description": "X position." },
+        "y": { "type": "number", "description": "Y position." },
+        "width": { "type": "number", "description": "Element width." },
+        "height": { "type": "number", "description": "Element height." },
+        "strokeColor": { "type": "string", "description": "Stroke/border color." },
+        "backgroundColor": { "type": "string", "description": "Fill/background color." },
+        "fillStyle": {
+          "type": "string",
+          "enum": ["hachure", "cross-hatch", "solid", "zigzag"],
+          "description": "Fill pattern style."
+        },
+        "strokeWidth": { "type": "number", "description": "Stroke width in pixels." },
+        "strokeStyle": {
+          "type": "string",
+          "enum": ["solid", "dashed", "dotted"],
+          "description": "Stroke dash style."
+        },
+        "roughness": {
+          "type": "integer",
+          "enum": [0, 1, 2],
+          "description": "Roughjs roughness: 0=architect, 1=artist, 2=cartoonist."
+        },
+        "opacity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Opacity from 0 (transparent) to 100 (opaque)."
+        },
+        "angle": {
+          "type": "number",
+          "description": "Rotation angle in radians."
+        },
+        "seed": {
+          "type": "integer",
+          "description": "Random seed for deterministic roughjs rendering."
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Sequentially incremented on each change."
+        },
+        "versionNonce": {
+          "type": "integer",
+          "description": "Random integer regenerated on each change, used for reconciliation."
+        },
+        "index": {
+          "type": ["string", "null"],
+          "description": "Fractional index string for element ordering."
+        },
+        "isDeleted": {
+          "type": "boolean",
+          "description": "Soft-delete flag; deleted elements are retained for sync."
+        },
+        "groupIds": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Group IDs this element belongs to, ordered deepest to shallowest."
+        },
+        "frameId": {
+          "type": ["string", "null"],
+          "description": "ID of the frame this element belongs to."
+        },
+        "boundElements": {
+          "oneOf": [
+            {
+              "type": "array",
+              "items": { "$ref": "#/definitions/boundElement" }
+            },
+            { "type": "null" }
+          ],
+          "description": "Other elements bound to this element (arrows, text labels)."
+        },
+        "updated": {
+          "type": "number",
+          "description": "Epoch timestamp in milliseconds of last update."
+        },
+        "link": {
+          "type": ["string", "null"],
+          "description": "Hyperlink attached to the element."
+        },
+        "locked": {
+          "type": "boolean",
+          "description": "Whether the element is locked from editing."
+        },
+        "roundness": {
+          "oneOf": [
+            {
+              "type": "object",
+              "required": ["type"],
+              "additionalProperties": false,
+              "properties": {
+                "type": {
+                  "type": "integer",
+                  "enum": [1, 2, 3],
+                  "description": "1=legacy, 2=proportional radius, 3=adaptive radius."
+                },
+                "value": {
+                  "type": "number",
+                  "description": "Optional custom radius value."
+                }
+              }
+            },
+            { "type": "null" }
+          ],
+          "description": "Corner rounding algorithm and optional value."
+        },
+        "customData": {
+          "type": "object",
+          "description": "Arbitrary custom data attached by integrations.",
+          "additionalProperties": true
+        }
+      }
+    },
+    "boundElement": {
+      "type": "object",
+      "required": ["id", "type"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "description": "ID of the bound element." },
+        "type": {
+          "type": "string",
+          "enum": ["arrow", "text"],
+          "description": "Type of binding relationship."
+        }
+      }
+    },
+    "point": {
+      "type": "array",
+      "items": { "type": "number" },
+      "minItems": 2,
+      "maxItems": 2,
+      "description": "A 2D point as [x, y]."
+    },
+    "fixedPointBinding": {
+      "type": "object",
+      "description": "Binding connecting an arrow endpoint to another element (current schema v2).",
+      "required": ["elementId", "fixedPoint", "mode"],
+      "additionalProperties": false,
+      "properties": {
+        "elementId": {
+          "type": "string",
+          "description": "ID of the element the arrow is bound to."
+        },
+        "fixedPoint": {
+          "$ref": "#/definitions/point",
+          "description": "Normalized [horizontal, vertical] ratio (0.0–1.0) on the bound element."
+        },
+        "mode": {
+          "type": "string",
+          "enum": ["inside", "orbit", "skip"],
+          "description": "Whether the arrow attaches inside or orbits around the target."
+        }
+      }
+    },
+    "legacyBinding": {
+      "type": "object",
+      "description": "Legacy binding format (pre-FixedPointBinding). Migrated on restore.",
+      "required": ["elementId", "focus", "gap"],
+      "additionalProperties": true,
+      "properties": {
+        "elementId": {
+          "type": "string",
+          "description": "ID of the element the arrow is bound to."
+        },
+        "focus": {
+          "type": "number",
+          "description": "Legacy focus value controlling binding point position."
+        },
+        "gap": {
+          "type": "number",
+          "description": "Legacy gap distance between arrow endpoint and bound element."
+        }
+      }
+    },
+    "binding": {
+      "oneOf": [
+        { "$ref": "#/definitions/fixedPointBinding" },
+        { "$ref": "#/definitions/legacyBinding" },
+        { "type": "null" }
+      ],
+      "description": "Arrow endpoint binding — current or legacy format, or null if unbound."
+    },
+    "arrowhead": {
+      "type": "string",
+      "enum": [
+        "arrow", "bar", "dot", "circle", "circle_outline",
+        "triangle", "triangle_outline", "diamond", "diamond_outline",
+        "crowfoot_one", "crowfoot_many", "crowfoot_one_or_many"
+      ],
+      "description": "Arrowhead style."
+    },
+    "imageCrop": {
+      "type": "object",
+      "required": ["x", "y", "width", "height", "naturalWidth", "naturalHeight"],
+      "additionalProperties": false,
+      "properties": {
+        "x": { "type": "number" },
+        "y": { "type": "number" },
+        "width": { "type": "number" },
+        "height": { "type": "number" },
+        "naturalWidth": { "type": "number" },
+        "naturalHeight": { "type": "number" }
+      }
+    },
+    "fixedSegment": {
+      "type": "object",
+      "required": ["start", "end", "index"],
+      "additionalProperties": false,
+      "properties": {
+        "start": { "$ref": "#/definitions/point" },
+        "end": { "$ref": "#/definitions/point" },
+        "index": { "type": "integer" }
+      }
+    },
+    "element": {
+      "description": "Discriminated union of all Excalidraw element types, keyed on the 'type' field.",
+      "oneOf": [
+        { "$ref": "#/definitions/rectangleElement" },
+        { "$ref": "#/definitions/diamondElement" },
+        { "$ref": "#/definitions/ellipseElement" },
+        { "$ref": "#/definitions/textElement" },
+        { "$ref": "#/definitions/lineElement" },
+        { "$ref": "#/definitions/arrowElement" },
+        { "$ref": "#/definitions/freedrawElement" },
+        { "$ref": "#/definitions/imageElement" },
+        { "$ref": "#/definitions/frameElement" },
+        { "$ref": "#/definitions/magicframeElement" },
+        { "$ref": "#/definitions/embeddableElement" },
+        { "$ref": "#/definitions/iframeElement" }
+      ]
+    },
+    "rectangleElement": {
+      "allOf": [
+        { "$ref": "#/definitions/elementBase" },
+        {
+          "type": "object",
+          "required": ["type"],
+          "properties": {
+            "type": { "const": "rectangle" }
+          }
+        }
+      ]
+    },
+    "diamondElement": {
+      "allOf": [
+        { "$ref": "#/definitions/elementBase" },
+        {
+          "type": "object",
+          "required": ["type"],
+          "properties": {
+            "type": { "const": "diamond" }
+          }
+        }
+      ]
+    },
+    "ellipseElement": {
+      "allOf": [
+        { "$ref": "#/definitions/elementBase" },
+        {
+          "type": "object",
+          "required": ["type"],
+          "properties": {
+            "type": { "const": "ellipse" }
+          }
+        }
+      ]
+    },
+    "textElement": {
+      "allOf": [
+        { "$ref": "#/definitions/elementBase" },
+        {
+          "type": "object",
+          "required": ["type", "text", "fontSize", "fontFamily", "textAlign", "verticalAlign", "originalText", "lineHeight"],
+          "properties": {
+            "type": { "const": "text" },
+            "text": {
+              "type": "string",
+              "description": "The rendered text content (may include line wrapping)."
+            },
+            "originalText": {
+              "type": "string",
+              "description": "The original unwrapped text as entered by the user."
+            },
+            "fontSize": {
+              "type": "number",
+              "minimum": 1,
+              "description": "Font size in pixels."
+            },
+            "fontFamily": {
+              "type": "integer",
+              "enum": [1, 2, 3, 5, 6, 7, 8, 9, 10],
+              "description": "Font family ID: 1=Virgil, 2=Helvetica, 3=Cascadia, 5=Excalifont, 6=Nunito, 7=Lilita One, 8=Comic Shanns, 9=Liberation Sans, 10=Assistant."
+            },
+            "textAlign": {
+              "type": "string",
+              "enum": ["left", "center", "right"],
+              "description": "Horizontal text alignment."
+            },
+            "verticalAlign": {
+              "type": "string",
+              "enum": ["top", "middle", "bottom"],
+              "description": "Vertical text alignment (relevant when inside a container)."
+            },
+            "containerId": {
+              "type": ["string", "null"],
+              "description": "ID of the container element this text is bound to, or null if free-floating."
+            },
+            "autoResize": {
+              "type": "boolean",
+              "default": true,
+              "description": "If true, width fits the text. If false, text wraps to fit width."
+            },
+            "lineHeight": {
+              "type": "number",
+              "description": "Unitless line height multiplier (multiply by fontSize for px)."
+            }
+          }
+        }
+      ]
+    },
+    "lineElement": {
+      "allOf": [
+        { "$ref": "#/definitions/elementBase" },
+        {
+          "type": "object",
+          "required": ["type", "points"],
+          "properties": {
+            "type": { "const": "line" },
+            "points": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/point" },
+              "minItems": 2,
+              "description": "Array of [x, y] points relative to element origin."
+            },
+            "startBinding": { "$ref": "#/definitions/binding" },
+            "endBinding": { "$ref": "#/definitions/binding" },
+            "startArrowhead": {
+              "oneOf": [
+                { "$ref": "#/definitions/arrowhead" },
+                { "type": "null" }
+              ]
+            },
+            "endArrowhead": {
+              "oneOf": [
+                { "$ref": "#/definitions/arrowhead" },
+                { "type": "null" }
+              ]
+            },
+            "polygon": {
+              "type": "boolean",
+              "description": "Whether this line forms a closed polygon."
+            }
+          }
+        }
+      ]
+    },
+    "arrowElement": {
+      "allOf": [
+        { "$ref": "#/definitions/elementBase" },
+        {
+          "type": "object",
+          "required": ["type", "points"],
+          "properties": {
+            "type": { "const": "arrow" },
+            "points": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/point" },
+              "minItems": 2,
+              "description": "Array of [x, y] points relative to element origin."
+            },
+            "startBinding": { "$ref": "#/definitions/binding" },
+            "endBinding": { "$ref": "#/definitions/binding" },
+            "startArrowhead": {
+              "oneOf": [
+                { "$ref": "#/definitions/arrowhead" },
+                { "type": "null" }
+              ]
+            },
+            "endArrowhead": {
+              "oneOf": [
+                { "$ref": "#/definitions/arrowhead" },
+                { "type": "null" }
+              ],
+              "default": "arrow"
+            },
+            "elbowed": {
+              "type": "boolean",
+              "description": "Whether this is an elbow (right-angle) arrow."
+            },
+            "fixedSegments": {
+              "oneOf": [
+                {
+                  "type": "array",
+                  "items": { "$ref": "#/definitions/fixedSegment" }
+                },
+                { "type": "null" }
+              ],
+              "description": "Fixed segments for elbow arrows."
+            },
+            "startIsSpecial": {
+              "type": ["boolean", "null"],
+              "description": "Elbow arrow flag: use 3rd point as 2nd to hide first segment."
+            },
+            "endIsSpecial": {
+              "type": ["boolean", "null"],
+              "description": "Elbow arrow flag: use 3rd-from-end point to hide last segment."
+            }
+          }
+        }
+      ]
+    },
+    "freedrawElement": {
+      "allOf": [
+        { "$ref": "#/definitions/elementBase" },
+        {
+          "type": "object",
+          "required": ["type", "points", "pressures", "simulatePressure"],
+          "properties": {
+            "type": { "const": "freedraw" },
+            "points": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/point" },
+              "description": "Freehand stroke points."
+            },
+            "pressures": {
+              "type": "array",
+              "items": { "type": "number" },
+              "description": "Pen pressure values corresponding to each point."
+            },
+            "simulatePressure": {
+              "type": "boolean",
+              "description": "Whether to algorithmically simulate pressure."
+            }
+          }
+        }
+      ]
+    },
+    "imageElement": {
+      "allOf": [
+        { "$ref": "#/definitions/elementBase" },
+        {
+          "type": "object",
+          "required": ["type", "status", "scale"],
+          "properties": {
+            "type": { "const": "image" },
+            "fileId": {
+              "type": ["string", "null"],
+              "description": "Reference to the file in the top-level 'files' map."
+            },
+            "status": {
+              "type": "string",
+              "enum": ["pending", "saved", "error"],
+              "description": "Whether the referenced file has been persisted."
+            },
+            "scale": {
+              "type": "array",
+              "items": { "type": "number" },
+              "minItems": 2,
+              "maxItems": 2,
+              "description": "X and Y scale factors in range [-1, 1] for axis flipping."
+            },
+            "crop": {
+              "oneOf": [
+                { "$ref": "#/definitions/imageCrop" },
+                { "type": "null" }
+              ],
+              "description": "Crop region if the image is cropped."
+            }
+          }
+        }
+      ]
+    },
+    "frameElement": {
+      "allOf": [
+        { "$ref": "#/definitions/elementBase" },
+        {
+          "type": "object",
+          "required": ["type"],
+          "properties": {
+            "type": { "const": "frame" },
+            "name": {
+              "type": ["string", "null"],
+              "description": "Display name of the frame."
+            }
+          }
+        }
+      ]
+    },
+    "magicframeElement": {
+      "allOf": [
+        { "$ref": "#/definitions/elementBase" },
+        {
+          "type": "object",
+          "required": ["type"],
+          "properties": {
+            "type": { "const": "magicframe" },
+            "name": {
+              "type": ["string", "null"],
+              "description": "Display name of the magic frame."
+            }
+          }
+        }
+      ]
+    },
+    "embeddableElement": {
+      "allOf": [
+        { "$ref": "#/definitions/elementBase" },
+        {
+          "type": "object",
+          "required": ["type"],
+          "properties": {
+            "type": { "const": "embeddable" }
+          }
+        }
+      ]
+    },
+    "iframeElement": {
+      "allOf": [
+        { "$ref": "#/definitions/elementBase" },
+        {
+          "type": "object",
+          "required": ["type"],
+          "properties": {
+            "type": { "const": "iframe" },
+            "customData": {
+              "type": "object",
+              "properties": {
+                "generationData": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "required": ["status"],
+                      "properties": {
+                        "status": { "const": "pending" }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "required": ["status", "html"],
+                      "properties": {
+                        "status": { "const": "done" },
+                        "html": { "type": "string" }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "required": ["status", "code"],
+                      "properties": {
+                        "status": { "const": "error" },
+                        "message": { "type": "string" },
+                        "code": { "type": "string" }
+                      }
+                    }
+                  ]
+                }
+              },
+              "additionalProperties": true
+            }
+          }
+        }
+      ]
+    }
+  }
+}

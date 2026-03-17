@@ -1,6 +1,7 @@
 # Buf CLI Plugin
 
-Comprehensive Buf CLI and Protobuf style guide plugin for Claude Code. Covers the full Buf toolchain — building, linting, formatting, code generation, breaking change detection, and `.proto` file best practices.
+Comprehensive Buf CLI and Protobuf style guide plugin for Claude Code. Covers the full Buf toolchain — building,
+linting, formatting, code generation, breaking change detection, and `.proto` file best practices.
 
 ## Skills
 

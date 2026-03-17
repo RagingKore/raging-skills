@@ -14,7 +14,8 @@
 
 ## Configuration Precedence
 
-KurrentDB applies configuration from multiple sources in ascending priority order. A higher-priority source overrides any lower-priority source.
+KurrentDB applies configuration from multiple sources in ascending priority order. A higher-priority source overrides
+any lower-priority source.
 
 | Priority    | Source                 | Example                                  |
 |-------------|------------------------|------------------------------------------|
@@ -80,7 +81,8 @@ Disabled by default. Enable with `EnableAtomPubOverHttp`. This protocol is **dep
 
 ### NAT / Advertised Addresses
 
-When running behind NAT, load balancers, or in containers, configure advertised addresses so clients and other nodes can reach the server.
+When running behind NAT, load balancers, or in containers, configure advertised addresses so clients and other nodes can
+reach the server.
 
 | Setting                       | Purpose                                  |
 |-------------------------------|------------------------------------------|

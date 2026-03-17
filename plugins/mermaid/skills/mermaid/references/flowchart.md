@@ -229,7 +229,8 @@ A e1@==> B
 e1@{ curve: linear }
 ```
 
-Available curves: `basis`, `bumpX`, `bumpY`, `cardinal`, `catmullRom`, `linear`, `monotoneX`, `monotoneY`, `natural`, `step`, `stepAfter`, `stepBefore`.
+Available curves: `basis`, `bumpX`, `bumpY`, `cardinal`, `catmullRom`, `linear`, `monotoneX`, `monotoneY`,
+`natural`, `step`, `stepAfter`, `stepBefore`.
 
 ## Styling & Customization
 
@@ -323,7 +324,8 @@ subgraph TOP
 end
 ```
 
-**Limitation**: If any subgraph node links to the outside, the subgraph direction is overridden by the parent graph direction.
+**Limitation**: If any subgraph node links to the outside, the subgraph direction is overridden by the parent
+graph direction.
 
 ### Edges Between Subgraphs
 
@@ -443,8 +445,10 @@ flowchart TD
 
 ## Common Gotchas
 
-- **The word "end" in lowercase** breaks the diagram. Capitalize it: `End`, `END`, or wrap in brackets/quotes: `[end]`, `{end}`, `"end"`.
-- **"o" or "x" as the first letter** of a connecting node creates circle/cross edges. `A---oB` becomes a circle edge. Add a space: `A--- oB`, or capitalize: `A---OB`.
+- **The word "end" in lowercase** breaks the diagram. Capitalize it: `End`, `END`, or wrap in
+  brackets/quotes: `[end]`, `{end}`, `"end"`.
+- **"o" or "x" as the first letter** of a connecting node creates circle/cross edges. `A---oB` becomes a
+  circle edge. Add a space: `A--- oB`, or capitalize: `A---OB`.
 - **Semicolons are optional** at the end of statements (since v0.2.16).
 - **No space** between a vertex and its text or a link and its text.
 - **Subgraph direction is ignored** if any internal node links directly to an external node.

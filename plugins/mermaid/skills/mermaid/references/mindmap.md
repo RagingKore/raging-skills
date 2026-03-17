@@ -2,7 +2,8 @@
 
 ## Declaration
 
-Start with the `mindmap` keyword. The hierarchy is defined entirely by indentation (spaces or tabs). Each indented line becomes a child of the nearest less-indented line above it.
+Start with the `mindmap` keyword. The hierarchy is defined entirely by indentation (spaces or tabs). Each
+indented line becomes a child of the nearest less-indented line above it.
 
 ```
 mindmap
@@ -57,7 +58,8 @@ If no shape delimiters are used, the node renders with the default shape and the
 
 ### Icons
 
-Add icons to nodes using `::icon()` on the line immediately following the node. Requires icon fonts (Font Awesome, Material Design Icons) to be available in the rendering environment.
+Add icons to nodes using `::icon()` on the line immediately following the node. Requires icon fonts (Font
+Awesome, Material Design Icons) to be available in the rendering environment.
 
 ```
 mindmap
@@ -70,7 +72,8 @@ mindmap
 
 ### CSS Classes
 
-Add custom CSS classes using `:::` followed by space-separated class names on the line after the node. Classes must be defined by the site/application.
+Add custom CSS classes using `:::` followed by space-separated class names on the line after the node.
+Classes must be defined by the site/application.
 
 ```
 mindmap
@@ -133,7 +136,8 @@ mindmap
 
 ### Indentation Behavior
 
-The actual number of spaces does not matter -- only the **relative** indentation compared to previous lines. Mermaid resolves ambiguous indentation by finding the nearest ancestor with a smaller indent.
+The actual number of spaces does not matter -- only the **relative** indentation compared to previous
+lines. Mermaid resolves ambiguous indentation by finding the nearest ancestor with a smaller indent.
 
 ## Practical Examples
 
@@ -224,11 +228,18 @@ mindmap
 
 ## Common Gotchas
 
-- **Indentation is everything.** Mixing tabs and spaces can produce unexpected hierarchies. Pick one and be consistent.
-- **Ambiguous indentation** is resolved by finding the closest ancestor with smaller indent -- this may not match your intent.
-- **Icons require external font integration** (Font Awesome, MDI). They will not render without the icon fonts loaded in the page.
-- **CSS classes (`:::`)** must be defined by the hosting application; Mermaid does not ship built-in classes like `urgent`.
-- **Shape delimiters must match exactly.** For example, a circle requires `((text))` -- using `(text)` gives a rounded square instead.
+- **Indentation is everything.** Mixing tabs and spaces can produce unexpected hierarchies. Pick one and be
+  consistent.
+- **Ambiguous indentation** is resolved by finding the closest ancestor with smaller indent -- this may not
+  match your intent.
+- **Icons require external font integration** (Font Awesome, MDI). They will not render without the icon
+  fonts loaded in the page.
+- **CSS classes (`:::`)** must be defined by the hosting application; Mermaid does not ship built-in
+  classes like `urgent`.
+- **Shape delimiters must match exactly.** For example, a circle requires `((text))` -- using `(text)`
+  gives a rounded square instead.
 - **The `::icon()` and `:::class` lines** must appear on the line immediately after the node they modify.
-- **`<br>` tags work** for line breaks in regular labels, but inside markdown strings (backtick syntax), use actual newlines instead.
-- **No edge/connection syntax** -- mindmaps are purely hierarchical. For linked diagrams, use flowchart instead.
+- **`<br>` tags work** for line breaks in regular labels, but inside markdown strings (backtick syntax),
+  use actual newlines instead.
+- **No edge/connection syntax** -- mindmaps are purely hierarchical. For linked diagrams, use flowchart
+  instead.

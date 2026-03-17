@@ -1,14 +1,18 @@
 # Incrementalist Configuration Files
 
-Incrementalist now supports configuration files to store commonly used settings. This eliminates the need to specify the same command-line arguments repeatedly.
+Incrementalist now supports configuration files to store commonly used settings. This eliminates the need to
+specify the same command-line arguments repeatedly.
 
 ## Configuration File Format
 
-Incrementalist uses a JSON-based configuration file format. By default, Incrementalist looks for a file named `incrementalist.json` in the `.incrementalist` directory, but you can specify a different file using the `-c` or `--config` command-line option.
+Incrementalist uses a JSON-based configuration file format. By default, Incrementalist looks for a file named
+`incrementalist.json` in the `.incrementalist` directory, but you can specify a different file using the `-c`
+or `--config` command-line option.
 
 ### JSON Schema Support
 
-Incrementalist provides a JSON schema that enables IDE IntelliSense, auto-completion, and validation for configuration files. To enable this feature, add the `$schema` property to your configuration file:
+Incrementalist provides a JSON schema that enables IDE IntelliSense, auto-completion, and validation for
+configuration files. To enable this feature, add the `$schema` property to your configuration file:
 
 ```json
 {
@@ -19,7 +23,8 @@ Incrementalist provides a JSON schema that enables IDE IntelliSense, auto-comple
 ```
 
 This will provide:
-- **IntelliSense**: Auto-completion of property names and values in supported IDEs (VS Code, Visual Studio, JetBrains IDEs)
+- **IntelliSense**: Auto-completion of property names and values in supported IDEs (VS Code, Visual Studio,
+  JetBrains IDEs)
 - **Validation**: Real-time error checking for invalid property names, types, and values
 - **Documentation**: Hover tooltips with property descriptions and examples
 
@@ -69,7 +74,9 @@ Here's an example configuration file with all available settings:
 
 ## Command-Line Override
 
-Command-line arguments take precedence over configuration file settings. For example, if your configuration file specifies `"gitBranch": "master"` but you run `incrementalist --branch dev`, the `dev` branch will be used.
+Command-line arguments take precedence over configuration file settings. For example, if your configuration
+file specifies `"gitBranch": "master"` but you run `incrementalist --branch dev`, the `dev` branch will be
+used.
 
 ## Usage Examples
 
@@ -108,7 +115,8 @@ This will use the `dev` branch and disable verbose logging, overriding any value
 
 ## Creating Configuration Files
 
-Incrementalist provides a dedicated verb to generate configuration files based on your current command-line options: `create-config`.
+Incrementalist provides a dedicated verb to generate configuration files based on your current command-line
+options: `create-config`.
 
 ### Using the Default Path
 
@@ -149,4 +157,5 @@ A typical workflow might be:
    incrementalist -b feature-branch run -- test
    ```
 
-This approach allows you to maintain consistent settings while still having the flexibility to override them when necessary. 
+This approach allows you to maintain consistent settings while still having the flexibility to override them
+when necessary.

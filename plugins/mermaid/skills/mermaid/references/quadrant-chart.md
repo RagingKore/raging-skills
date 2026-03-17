@@ -217,9 +217,12 @@ quadrantChart
 ## Common Gotchas
 
 - **Point coordinates must be between 0 and 1.** Values outside this range will cause errors.
-- **Quadrant numbering is counterintuitive.** `quadrant-1` is top-right (not top-left). The numbering follows mathematical convention (counterclockwise from top-right).
-- **Axis label rendering changes with data points.** Without points, axis text and quadrant labels center in each quadrant. With points, x-axis labels move to the bottom and y-axis labels shift downward.
-- **`stroke-color` requires `stroke-width`** to be visible. Setting only `stroke-color` without `stroke-width` has no effect.
+- **Quadrant numbering is counterintuitive.** `quadrant-1` is top-right (not top-left). The numbering
+  follows mathematical convention (counterclockwise from top-right).
+- **Axis label rendering changes with data points.** Without points, axis text and quadrant labels center
+  in each quadrant. With points, x-axis labels move to the bottom and y-axis labels shift downward.
+- **`stroke-color` requires `stroke-width`** to be visible. Setting only `stroke-color` without
+  `stroke-width` has no effect.
 - **Style precedence matters.** Inline styles on a point override class styles, which override theme styles.
 - **Axis text supports quoted strings** with special characters: `y-axis Not Important --> "Important ❤"`.
 - **`x-axis` with only left text** omits the right label entirely. Same for `y-axis` with only bottom text.

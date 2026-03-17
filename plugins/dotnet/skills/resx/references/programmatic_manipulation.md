@@ -19,7 +19,8 @@
 
 ## Overview
 
-.NET provides APIs for creating, reading, and modifying `.resx` resource files programmatically. This is essential for build tools, translation workflows, resource management utilities, and automation scenarios.
+.NET provides APIs for creating, reading, and modifying `.resx` resource files programmatically. This is essential for
+build tools, translation workflows, resource management utilities, and automation scenarios.
 
 ## Required Namespaces
 

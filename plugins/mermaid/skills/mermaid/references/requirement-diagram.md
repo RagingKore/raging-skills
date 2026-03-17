@@ -2,7 +2,8 @@
 
 ## Declaration
 
-Use the keyword `requirementDiagram` to start a requirement diagram. This diagram follows the SysML v1.6 modeling specification.
+Use the keyword `requirementDiagram` to start a requirement diagram. This diagram follows the SysML v1.6
+modeling specification.
 
 ```
 requirementDiagram
@@ -30,7 +31,8 @@ direction LR
 
 ### Text Quoting
 
-All user-defined text can optionally be surrounded in quotes. Unquoted input will fail if it contains a reserved keyword. Quoted text supports markdown formatting: `"**bold** and *italics*"`.
+All user-defined text can optionally be surrounded in quotes. Unquoted input will fail if it contains a
+reserved keyword. Quoted text supports markdown formatting: `"**bold** and *italics*"`.
 
 ## Components / Elements
 
@@ -325,9 +327,15 @@ test_suite - verifies -> "__Security Policy__"
 
 ## Common Gotchas
 
-- **Unquoted text with keywords fails**: If user-defined text contains a keyword like `test`, `risk`, or `requirement`, wrap the text in quotes to avoid parser errors.
-- **Relationship direction matters**: `A - satisfies -> B` means A satisfies B. The arrow direction indicates the relationship target.
-- **Reverse syntax exists**: `B <- satisfies - A` is equivalent to `A - satisfies -> B`. Use whichever reads more naturally.
-- **The `:::` shorthand only applies to one node**: Unlike `class` which accepts multiple comma-separated names, `:::` can only be attached to a single requirement or element at a time.
-- **`classDef default` applies to everything**: If you define a `default` class, all nodes inherit it. Override specific nodes with additional styles defined afterward.
-- **`docRef` vs `docref`**: The field name is case-sensitive in the source -- `docRef` is the documented form, but the parser accepts `docref` as well.
+- **Unquoted text with keywords fails**: If user-defined text contains a keyword like `test`, `risk`, or
+  `requirement`, wrap the text in quotes to avoid parser errors.
+- **Relationship direction matters**: `A - satisfies -> B` means A satisfies B. The arrow direction
+  indicates the relationship target.
+- **Reverse syntax exists**: `B <- satisfies - A` is equivalent to `A - satisfies -> B`. Use whichever
+  reads more naturally.
+- **The `:::` shorthand only applies to one node**: Unlike `class` which accepts multiple comma-separated
+  names, `:::` can only be attached to a single requirement or element at a time.
+- **`classDef default` applies to everything**: If you define a `default` class, all nodes inherit it.
+  Override specific nodes with additional styles defined afterward.
+- **`docRef` vs `docref`**: The field name is case-sensitive in the source -- `docRef` is the documented
+  form, but the parser accepts `docref` as well.

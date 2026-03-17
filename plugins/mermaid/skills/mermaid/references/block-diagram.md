@@ -85,7 +85,8 @@ blockArrowId<["Label"]>(direction)
 
 ### Composite (Nested) Blocks
 
-Blocks can contain other blocks using `block` ... `end` syntax. Composite blocks can have an optional ID and column span.
+Blocks can contain other blocks using `block` ... `end` syntax. Composite blocks can have an optional ID
+and column span.
 
 ```
 block:ID
@@ -113,7 +114,8 @@ Edges connect blocks after all blocks have been defined in the grid layout.
 | `A---B` | Line without arrow |
 | `A-- "text" -->B` | Arrow with label text |
 
-Edges are declared after block positions. The author controls block placement; edges are drawn between existing blocks.
+Edges are declared after block positions. The author controls block placement; edges are drawn between
+existing blocks.
 
 ### Comments
 

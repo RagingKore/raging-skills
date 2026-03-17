@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wireframe — Basecoat UI</title>
+  <link rel="stylesheet" href="https://unpkg.com/@nicepkg/basecoat/dist/basecoat.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="min-h-screen bg-background text-foreground p-8">
+
+  <div class="mx-auto max-w-3xl space-y-6">
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab active">Tab 1</button>
+      <button class="tab">Tab 2</button>
+      <button class="tab">Tab 3</button>
+    </div>
+
+    <!-- Search Input with icon -->
+    <div class="relative">
+      <div class="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none text-muted-foreground">
+        <i data-lucide="search" class="size-4"></i>
+      </div>
+      <input class="input pl-9 w-full" type="text" placeholder="Search...">
+    </div>
+
+    <!-- Table -->
+    <div class="overflow-x-auto">
+      <table class="table w-full">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="font-medium">Alice Johnson</td>
+            <td>alice@example.com</td>
+            <td>Admin</td>
+          </tr>
+          <tr>
+            <td class="font-medium">Bob Smith</td>
+            <td>bob@example.com</td>
+            <td>Editor</td>
+          </tr>
+          <tr>
+            <td class="font-medium">Carol Lee</td>
+            <td>carol@example.com</td>
+            <td>Viewer</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    <nav class="pagination">
+      <button class="btn-icon-outline" aria-label="Previous page">
+        <i data-lucide="chevron-left" class="size-4"></i>
+      </button>
+      <button class="btn-ghost">1</button>
+      <button class="btn-ghost">2</button>
+      <button class="btn">3</button>
+      <button class="btn-ghost">4</button>
+      <button class="btn-ghost">5</button>
+      <span class="flex items-center px-1 text-muted-foreground">...</span>
+      <button class="btn-icon-outline" aria-label="Next page">
+        <i data-lucide="chevron-right" class="size-4"></i>
+      </button>
+    </nav>
+
+  </div>
+
+  <script>lucide.createIcons();</script>
+</body>
+</html>

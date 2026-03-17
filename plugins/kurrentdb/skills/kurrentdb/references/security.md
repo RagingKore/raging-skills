@@ -185,7 +185,8 @@ Default ACLs are defined in the `$settings` system stream and apply to all strea
 
 **License Required — Available since v24.10**
 
-Stream policies provide prefix-based authorization as an alternative to ACLs. When stream policies are enabled, **ACLs are NOT enforced**.
+Stream policies provide prefix-based authorization as an alternative to ACLs. When stream policies are enabled, **ACLs
+are NOT enforced**.
 
 ### Enabling Stream Policies
 
@@ -285,7 +286,8 @@ EncryptionAtRest:
 ### Master Key Management
 
 - **File** is the only built-in master key source (not recommended as the sole mechanism for production).
-- Multiple master keys are supported: the latest active key encrypts new data, old keys are retained for decrypting existing data.
+- Multiple master keys are supported: the latest active key encrypts new data, old keys are retained for decrypting
+  existing data.
 
 ### Generating a Master Key
 

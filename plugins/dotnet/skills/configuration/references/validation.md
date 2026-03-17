@@ -160,7 +160,8 @@ builder.Services.TryAddEnumerable(
 
 ## ValidateOnStart (Eager Validation)
 
-By default, validation runs lazily (first time options are resolved). Use `ValidateOnStart()` to fail at application startup.
+By default, validation runs lazily (first time options are resolved). Use `ValidateOnStart()` to fail at application
+startup.
 
 ### Fluent API
 
@@ -202,7 +203,8 @@ With `ValidateOnStart`, the app throws during `host.Build()` or `app.Run()` and 
 
 ## Recursive Validation
 
-By default, DataAnnotations only validates the top-level options class. Use attributes to recurse into nested objects and collections.
+By default, DataAnnotations only validates the top-level options class. Use attributes to recurse into nested objects
+and collections.
 
 ### ValidateObjectMembers
 
@@ -257,9 +259,11 @@ Generates `IValidateOptions<T>` implementations from DataAnnotations at compile 
 </PropertyGroup>
 ```
 
-The source generator automatically creates validation code for options classes that use `ValidateDataAnnotations()`. No code changes needed.
+The source generator automatically creates validation code for options classes that use `ValidateDataAnnotations()`. No
+code changes needed.
 
-For details: `microsoft_docs_fetch(url="https://learn.microsoft.com/en-us/dotnet/core/extensions/options-validation-generator")`
+For details:
+`microsoft_docs_fetch(url="https://learn.microsoft.com/en-us/dotnet/core/extensions/options-validation-generator")`
 
 ---
 

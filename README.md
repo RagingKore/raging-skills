@@ -40,6 +40,7 @@ event sourcing, diagrams, and productivity.
 - [mermaid](plugins/mermaid) – Write correct Mermaid diagram syntax for all 23+ diagram types with expert-level precision.
 - [beautiful-mermaid](plugins/beautiful-mermaid) - Render Mermaid diagrams as ASCII art or themed SVG files via bun.
 - [excalidraw](plugins/excalidraw) – Generate architecture diagrams as .excalidraw files from codebase analysis.
+- [mockdown](plugins/mockdown) – Interpret ASCII wireframes and generate UI code, or drive the Mockdown editor via Chrome.
 
 ### Protobuf & gRPC
 
@@ -48,7 +49,7 @@ event sourcing, diagrams, and productivity.
 
 ### Web
 
-- [astro](plugins/astro) – Build and deploy static websites with Astro, Content Collections, and islands architecture.
+- [starlight](plugins/starlight) – Build and deploy static documentation sites with Astro Starlight.
 - [crawl4ai](plugins/crawl4ai) - Web crawling and data extraction toolkit with optimized extraction patterns.
 
 ### Conventions & Tooling
@@ -60,7 +61,7 @@ event sourcing, diagrams, and productivity.
 ### Agent Workflow
 
 - [claude-output-style](plugins/claude-output-style) - Create and review custom output styles for Claude Code.
-- [project-setup](plugins/project-setup) - Generate or update .project/ documentation structure for project onboarding.
+- [agent-init](plugins/agent-init) - Scan a codebase with parallel agents and generate AGENTS.md with auto-detected symlinks.
 
 ## For Plugin Developers
 

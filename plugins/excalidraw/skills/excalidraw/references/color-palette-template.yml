@@ -1,0 +1,78 @@
+# =============================================================================
+# Excalidraw Color Palette
+# =============================================================================
+# This is the single source of truth for all diagram colors. Edit these values
+# to match your brand. The skill reads this file before generating every diagram.
+#
+# For color system rules and design guidance, see the skill's color-palette.md.
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Semantic Colors — color by the ROLE an element plays in the diagram
+# Use for workflows, concepts, tutorials, and any non-architecture diagram.
+# Rule: always pair a darker stroke with a lighter fill for contrast.
+# -----------------------------------------------------------------------------
+semantic:
+  primary:    { fill: "#3b82f6", stroke: "#1e3a5f" }
+  secondary:  { fill: "#60a5fa", stroke: "#1e3a5f" }
+  tertiary:   { fill: "#93c5fd", stroke: "#1e3a5f" }
+  start:      { fill: "#fed7aa", stroke: "#c2410c" }  # triggers, inputs
+  success:    { fill: "#a7f3d0", stroke: "#047857" }  # end states, outputs
+  warning:    { fill: "#fee2e2", stroke: "#dc2626" }  # resets, caution
+  decision:   { fill: "#fef3c7", stroke: "#b45309" }  # branch points
+  ai:         { fill: "#ddd6fe", stroke: "#6d28d9" }  # LLM, ML components
+  inactive:   { fill: "#dbeafe", stroke: "#1e40af" }  # disabled (use dashed stroke)
+  error:      { fill: "#fecaca", stroke: "#b91c1c" }
+
+# -----------------------------------------------------------------------------
+# Component-Type Colors — color by WHAT the component is
+# Use for architecture diagrams where you want to distinguish databases from
+# APIs from queues at a glance.
+# -----------------------------------------------------------------------------
+components:
+  frontend:   { fill: "#a5d8ff", stroke: "#1971c2" }  # Next.js, React apps
+  backend:    { fill: "#d0bfff", stroke: "#7048e8" }  # API servers, processors
+  database:   { fill: "#b2f2bb", stroke: "#2f9e44" }  # PostgreSQL, MySQL, MongoDB
+  storage:    { fill: "#ffec99", stroke: "#f08c00" }  # Object storage, file systems
+  ai_ml:      { fill: "#e599f7", stroke: "#9c36b5" }  # ML models, AI APIs
+  external:   { fill: "#ffc9c9", stroke: "#e03131" }  # Third-party services
+  orchestration: { fill: "#ffa8a8", stroke: "#c92a2a" }  # Workflows, schedulers
+  validation: { fill: "#ffd8a8", stroke: "#e8590c" }  # Validators, checkers
+  network:    { fill: "#dee2e6", stroke: "#495057" }  # VPC, IAM, firewalls
+  classification: { fill: "#99e9f2", stroke: "#0c8599" }  # Routers, classifiers
+  users:      { fill: "#e7f5ff", stroke: "#1971c2" }  # User ellipses
+  queue:      { fill: "#fff3bf", stroke: "#fab005" }  # Kafka, RabbitMQ, SQS
+  cache:      { fill: "#ffe8cc", stroke: "#fd7e14" }  # Redis, Memcached
+  monitoring: { fill: "#d3f9d8", stroke: "#40c057" }  # Prometheus, Grafana
+
+# -----------------------------------------------------------------------------
+# Text Colors — create visual hierarchy through color instead of containers
+# -----------------------------------------------------------------------------
+text:
+  title:          "#1e40af"  # Section headings, major labels
+  subtitle:       "#3b82f6"  # Subheadings, secondary labels
+  body:           "#64748b"  # Descriptions, annotations, metadata
+  on_light_fill:  "#374151"  # Text inside light-colored shapes
+  on_dark_fill:   "#ffffff"  # Text inside dark-colored shapes
+
+# -----------------------------------------------------------------------------
+# Evidence Artifacts — code snippets and data examples in technical diagrams
+# -----------------------------------------------------------------------------
+evidence:
+  background:     "#1e293b"  # Dark rectangle background
+  json_text:      "#22c55e"  # Green text for JSON/data examples
+  # Code snippets use syntax-colored text on the same dark background
+
+# -----------------------------------------------------------------------------
+# Strokes and Lines — arrows, structural lines, marker dots
+# -----------------------------------------------------------------------------
+strokes:
+  arrows:         source     # Use the stroke color of the source element
+  structural:     "#1e3a5f"  # Dividers, tree trunks, timelines (or #64748b slate)
+  marker_dots:    "#3b82f6"  # Small dots used as timeline markers or anchors
+
+# -----------------------------------------------------------------------------
+# Canvas
+# -----------------------------------------------------------------------------
+canvas:
+  background:     "#ffffff"

@@ -1,0 +1,15 @@
+{
+  "eval_id": 1,
+  "eval_name": "wireframe-to-html",
+  "prompt": "Convert this wireframe to HTML:\n```\nLogo   Home   About   Contact     [ Sign Up ]\n────────────────────────────────────────────────\n\n┌──────────────────────────────────────────────┐\n│ Welcome                                      │\n├──────────────────────────────────────────────┤\n│                                              │\n│ [Enter your email... ]  [ Subscribe ]        │\n│                                              │\n│ ☑ I agree to the terms                       │\n│                                              │\n└──────────────────────────────────────────────┘\n```",
+  "assertions": [
+    "Uses semantic <nav> element for navigation bar",
+    "Contains email input with placeholder text 'Enter your email...'",
+    "Contains a Subscribe button",
+    "Checkbox is checked by default (checked attribute)",
+    "Card structure with 'Welcome' as the title/header",
+    "Contains navigation links: Home, About, Contact",
+    "Contains Sign Up button",
+    "No elaborate CSS framework or excessive styling beyond basic layout"
+  ]
+}

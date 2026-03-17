@@ -12,9 +12,9 @@ description: |
 
 # Bullseye Build Scripts
 
-Bullseye is a .NET library for running a target dependency graph. Targets are defined in a C#
-file, and each target can depend on other targets and run an action. Bullseye is almost always
-paired with SimpleExec for running shell commands.
+Bullseye is a .NET library for running a target dependency graph. Targets are defined in a C# file,
+and each target can depend on other targets and run an action. Bullseye is almost always paired with
+SimpleExec for running shell commands.
 
 Use K&R brace style (opening brace on the same line) in build scripts to keep them compact.
 
@@ -52,14 +52,13 @@ dotnet run build.cs -- build     # runs "build" only
 dotnet run build.cs -- -h        # shows help
 ```
 
-The `--` separator tells `dotnet run` that everything after it is for the app, not for `dotnet`.
-File-based scripts are self-contained (no csproj needed), cross-platform, and work anywhere the
-.NET SDK is installed.
+The `--` separator tells `dotnet run` that everything after it is for the app, not for `dotnet`. File-based
+scripts are self-contained (no csproj needed), cross-platform, and work anywhere the .NET SDK is installed.
 
 ## Defining Targets
 
-Use `using static Bullseye.Targets` to bring the static `Target()` method into scope. Every
-overload takes a `name` as the first argument.
+Use `using static Bullseye.Targets` to bring the static `Target()` method into scope. Every overload takes
+a `name` as the first argument.
 
 ### Simple target
 
@@ -69,8 +68,8 @@ Target("clean", () => RunAsync("dotnet", "clean"));
 
 ### Target with dependencies
 
-Dependencies are an `IEnumerable<string>` listing target names that must run first. Use collection
-expressions for readability:
+Dependencies are an `IEnumerable<string>` listing target names that must run first. Use collection expressions
+for readability:
 
 ```csharp
 Target("build", () => RunAsync("dotnet", "build -c Release"));
@@ -122,8 +121,8 @@ Target("test", dependsOn: ["build"], forEach: matrix, item =>
     RunAsync("dotnet", $"test -f {item.Framework} -c {item.Config} --no-build"));
 ```
 
-When introducing a multi-config test matrix, update upstream targets (like build) to handle all
-configurations too. Otherwise `--no-build` will fail for configs that were never built.
+When introducing a multi-config test matrix, update upstream targets (like build) to handle all configurations
+too. Otherwise `--no-build` will fail for configs that were never built.
 
 ### Async targets
 
@@ -140,9 +139,8 @@ Target("deploy", dependsOn: ["publish"], async () => {
 
 ### RunTargetsAndExitAsync (default)
 
-Parses `args`, runs the requested targets (or `"default"` if none specified), then calls
-`Environment.Exit`. This is the right choice for build scripts because it sets the exit code
-correctly for CI:
+Parses `args`, runs the requested targets (or `"default"` if none specified), then calls `Environment.Exit`.
+This is the right choice for build scripts because it sets the exit code correctly for CI:
 
 ```csharp
 await RunTargetsAndExitAsync(args);
@@ -150,20 +148,20 @@ await RunTargetsAndExitAsync(args);
 
 ### Custom exception handling
 
-Pass a `messageOnly` predicate to show just the message (not the full stack trace) for expected
-exceptions. This keeps CI output clean:
+Pass a `messageOnly` predicate to show just the message (not the full stack trace) for expected exceptions.
+This keeps CI output clean:
 
 ```csharp
 await RunTargetsAndExitAsync(args, ex => ex is SimpleExec.ExitCodeException);
 ```
 
-`SimpleExec.ExitCodeException` is thrown when a process exits with a non-zero code. Without the
-filter, Bullseye prints the full stack trace, which is noisy for build failures.
+`SimpleExec.ExitCodeException` is thrown when a process exits with a non-zero code. Without the filter,
+Bullseye prints the full stack trace, which is noisy for build failures.
 
 ### RunTargetsWithoutExitingAsync
 
-Use this only when you need code to run after the targets complete. It throws
-`TargetFailedException` on failure instead of calling `Environment.Exit`:
+Use this only when you need code to run after the targets complete. It throws `TargetFailedException` on
+failure instead of calling `Environment.Exit`:
 
 ```csharp
 try {
@@ -194,14 +192,13 @@ Bullseye provides a built-in CLI. Run with `--help` to see all options:
 
 Bullseye also respects the `NO_COLOR` environment variable.
 
-CI environments (GitHub Actions, GitLab CI, TeamCity, Travis, AppVeyor) are auto-detected and
-output is adjusted accordingly. Force a specific host mode with `--github-actions`, `--teamcity`,
-etc.
+CI environments (GitHub Actions, GitLab CI, TeamCity, Travis, AppVeyor) are auto-detected and output is
+adjusted accordingly. Force a specific host mode with `--github-actions`, `--teamcity`, etc.
 
 ## Project-Based Alternative
 
-When you need more control (multiple source files, analyzers, or custom MSBuild properties),
-use a full console project instead of a file-based script:
+When you need more control (multiple source files, analyzers, or custom MSBuild properties), use a full
+console project instead of a file-based script:
 
 ```sh
 dotnet new console --name Targets
@@ -215,8 +212,8 @@ Add it to the solution so IDE tooling picks it up: `dotnet sln add Targets/Targe
 
 ## Instance API
 
-For advanced scenarios (multiple independent target graphs, testing, or embedding), create a
-`Targets` instance instead of using the static API:
+For advanced scenarios (multiple independent target graphs, testing, or embedding), create a `Targets`
+instance instead of using the static API:
 
 ```csharp
 using Bullseye;
@@ -235,8 +232,8 @@ Instance methods mirror the static API: `Add(...)` instead of `Target(...)`, and
 
 ## System.CommandLine Integration
 
-When you need custom options alongside Bullseye targets, use `System.CommandLine` to handle
-parsing and forward the Bullseye portion:
+When you need custom options alongside Bullseye targets, use `System.CommandLine` to handle parsing and
+forward the Bullseye portion:
 
 ```csharp
 #!/usr/bin/env dotnet
@@ -291,9 +288,9 @@ cmd.SetAction((Func<ParseResult, Task>)(async cmdLine => {
 return await cmd.Parse(args).InvokeAsync();
 ```
 
-The `SetAction` overload is ambiguous for async lambdas. Cast to `Func<ParseResult, Task>` to
-resolve it. For `RunTargetsAndExitAsync` with `IOptions`, the `messageOnly` parameter is at
-position 5 (after `unknownOptions` and `showHelp`); use the named parameter to avoid mistakes.
+The `SetAction` overload is ambiguous for async lambdas. Cast to `Func<ParseResult, Task>` to resolve it.
+For `RunTargetsAndExitAsync` with `IOptions`, the `messageOnly` parameter is at position 5 (after
+`unknownOptions` and `showHelp`); use the named parameter to avoid mistakes.
 
 Use `CommandLine.Parse(args)` when you want to pre-parse args without System.CommandLine:
 
@@ -340,8 +337,8 @@ await RunTargetsAndExitAsync(args, ex => ex is SimpleExec.ExitCodeException);
 
 ### SimpleExec basics
 
-`SimpleExec.Command.RunAsync(name, args)` runs a process and throws `ExitCodeException` on
-non-zero exit. Use `ReadAsync` to capture stdout:
+`SimpleExec.Command.RunAsync(name, args)` runs a process and throws `ExitCodeException` on non-zero exit.
+Use `ReadAsync` to capture stdout:
 
 ```csharp
 using static SimpleExec.Command;
@@ -355,6 +352,6 @@ var (stdout, _) = await ReadAsync("dotnet", "--version");
 
 ### Parallel execution
 
-Pass `--parallel` on the command line to run independent targets concurrently. Bullseye
-determines which targets can run in parallel based on the dependency graph. Targets that do not
-depend on each other run simultaneously.
+Pass `--parallel` on the command line to run independent targets concurrently. Bullseye determines which
+targets can run in parallel based on the dependency graph. Targets that do not depend on each other run
+simultaneously.

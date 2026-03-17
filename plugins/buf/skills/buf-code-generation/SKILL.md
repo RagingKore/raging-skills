@@ -10,7 +10,8 @@ description: |
 
 # Buf Code Generation
 
-`buf generate` produces code stubs from Protobuf files using protoc plugins. It's faster and simpler than `protoc`, configured through `buf.gen.yaml`.
+`buf generate` produces code stubs from Protobuf files using protoc plugins. It's faster and simpler than `protoc`,
+configured through `buf.gen.yaml`.
 
 ## Quick Start
 
@@ -151,7 +152,8 @@ plugins:
 
 ## Managed Mode
 
-Managed mode lets consumers control file/field options during generation, removing the need for producers to hard-code language-specific options in `.proto` files.
+Managed mode lets consumers control file/field options during generation, removing the need for producers to hard-code
+language-specific options in `.proto` files.
 
 ```yaml
 version: v2

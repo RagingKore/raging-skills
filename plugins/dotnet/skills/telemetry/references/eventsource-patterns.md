@@ -14,7 +14,8 @@
 
 ## EventSource Basics
 
-`EventSource` is a low-level, high-performance structured logging system built into the .NET runtime. Events are consumable via ETW (Windows), EventPipe (cross-platform), and `EventListener` (in-process).
+`EventSource` is a low-level, high-performance structured logging system built into the .NET runtime. Events are
+consumable via ETW (Windows), EventPipe (cross-platform), and `EventListener` (in-process).
 
 ```csharp
 [EventSource(Name = "MyCompany.MyApp")]
@@ -79,7 +80,8 @@ public sealed class AppEventSource : EventSource
 
 ## EventCounter for Aggregate Metrics
 
-EventCounters aggregate data in-process and report statistics periodically. Newer code should prefer `System.Diagnostics.Metrics`, but EventCounters are still used by the runtime and many libraries.
+EventCounters aggregate data in-process and report statistics periodically. Newer code should prefer
+`System.Diagnostics.Metrics`, but EventCounters are still used by the runtime and many libraries.
 
 ```csharp
 [EventSource(Name = "MyApp.Metrics")]

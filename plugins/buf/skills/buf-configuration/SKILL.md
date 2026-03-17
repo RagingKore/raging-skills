@@ -269,7 +269,8 @@ deps:
 
 ## Modules and Workspaces
 
-A **module** is a collection of `.proto` files configured, built, and versioned as a unit. A **workspace** contains one or more modules defined in `buf.yaml`.
+A **module** is a collection of `.proto` files configured, built, and versioned as a unit. A **workspace** contains one
+or more modules defined in `buf.yaml`.
 
 ### Key Concepts
 

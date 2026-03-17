@@ -1,6 +1,8 @@
 # Incrementalist Plugin
 
-Integrate [Incrementalist](https://github.com/petabridge/Incrementalist) into .NET monorepos for git-based incremental builds and testing in GitHub Actions CI/CD pipelines. Analyzes git diffs, maps changed files to affected projects via Roslyn dependency analysis, and executes dotnet commands against only those projects.
+Integrate [Incrementalist](https://github.com/petabridge/Incrementalist) into .NET monorepos for git-based incremental
+builds and testing in GitHub Actions CI/CD pipelines. Analyzes git diffs, maps changed files to affected projects via
+Roslyn dependency analysis, and executes dotnet commands against only those projects.
 
 ## Skills
 

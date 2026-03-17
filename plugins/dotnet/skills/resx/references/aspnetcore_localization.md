@@ -20,7 +20,9 @@
 
 ## Overview
 
-ASP.NET Core provides a comprehensive localization framework built on top of standard .NET resource management, offering dependency injection-based localization services, middleware for culture negotiation, and specialized localizers for different scenarios.
+ASP.NET Core provides a comprehensive localization framework built on top of standard .NET resource management, offering
+dependency injection-based localization services, middleware for culture negotiation, and specialized localizers for
+different scenarios.
 
 ## Core Interfaces
 

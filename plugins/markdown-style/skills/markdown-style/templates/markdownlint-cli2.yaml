@@ -1,0 +1,148 @@
+# markdownlint-cli2 configuration template
+# Used by /markdown-setup as a reference when generating project-specific configs
+# Each rule is annotated with what it controls and common config values
+
+config:
+  # Start with all rules enabled; disable selectively below
+  default: true
+
+  # --- Heading rules ---
+
+  # MD001: Heading levels increment by one (no skipping h2 -> h4)
+  MD001: true
+
+  # MD003: Heading style - atx (## Heading) vs setext (underline)
+  # Values: atx, atx_closed, setext, setext_with_atx
+  MD003:
+    style: atx
+
+  # MD022: Blank lines around headings
+  MD022: true
+
+  # MD041: First line should be a top-level heading
+  # Disable if repo uses ## as top-level in most files
+  MD041: false
+
+  # MD043: Required heading structure (per-file enforcement)
+  # MD043: { headings: ["# Title", "## Overview", ...] }
+  MD043: false
+
+  # --- Line length ---
+
+  # MD013: Line length limit
+  # line_length: from .editorconfig max_line_length or pattern analysis
+  # tables: false avoids flagging wide tables
+  MD013:
+    line_length: 120
+    heading_line_length: 120
+    code_block_line_length: 120
+    tables: false
+
+  # --- List rules ---
+
+  # MD004: Unordered list marker style
+  # Values: dash, plus, asterisk, sublist, consistent
+  MD004:
+    style: dash
+
+  # MD005: Consistent list indentation at the same level
+  MD005: true
+
+  # MD007: Unordered list indentation depth
+  MD007:
+    indent: 2
+
+  # MD029: Ordered list prefix style
+  # Values: one (all 1.), ordered (sequential), one_or_ordered, zero
+  MD029:
+    style: one
+
+  # MD032: Blank lines around lists
+  MD032: true
+
+  # --- Code block rules ---
+
+  # MD040: Fenced code blocks must specify a language
+  MD040: true
+
+  # MD046: Code block style
+  # Values: fenced, indented, consistent
+  MD046:
+    style: fenced
+
+  # MD048: Fenced code block style
+  # Values: backtick, tilde
+  MD048:
+    style: backtick
+
+  # --- Blank line rules ---
+
+  # MD012: No multiple consecutive blank lines
+  MD012: true
+
+  # MD031: Blank lines around fenced code blocks
+  MD031: true
+
+  # MD047: Files end with a single newline
+  MD047: true
+
+  # --- Spacing rules ---
+
+  # MD009: Trailing spaces
+  # br_spaces: 2 allows double-space line breaks
+  MD009:
+    br_spaces: 2
+    strict: true
+
+  # MD010: No hard tabs
+  MD010: true
+
+  # --- Emphasis rules ---
+
+  # MD049: Emphasis style
+  # Values: asterisk, underscore, consistent
+  MD049:
+    style: asterisk
+
+  # MD050: Strong style
+  # Values: asterisk, underscore, consistent
+  MD050:
+    style: asterisk
+
+  # --- HTML and inline rules ---
+
+  # MD033: No inline HTML
+  # Set to false if repo uses HTML in markdown
+  MD033: true
+
+  # MD038: No spaces inside code span elements
+  MD038: true
+
+  # --- Commonly disabled rules ---
+
+  # MD024: No duplicate headings (in different sections)
+  # Disable for changelogs and multi-section docs
+  MD024: false
+
+  # MD026: No trailing punctuation in headings
+  # Disable if headings use questions or exclamations
+  MD026: false
+
+  # MD036: No emphasis used instead of a heading
+  # Disable because bold labels (**Label:**) are common in skill files, agent instructions,
+  # and structured docs where a full heading would break the flow
+  MD036: false
+
+  # MD060: Table column alignment style
+  # Disable because tables inside blockquotes and templates often cannot maintain alignment
+  MD060: false
+
+  # --- Table rules ---
+
+  # MD055: Table pipe style
+  # Values: leading_and_trailing, no_leading_or_trailing, leading_only, trailing_only
+  MD055:
+    style: leading_and_trailing
+
+  # MD056: Table column count must be consistent
+  MD056: true

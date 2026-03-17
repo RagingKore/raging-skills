@@ -99,7 +99,8 @@ config:
 |-----------|------|-------------|
 | `ticketBaseUrl` | String | Base URL for external ticket links. The placeholder `#TICKET#` is replaced with the task's `ticket` metadata value. |
 
-When `ticketBaseUrl` is set and a task has a `ticket` metadata value, the ticket number in the rendered diagram becomes a clickable link to the external system.
+When `ticketBaseUrl` is set and a task has a `ticket` metadata value, the ticket number in the rendered
+diagram becomes a clickable link to the external system.
 
 **URL template example:**
 

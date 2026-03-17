@@ -373,10 +373,14 @@ stateDiagram-v2
 
 ## Common Gotchas
 
-- **`stateDiagram-v2` vs `stateDiagram`**: Use `v2` for the current renderer. The older one may lack some features.
+- **`stateDiagram-v2` vs `stateDiagram`**: Use `v2` for the current renderer. The older one may lack some
+  features.
 - **The word "end"** can break parsing in certain contexts. Capitalize or wrap it: `End`, `[end]`, `{end}`.
 - **`classDef` cannot be applied to start/end (`[*]`) states** or composite states in current versions.
-- **No transitions between internal states of different composites**: You can only connect composite states themselves, not their internal states.
+- **No transitions between internal states of different composites**: You can only connect composite states
+  themselves, not their internal states.
 - **Concurrent regions** use `--` separator and must be inside a composite state.
-- **Direction inside composite states**: You can set `direction` within a composite state to override the parent direction.
-- **PlantUML compatibility**: The syntax is designed to be close to PlantUML, making diagram sharing easier between tools.
+- **Direction inside composite states**: You can set `direction` within a composite state to override the
+  parent direction.
+- **PlantUML compatibility**: The syntax is designed to be close to PlantUML, making diagram sharing easier
+  between tools.

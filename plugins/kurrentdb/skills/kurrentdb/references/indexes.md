@@ -11,7 +11,8 @@
 
 ## Default Index
 
-The default index maps **stream name hash + event number** to the logical position in the transaction log. It is stored separately from data files.
+The default index maps **stream name hash + event number** to the logical position in the transaction log. It is stored
+separately from data files.
 
 ### Architecture
 
@@ -116,7 +117,8 @@ var events = client.ReadAllAsync(
 
 ## User-Defined Indexes
 
-**Available since v26.0.** Create custom indexes based on event content using JavaScript filter and field selector functions.
+**Available since v26.0.** Create custom indexes based on event content using JavaScript filter and field selector
+ functions.
 
 ### Creating an Index
 

@@ -1,0 +1,23 @@
+{
+  "name": "mockdown",
+  "version": "1.0.0",
+  "description": "Design, sketch, and reason about UI layout and structure. Interpret ASCII wireframes and generate framework-agnostic UI code. Covers web UIs, terminal UIs, CLI interfaces, dashboards, forms, and dialogs. Drive the Mockdown editor via Chrome for interactive wireframe creation.",
+  "keywords": [
+    "mockdown",
+    "wireframe",
+    "ascii",
+    "mockup",
+    "ui-design",
+    "tui",
+    "terminal-ui",
+    "layout",
+    "prototyping",
+    "chrome-automation"
+  ],
+  "skills": [
+    "./skills/"
+  ],
+  "agents": [
+    "./agents/mockdown-designer.md"
+  ]
+}

@@ -171,7 +171,8 @@ JSON output includes all parameters:
 
 ## Log-Level Guarded Optimizations
 
-Source-generated methods include automatic `IsEnabled()` checks. When a level is disabled, the method returns immediately with zero allocations.
+Source-generated methods include automatic `IsEnabled()` checks. When a level is disabled, the method returns
+immediately with zero allocations.
 
 For **expensive parameter evaluation**, use `SkipEnabledCheck` and guard manually:
 

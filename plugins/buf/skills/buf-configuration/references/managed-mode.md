@@ -1,6 +1,7 @@
 # Managed Mode Reference
 
-Managed mode is a feature of `buf generate` that lets API consumers control file and field options during code generation, even without control of the API itself.
+Managed mode is a feature of `buf generate` that lets API consumers control file and field options during code
+generation, even without control of the API itself.
 
 ## Enable
 
@@ -100,7 +101,8 @@ managed:
 1. `disable` takes precedence over `override` — if an option is disabled, overrides don't apply.
 2. Disabling a base option (e.g., `go_package`) also disables its prefix/suffix variants.
 3. For multiple rules modifying the same option, **last matching rule wins**.
-4. If both `java_package_prefix` and `java_package_suffix` are the last rules, the result is `<prefix>.proto_package.<suffix>`.
+4. If both `java_package_prefix` and `java_package_suffix` are the last rules, the result is
+   `<prefix>.proto_package.<suffix>`.
 
 ## File Options
 

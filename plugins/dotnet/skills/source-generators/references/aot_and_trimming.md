@@ -22,7 +22,8 @@ Native AOT compiles your application **ahead of time** directly to machine code.
 3. **IL trimming** removes unreferenced code to reduce binary size
 4. **Trimmer uses static analysis** - it can't see what reflection accesses at runtime
 
-Source generators solve all of these by moving code generation to compile time. The generated code is plain C# - fully visible to the trimmer, fully compilable by AOT.
+Source generators solve all of these by moving code generation to compile time. The generated code is plain C# - fully
+visible to the trimmer, fully compilable by AOT.
 
 ## The AOT Problem: Runtime Code Generation
 
@@ -113,7 +114,8 @@ builder.Services.Configure<MySettings>(configuration.GetSection("MySettings"));
 ```
 
 **After (.NET 8+, source-generated binding):**
-The configuration binder source generator is automatically enabled when `PublishAot=true` or trimming is enabled. It intercepts `Bind`, `Get`, and `Configure` calls.
+The configuration binder source generator is automatically enabled when `PublishAot=true` or trimming is enabled. It
+intercepts `Bind`, `Get`, and `Configure` calls.
 
 ### Factory Patterns: Custom Generator
 

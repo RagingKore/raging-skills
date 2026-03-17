@@ -39,7 +39,8 @@
 
 ## Catch-Up Subscriptions
 
-Catch-up subscriptions read all historical events from a position and then continue receiving live events. The client is responsible for tracking position (checkpointing).
+Catch-up subscriptions read all historical events from a position and then continue receiving live events. The client is
+responsible for tracking position (checkpointing).
 
 ### Stream Subscriptions
 
@@ -175,7 +176,8 @@ await foreach (var message in subscription.Messages)
 
 ### Resolving Link Events
 
-System projection streams (like `$ce-order` or `$et-OrderPlaced`) contain **link events** that point to the original events. Set `resolveLinkTos: true` to automatically resolve them.
+System projection streams (like `$ce-order` or `$et-OrderPlaced`) contain **link events** that point to the original
+events. Set `resolveLinkTos: true` to automatically resolve them.
 
 ```csharp
 // Subscribe to a category projection stream
@@ -193,7 +195,8 @@ var subscription = client.SubscribeToStream(
 
 ### Server-Side Filtering
 
-Server-side filtering is only available on `$all` subscriptions. Use it to reduce network traffic and processing overhead.
+Server-side filtering is only available on `$all` subscriptions. Use it to reduce network traffic and processing
+overhead.
 
 #### Available Filters
 
@@ -235,13 +238,15 @@ await foreach (var message in subscription.Messages)
 }
 ```
 
-> **Checkpoint interval math:** The `checkpointInterval` value N means the server emits a checkpoint every N * 32 events processed (regardless of how many pass the filter).
+> **Checkpoint interval math:** The `checkpointInterval` value N means the server emits a checkpoint every N * 32 events
+> processed (regardless of how many pass the filter).
 
 ---
 
 ## Persistent Subscriptions
 
-Persistent subscriptions are managed by the server. The server tracks the checkpoint, distributes events to competing consumers, and handles retries. They provide at-least-once delivery with multiple consumers.
+Persistent subscriptions are managed by the server. The server tracks the checkpoint, distributes events to competing
+consumers, and handles retries. They provide at-least-once delivery with multiple consumers.
 
 ### Creating Subscription Groups
 
@@ -280,7 +285,8 @@ await persistentSubClient.CreateToAllAsync(
 
 ### Connecting Consumers
 
-Multiple consumer instances can connect to the same group. The server distributes events according to the configured consumer strategy.
+Multiple consumer instances can connect to the same group. The server distributes events according to the configured
+consumer strategy.
 
 ```csharp
 var subscription = persistentSubClient.SubscribeToStream(
@@ -331,7 +337,8 @@ var subscription = persistentSubClient.SubscribeToAll("all-orders-group");
 
 ### Ack/Nack Protocol
 
-Every message delivered by a persistent subscription **must** be acknowledged. Unacknowledged messages will timeout (default 30s) and be retried.
+Every message delivered by a persistent subscription **must** be acknowledged. Unacknowledged messages will timeout
+(default 30s) and be retried.
 
 | Method | Description                            |
 |--------|----------------------------------------|
@@ -356,7 +363,9 @@ Every message delivered by a persistent subscription **must** be acknowledged. U
 | `Pinned`               | Stream ID hashed to 1024 buckets; each bucket pinned to one consumer. All events from a stream go to the same consumer. |
 | `PinnedByCorrelation`  | Like Pinned but hashes correlation ID instead of stream ID                                                              |
 
-**Pinned strategy note:** The Pinned strategy behaves differently depending on `ResolveLinkTos`. When resolving links, the resolved stream ID is used for hashing. When not resolving, the link stream ID is used. This can change which consumer receives events.
+**Pinned strategy note:** The Pinned strategy behaves differently depending on `ResolveLinkTos`. When resolving links,
+ the resolved stream ID is used for hashing. When not resolving, the link stream ID is used. This can change which
+ consumer receives events.
 
 ### Settings Reference
 
@@ -397,10 +406,12 @@ POST /subscriptions/{stream}/{group}/replayParked?stopAt=100
 
 ### Checkpointing Behavior
 
-Persistent subscriptions write checkpoints periodically to a checkpoint stream. The checkpoint tracks the last event that was acknowledged by all consumers.
+Persistent subscriptions write checkpoints periodically to a checkpoint stream. The checkpoint tracks the last event
+that was acknowledged by all consumers.
 
 - Checkpoints are written based on `CheckPointAfter` interval and `MinCheckPointCount`/`MaxCheckPointCount` thresholds.
-- On leader node change, the subscription reloads from the last checkpoint. This means **some events may be redelivered** (duplicates are possible).
+- On leader node change, the subscription reloads from the last checkpoint. This means **some events may be
+  redelivered** (duplicates are possible).
 - Persistent subscriptions **only run on the leader node**.
 
 ### Updating and Deleting Groups
@@ -466,22 +477,33 @@ await persistentSubClient.DeleteToStreamAsync(
 
 ## Key Warnings
 
-1. **Persistent subscriptions do NOT guarantee ordering.** Events may be delivered out of order across consumers. If ordering matters, use catch-up subscriptions.
+1. **Persistent subscriptions do NOT guarantee ordering.** Events may be delivered out of order across consumers. If
+   ordering matters, use catch-up subscriptions.
 
-2. **Pinned strategy + ResolveLinkTos interaction.** When `ResolveLinkTos` is true, Pinned uses the resolved (original) stream ID for hashing. When false, it uses the link stream ID. This changes consumer assignment.
+2. **Pinned strategy + ResolveLinkTos interaction.** When `ResolveLinkTos` is true, Pinned uses the resolved (original)
+   stream ID for hashing. When false, it uses the link stream ID. This changes consumer assignment.
 
-3. **Slow consumers can be dropped.** If a consumer falls too far behind or does not acknowledge messages in time, the subscription may drop the connection. Implement reconnection logic.
+3. **Slow consumers can be dropped.** If a consumer falls too far behind or does not acknowledge messages in time, the
+   subscription may drop the connection. Implement reconnection logic.
 
-4. **Duplicate delivery after leader change.** Persistent subscriptions reload from the last checkpoint when the leader node changes. Events processed after the last checkpoint but before the failover will be redelivered. Design consumers to handle duplicates.
+4. **Duplicate delivery after leader change.** Persistent subscriptions reload from the last checkpoint when the leader
+   node changes. Events processed after the last checkpoint but before the failover will be redelivered. Design
+   consumers to handle duplicates.
 
-5. **Persistent subscriptions run on leader only.** If the leader node changes, there will be a brief interruption while the subscription migrates.
+5. **Persistent subscriptions run on leader only.** If the leader node changes, there will be a brief interruption while
+   the subscription migrates.
 
-6. **Subscription positions are exclusive.** `FromStream.After(5)` starts delivering from event 6. `FromAll.After(position)` starts from the next event after that position.
+6. **Subscription positions are exclusive.** `FromStream.After(5)` starts delivering from event 6.
+   `FromAll.After(position)` starts from the next event after that position.
 
-7. **CaughtUp fires once on transition.** The `StreamMessage.CaughtUp` message only fires when transitioning from reading historical events to live. It requires server v23.10 or later. It does not fire repeatedly.
+7. **CaughtUp fires once on transition.** The `StreamMessage.CaughtUp` message only fires when transitioning from
+   reading historical events to live. It requires server v23.10 or later. It does not fire repeatedly.
 
-8. **Filtered $all checkpoint interval.** The checkpoint interval is multiplied by 32. A `checkpointInterval` of 10 means a checkpoint every 320 events (10 * 32), not every 10 events.
+8. **Filtered $all checkpoint interval.** The checkpoint interval is multiplied by 32. A `checkpointInterval` of 10
+   means a checkpoint every 320 events (10 * 32), not every 10 events.
 
-9. **Buffer sizing for persistent subscriptions.** The default in-flight message buffer is 10. If your consumers are fast, increase the buffer to avoid starvation. If they are slow, decrease to avoid message timeouts.
+9. **Buffer sizing for persistent subscriptions.** The default in-flight message buffer is 10. If your consumers are
+   fast, increase the buffer to avoid starvation. If they are slow, decrease to avoid message timeouts.
 
-10. **Always Ack or Nack.** Not acknowledging a persistent subscription message causes it to timeout and retry, consuming retry budget. Always explicitly Ack on success or Nack with an appropriate action on failure.
+10. **Always Ack or Nack.** Not acknowledging a persistent subscription message causes it to timeout and retry,
+    consuming retry budget. Always explicitly Ack on success or Nack with an appropriate action on failure.

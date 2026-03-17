@@ -2,7 +2,8 @@
 
 ## Declaration
 
-Use the keyword `zenuml` to start a ZenUML sequence diagram. ZenUML uses a programming-language-style syntax that differs from Mermaid's native sequence diagram syntax.
+Use the keyword `zenuml` to start a ZenUML sequence diagram. ZenUML uses a programming-language-style
+syntax that differs from Mermaid's native sequence diagram syntax.
 
 ```
 zenuml
@@ -27,7 +28,8 @@ Set the diagram title. Optional.
 // single line comment
 ```
 
-Comments render above the next message or fragment. Markdown is supported in comments. Comments placed on participant declarations are not rendered.
+Comments render above the next message or fragment. Markdown is supported in comments. Comments placed on
+participant declarations are not rendered.
 
 ## Components / Elements
 
@@ -236,11 +238,13 @@ try {
 }
 ```
 
-All three blocks (`try`, `catch`, `finally`) do not require all parts -- you can use `try/catch`, `try/finally`, or all three.
+All three blocks (`try`, `catch`, `finally`) do not require all parts -- you can use `try/catch`,
+`try/finally`, or all three.
 
 ## Styling & Configuration
 
-ZenUML diagrams inherit Mermaid's global theme configuration. No ZenUML-specific theme variables or styling directives are documented. Use Mermaid's `%%{init: {'theme': 'dark'}}%%` directive for theme changes.
+ZenUML diagrams inherit Mermaid's global theme configuration. No ZenUML-specific theme variables or styling
+directives are documented. Use Mermaid's `%%{init: {'theme': 'dark'}}%%` directive for theme changes.
 
 ## Practical Examples
 
@@ -342,11 +346,18 @@ zenuml
 
 ## Common Gotchas
 
-- **Different syntax from Mermaid's native sequence diagram**: ZenUML uses programming-language-style syntax (dot notation, curly braces, `if/else`), not the `->>`/`-->>` arrow syntax of Mermaid's built-in sequence diagrams.
-- **External module required for web**: For browser/website usage, you must register the `@mermaid-js/mermaid-zenuml` module with `mermaid.registerExternalDiagrams([zenuml])`.
+- **Different syntax from Mermaid's native sequence diagram**: ZenUML uses programming-language-style syntax
+  (dot notation, curly braces, `if/else`), not the `->>`/`-->>` arrow syntax of Mermaid's built-in
+  sequence diagrams.
+- **External module required for web**: For browser/website usage, you must register the
+  `@mermaid-js/mermaid-zenuml` module with `mermaid.registerExternalDiagrams([zenuml])`.
 - **Indentation matters for readability** but hierarchy is determined by curly braces `{}`, not indentation.
-- **Comments only render above messages/fragments**: Comments placed on participant declarations or other locations are silently ignored.
+- **Comments only render above messages/fragments**: Comments placed on participant declarations or other
+  locations are silently ignored.
 - **No semicolons**: ZenUML does not use semicolons to terminate statements.
-- **`@return` vs `return`**: `return` replies from the current activation. `@return` on an async message returns one level up -- a distinct, niche behavior.
-- **Participant ordering**: Declare all participants explicitly before messages to control order. Otherwise order follows first appearance.
-- **Lazy loading**: ZenUML uses experimental lazy loading and async rendering, which may change in future releases.
+- **`@return` vs `return`**: `return` replies from the current activation. `@return` on an async message
+  returns one level up -- a distinct, niche behavior.
+- **Participant ordering**: Declare all participants explicitly before messages to control order. Otherwise
+  order follows first appearance.
+- **Lazy loading**: ZenUML uses experimental lazy loading and async rendering, which may change in future
+  releases.

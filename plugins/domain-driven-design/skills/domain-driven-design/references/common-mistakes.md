@@ -17,7 +17,8 @@
 
 ## 1. Anemic Domain Model
 
-**What happens**: Entities become data containers with getters/setters. Business logic lives in "services" that manipulate entities externally.
+**What happens**: Entities become data containers with getters/setters. Business logic lives in "services" that
+ manipulate entities externally.
 
 **Why it's wrong**:
 - Violates encapsulation—anyone can put entity in invalid state

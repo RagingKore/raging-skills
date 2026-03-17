@@ -11,7 +11,8 @@ metadata:
 
 ## Overview
 
-This skill provides comprehensive support for web crawling and data extraction using the Crawl4AI library, including the complete SDK reference, ready-to-use scripts for common patterns, and optimized workflows for efficient data extraction.
+This skill provides comprehensive support for web crawling and data extraction using the Crawl4AI library, including the
+complete SDK reference, ready-to-use scripts for common patterns, and optimized workflows for efficient data extraction.
 
 ## Setup & Availability
 
@@ -23,8 +24,10 @@ python scripts/check_availability.py
 
 If Crawl4AI is **not available**, use `AskUserQuestion` to offer three setup paths:
 
-1. **pip install** (local Python, full SDK access) — Run `bash scripts/setup_pip.sh`. Requires Python 3.10+ and installs Playwright + Chromium.
-2. **Docker** (isolated, includes REST API + MCP + dashboard) — Run `bash scripts/setup_docker.sh`. Exposes API on port 11235 with dashboard at `/dashboard`, playground at `/playground`, and built-in MCP at `/mcp/sse`.
+1. **pip install** (local Python, full SDK access) — Run `bash scripts/setup_pip.sh`. Requires Python 3.10+ and installs
+   Playwright + Chromium.
+2. **Docker** (isolated, includes REST API + MCP + dashboard) — Run `bash scripts/setup_docker.sh`. Exposes API on port
+   11235 with dashboard at `/dashboard`, playground at `/playground`, and built-in MCP at `/mcp/sse`.
 3. **MCP server** (connect to existing Docker instance) — Add to `.mcp.json`:
    ```json
    {"mcpServers": {"crawl4ai": {"type": "sse", "url": "http://localhost:11235/mcp/sse"}}}
@@ -395,7 +398,8 @@ for url in urls:
 
 ## Common Use Cases
 
-For common use case patterns (documentation extraction, e-commerce monitoring, news aggregation, research), see [references/common-use-cases.md](references/common-use-cases.md).
+For common use case patterns (documentation extraction, e-commerce monitoring, news aggregation, research), see
+[references/common-use-cases.md](references/common-use-cases.md).
 
 ## Resources
 
@@ -408,36 +412,51 @@ For common use case patterns (documentation extraction, e-commerce monitoring, n
 - **batch_crawler.py** – Multi-URL concurrent processing
 
 ### references/
-- **complete-sdk-reference.md** – Complete SDK documentation (23K words) with all parameters, methods, and advanced features
+- **complete-sdk-reference.md** – Complete SDK documentation (23K words) with all parameters, methods, and advanced
+  features
 
 ### Example Code Repository
 
-The [Crawl4AI repository](https://github.com/unclecode/crawl4ai) includes extensive examples in [`docs/examples/`](https://github.com/unclecode/crawl4ai/tree/main/docs/examples):
+The [Crawl4AI repository](https://github.com/unclecode/crawl4ai) includes extensive examples in
+[`docs/examples/`](https://github.com/unclecode/crawl4ai/tree/main/docs/examples):
 
 #### Core Examples
-- [**quickstart.py**](https://github.com/unclecode/crawl4ai/blob/main/docs/examples/quickstart.py) – Comprehensive starter: crawling, JS execution, CSS selectors, content filtering, LLM/CSS extraction, dynamic content
+- [**quickstart.py**](https://github.com/unclecode/crawl4ai/blob/main/docs/examples/quickstart.py) – Comprehensive
+  starter: crawling, JS execution, CSS selectors, content filtering, LLM/CSS extraction, dynamic content
 
 #### Specialized Examples
-- [**amazon_product_extraction_direct_url.py**](https://github.com/unclecode/crawl4ai/blob/main/docs/examples/amazon_product_extraction_direct_url.py), [**..._using_hooks.py**](https://github.com/unclecode/crawl4ai/blob/main/docs/examples/amazon_product_extraction_using_hooks.py), [**..._using_use_javascript.py**](https://github.com/unclecode/crawl4ai/blob/main/docs/examples/amazon_product_extraction_using_use_javascript.py) – Three approaches for e-commerce scraping
-- [**extraction_strategies_examples.py**](https://github.com/unclecode/crawl4ai/blob/main/docs/examples/extraction_strategies_examples.py) – All extraction strategies demonstrated
-- [**deepcrawl_example.py**](https://github.com/unclecode/crawl4ai/blob/main/docs/examples/deepcrawl_example.py) – Advanced deep crawling patterns
-- [**crypto_analysis_example.py**](https://github.com/unclecode/crawl4ai/blob/main/docs/examples/crypto_analysis_example.py) – Complex data extraction with analysis
-- [**markdown_generation_example.py**](https://github.com/unclecode/crawl4ai/blob/main/docs/md_v2/core/markdown-generation.md) – Advanced markdown customization
-- [**hooks_example.py**](https://github.com/unclecode/crawl4ai/blob/main/docs/examples/hooks_example.py) – Custom hooks for crawl lifecycle events
-- [**proxy_rotation_demo.py**](https://github.com/unclecode/crawl4ai/blob/main/docs/examples/proxy_rotation_demo.py) – Proxy management and rotation
+- [**amazon_product_extraction_direct_url.py**](https://github.com/unclecode/crawl4ai/blob/main/docs/examples/amazon_product_extraction_direct_url.py),
+  [**..._using_hooks.py**](https://github.com/unclecode/crawl4ai/blob/main/docs/examples/amazon_product_extraction_using_hooks.py),
+  [**..._using_use_javascript.py**](https://github.com/unclecode/crawl4ai/blob/main/docs/examples/amazon_product_extraction_using_use_javascript.py)
+  – Three approaches for e-commerce scraping
+- [**extraction_strategies_examples.py**](https://github.com/unclecode/crawl4ai/blob/main/docs/examples/extraction_strategies_examples.py)
+  – All extraction strategies demonstrated
+- [**deepcrawl_example.py**](https://github.com/unclecode/crawl4ai/blob/main/docs/examples/deepcrawl_example.py) –
+  Advanced deep crawling patterns
+- [**crypto_analysis_example.py**](https://github.com/unclecode/crawl4ai/blob/main/docs/examples/crypto_analysis_example.py)
+  – Complex data extraction with analysis
+- [**markdown_generation_example.py**](https://github.com/unclecode/crawl4ai/blob/main/docs/md_v2/core/markdown-generation.md)
+  – Advanced markdown customization
+- [**hooks_example.py**](https://github.com/unclecode/crawl4ai/blob/main/docs/examples/hooks_example.py) – Custom hooks
+  for crawl lifecycle events
+- [**proxy_rotation_demo.py**](https://github.com/unclecode/crawl4ai/blob/main/docs/examples/proxy_rotation_demo.py) –
+  Proxy management and rotation
 - 
 - **router_example.py** – Request routing and URL patterns <!-- TODO: verify URL -->
 - **parallel_execution_example.py** – High-performance concurrent crawling <!-- TODO: verify URL -->
 - **session_management_example.py** – Authentication and session handling <!-- TODO: verify URL -->
 
 #### Advanced Patterns
-- [**adaptive_crawling/**](https://github.com/unclecode/crawl4ai/tree/main/docs/examples/adaptive_crawling) – Intelligent crawling strategies
+- [**adaptive_crawling/**](https://github.com/unclecode/crawl4ai/tree/main/docs/examples/adaptive_crawling) –
+  Intelligent crawling strategies
 - [**c4a_script/**](https://github.com/unclecode/crawl4ai/tree/main/docs/examples/c4a_script) – C4A script examples
-- [**docker_example.py**](https://github.com/unclecode/crawl4ai/blob/main/docs/examples/docker_example.py) and [other docker examples](https://github.com/unclecode/crawl4ai/tree/main/docs/examples) – Docker deployment patterns
+- [**docker_example.py**](https://github.com/unclecode/crawl4ai/blob/main/docs/examples/docker_example.py) and [other
+  docker examples](https://github.com/unclecode/crawl4ai/tree/main/docs/examples) – Docker deployment patterns
 
 ## Best Practices
 
-1. **Start with basic crawling** – Understand BrowserConfig, CrawlerRunConfig, and arun() before moving to advanced features
+1. **Start with basic crawling** – Understand BrowserConfig, CrawlerRunConfig, and arun() before moving to advanced
+   features
 2. **Use markdown generation** for documentation and content – Crawl4AI excels at clean markdown extraction
 3. **Try schema generation first** for structured data - 10-100x more efficient than LLM extraction
 4. **Enable caching during development** - `cache_mode=CacheMode.ENABLED` to avoid repeated requests
@@ -447,6 +466,8 @@ The [Crawl4AI repository](https://github.com/unclecode/crawl4ai) includes extens
 
 ## Troubleshooting
 
-For troubleshooting common issues (JS loading, bot detection, content extraction, sessions), see [references/troubleshooting.md](references/troubleshooting.md).
+For troubleshooting common issues (JS loading, bot detection, content extraction, sessions), see
+[references/troubleshooting.md](references/troubleshooting.md).
 
-For more details on any topic, refer to `references/complete-sdk-reference.md` which contains comprehensive documentation of all features, parameters, and advanced usage patterns.
+For more details on any topic, refer to `references/complete-sdk-reference.md` which contains comprehensive
+documentation of all features, parameters, and advanced usage patterns.

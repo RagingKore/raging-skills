@@ -52,7 +52,8 @@ KurrentDB.Client v1.1.*
 
 ### Creating a Client
 
-The client is a **singleton** -- create once and reuse for the lifetime of the application. There is no open/close lifecycle.
+The client is a **singleton** -- create once and reuse for the lifetime of the application. There is no open/close
+lifecycle.
 
 ```csharp
 var settings = KurrentDBClientSettings.Create("kurrentdb://localhost:2113?tls=false");
@@ -350,7 +351,8 @@ var subscription = client.SubscribeToAll(
 );
 ```
 
-The `checkpointInterval` value is multiplied by 32 internally to determine how many events pass between checkpoint messages.
+The `checkpointInterval` value is multiplied by 32 internally to determine how many events pass between checkpoint
+messages.
 
 ---
 
@@ -655,7 +657,8 @@ The activity source name is `"kurrentdb"`.
 2. **Singleton client**: Create the client once. Do not create/dispose per operation.
 3. **TLS required by default**: Use `tls=false` explicitly for insecure/development connections.
 4. **JSON required for projections**: Events must be JSON-serialized for server-side projections to process them.
-5. **Idempotent writes**: Idempotency via `eventId` only works with a specific stream revision, not with `StreamState.Any`.
+5. **Idempotent writes**: Idempotency via `eventId` only works with a specific stream revision, not with
+   `StreamState.Any`.
 6. **Subscription positions are exclusive**: `FromStream.After(5)` delivers event 6 onwards, not event 5.
 7. **$all requires admin**: Reading from or subscribing to `$all` requires admin credentials.
 8. **Hard delete is permanent**: `TombstoneAsync` makes the stream name permanently unusable.

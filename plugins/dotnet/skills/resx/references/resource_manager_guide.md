@@ -19,7 +19,8 @@
 
 ## Overview
 
-The `ResourceManager` class provides convenient access to culture-specific resources at runtime. It implements the resource fallback mechanism and caching for optimal performance in .NET applications.
+The `ResourceManager` class provides convenient access to culture-specific resources at runtime. It implements the
+resource fallback mechanism and caching for optimal performance in .NET applications.
 
 ## ResourceManager Class
 
@@ -245,7 +246,8 @@ string value = rm.GetString("welcomemessage"); // Finds "WelcomeMessage"
 
 ### Overview
 
-`ResourceSet` represents a collection of resources for a specific culture. `ResourceManager` returns `ResourceSet` instances.
+`ResourceSet` represents a collection of resources for a specific culture. `ResourceManager` returns `ResourceSet`
+instances.
 
 ### Direct ResourceSet Usage
 
@@ -679,4 +681,5 @@ using (ResourceSet rs = rm.GetResourceSet(culture, true, true))
 - **Strongly-Typed**: Designer.cs provides compile-time checked access
 - **Best Practices**: Singleton pattern, use CurrentUICulture, handle missing resources
 
-`ResourceManager` is the foundation of .NET localization, providing efficient, culture-aware access to application resources.
+`ResourceManager` is the foundation of .NET localization, providing efficient, culture-aware access to application
+resources.

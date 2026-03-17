@@ -14,7 +14,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(dirname "$SCRIPT_DIR")"
 MARKETPLACE_JSON="$REPO_ROOT/.claude-plugin/marketplace.json"
-CLAUDE_MD="$REPO_ROOT/.project/project.md"
+CLAUDE_MD="$REPO_ROOT/AGENTS.md"
 
 UPDATE=false
 if [[ "${1-}" == "--update" ]]; then
@@ -51,6 +51,7 @@ declare -a diagrams=()
 declare -a protobuf=()
 declare -a web=()
 declare -a conventions=()
+declare -a cicd=()
 declare -a agent_workflow=()
 declare -a all_agents=()
 
@@ -76,9 +77,13 @@ while IFS=$'\t' read -r plugin_name plugin_source; do
         domain-driven-design|dcb|kurrentdb) architecture+=("$name") ;;
         mermaid|beautiful-mermaid|excalidraw) diagrams+=("$name") ;;
         buf|proto-style)           protobuf+=("$name") ;;
-        astro|crawl4ai)            web+=("$name") ;;
+        aspire)                    dotnet+=("$name") ;;
+        cliwrap)                   dotnet+=("$name") ;;
+        starlight|crawl4ai)         web+=("$name") ;;
+        mockdown)                  diagrams+=("$name") ;;
+        act)                       cicd+=("$name") ;;
         conventional-commits|keep-a-changelog|markdown-style) conventions+=("$name") ;;
-        claude-output-style|project-setup) agent_workflow+=("$name") ;;
+        claude-output-style|agent-init) agent_workflow+=("$name") ;;
       esac
     done < <(skill_name_from_dir "$sd")
   done
@@ -111,6 +116,7 @@ $(build_line "architecture" "${architecture[@]}")
 $(build_line "diagrams" "${diagrams[@]}")
 $(build_line "protobuf" "${protobuf[@]}")
 $(build_line "web" "${web[@]}")
+$(build_line "ci-cd" "${cicd[@]}")
 $(build_line "conventions" "${conventions[@]}")
 $(build_line "agent-workflow" "${agent_workflow[@]}")
 $(build_line "agents" "${all_agents[@]}")"

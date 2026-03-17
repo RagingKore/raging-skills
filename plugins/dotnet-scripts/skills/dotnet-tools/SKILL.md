@@ -71,12 +71,11 @@ To uninstall: `dotnet tool uninstall --global MyTool`.
 
 ### AOT and tool packaging
 
-Native AOT is enabled by default, so packed tools are self-contained with no runtime dependency.
-Disable with `#:property PublishAot=false` if your dependencies are not AOT-compatible.
+Native AOT is enabled by default, so packed tools are self-contained with no runtime dependency. Disable with
+`#:property PublishAot=false` if your dependencies are not AOT-compatible.
 
 When AOT is enabled, JSON serialization requires source generation. See the `dotnet-scripts` skill's
-[AOT JSON serialization](../dotnet-scripts/references/aot-json-serialization.md) reference for the
-pattern.
+[AOT JSON serialization](../dotnet-scripts/references/aot-json-serialization.md) reference for the pattern.
 
 ### Example: a CLI tool with arguments
 
@@ -115,11 +114,10 @@ AOT is disabled here because Spectre.Console uses reflection internally.
 
 ## Running Tools with `dnx`
 
-Run any .NET tool package without installing it. Like `npx` for .NET. Requires .NET 10.0.100 SDK
-or later.
+Run any .NET tool package without installing it. Like `npx` for .NET. Requires .NET 10.0.100 SDK or later.
 
-**Always use `dnx`; it is the preferred, shortest form.** Only fall back to `dotnet tool exec` when
-you need options not available through `dnx`.
+**Always use `dnx`; it is the preferred, shortest form.** Only fall back to `dotnet tool exec` when you need
+options not available through `dnx`.
 
 ### Quick reference
 
@@ -137,8 +135,8 @@ dnx Microsoft.PowerApps.CLI.Tool -- env list      # pass args to the tool
 3. Invokes the tool with any provided arguments
 4. Returns the tool's exit code
 
-If a local tool manifest (`.config/dotnet-tools.json`) exists nearby, it uses the version from the
-manifest instead of latest.
+If a local tool manifest (`.config/dotnet-tools.json`) exists nearby, it uses the version from the manifest
+instead of latest.
 
 ### Alternative forms
 

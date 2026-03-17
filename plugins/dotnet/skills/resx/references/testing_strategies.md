@@ -18,7 +18,8 @@
 
 ## Overview
 
-Testing localized applications ensures resources are correctly loaded, formatted appropriately for different cultures, and that the application gracefully handles culture switching and fallback scenarios.
+Testing localized applications ensures resources are correctly loaded, formatted appropriately for different cultures,
+and that the application gracefully handles culture switching and fallback scenarios.
 
 ## Unit Testing Resources
 
@@ -640,4 +641,5 @@ public void resource_exists_for_all_supported_cultures(string cultureName)
 - **Performance**: Ensure resource access is fast after caching
 - **Best Practices**: Restore culture, test fallback, automate validation
 
-Comprehensive testing ensures localized applications work correctly across all supported cultures and gracefully handle edge cases.
+Comprehensive testing ensures localized applications work correctly across all supported cultures and gracefully handle
+edge cases.

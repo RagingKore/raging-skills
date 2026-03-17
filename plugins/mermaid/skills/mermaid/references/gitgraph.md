@@ -2,7 +2,8 @@
 
 ## Declaration
 
-Start with the `gitGraph` keyword, optionally preceded by a YAML frontmatter block for title/config and optionally followed by an orientation modifier.
+Start with the `gitGraph` keyword, optionally preceded by a YAML frontmatter block for title/config and
+optionally followed by an orientation modifier.
 
 ```
 gitGraph
@@ -62,7 +63,8 @@ Branches without `order` are drawn in definition order, followed by branches wit
 
 1. The `id` must reference an existing commit on a **different** branch.
 2. The current branch must have at least one commit before cherry-picking.
-3. When cherry-picking a **merge commit**, the `parent` attribute is mandatory and must reference an immediate parent of that merge commit.
+3. When cherry-picking a **merge commit**, the `parent` attribute is mandatory and must reference an
+   immediate parent of that merge commit.
 
 ## Styling & Configuration
 
@@ -201,7 +203,8 @@ gitGraph TB:
 
 - **Branch names that match keywords** (e.g., `cherry-pick`, `commit`) must be quoted: `branch "cherry-pick"`.
 - **You cannot merge a branch into itself.** The merge source must be a different branch from the current one.
-- **Cherry-pick requires `id`** -- you must use `commit id: "X"` on the source commit first, then `cherry-pick id: "X"` on the target branch.
+- **Cherry-pick requires `id`** -- you must use `commit id: "X"` on the source commit first, then
+  `cherry-pick id: "X"` on the target branch.
 - **Cherry-picking a merge commit** requires the `parent` attribute specifying which parent to follow.
 - **Branch colors cycle after 8.** The 9th branch reuses the 1st branch's color scheme.
 - **`checkout` and `switch` are interchangeable** -- both switch the current branch.

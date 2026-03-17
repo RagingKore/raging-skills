@@ -16,7 +16,8 @@ Add `title` immediately after the keyword to set the diagram title.
 
 ## Complete Syntax Reference
 
-The syntax is compatible with C4-PlantUML. Parameters with `?` are optional. Parameters can be passed positionally or by name using `$` prefix (e.g., `$bgColor="red"`).
+The syntax is compatible with C4-PlantUML. Parameters with `?` are optional. Parameters can be passed
+positionally or by name using `$` prefix (e.g., `$bgColor="red"`).
 
 ### Parameter Assignment
 
@@ -110,7 +111,8 @@ UpdateRelStyle(customerA, bankA, $offsetY="60")
 ### UpdateElementStyle
 
 ```
-UpdateElementStyle(elementName, ?bgColor, ?fontColor, ?borderColor, ?shadowing, ?shape, ?sprite, ?techn, ?legendText, ?legendSprite)
+UpdateElementStyle(elementName, ?bgColor, ?fontColor, ?borderColor, ?shadowing, ?shape, ?sprite,
+                   ?techn, ?legendText, ?legendSprite)
 ```
 
 Updates the visual style of a single element. Use named parameters with `$` prefix.
@@ -247,11 +249,17 @@ C4Dynamic
 ## Common Gotchas
 
 - **Experimental status**: C4 diagram syntax and properties may change in future Mermaid releases.
-- **Layout is order-dependent**: Shapes are positioned based on the order they appear in the source. Rearrange statements to adjust layout rather than relying on layout directives.
-- **`Lay_*` directives are not supported**: `Lay_U`, `Lay_D`, `Lay_L`, `Lay_R` from C4-PlantUML are ignored.
-- **Unsupported features**: `sprite`, `tags`, `link`, `Legend`, `AddElementTag`, `AddRelTag`, `RoundedBoxShape`, `EightSidedShape`, `DashedLine`, `DottedLine`, `BoldLine` are not implemented.
-- **RelIndex index is ignored**: The sequence number is determined by statement order, not the index parameter.
-- **Style calls go at the end**: `UpdateElementStyle` and `UpdateRelStyle` must be placed after all element and relationship declarations.
+- **Layout is order-dependent**: Shapes are positioned based on the order they appear in the source.
+  Rearrange statements to adjust layout rather than relying on layout directives.
+- **`Lay_*` directives are not supported**: `Lay_U`, `Lay_D`, `Lay_L`, `Lay_R` from C4-PlantUML are
+  ignored.
+- **Unsupported features**: `sprite`, `tags`, `link`, `Legend`, `AddElementTag`, `AddRelTag`,
+  `RoundedBoxShape`, `EightSidedShape`, `DashedLine`, `DottedLine`, `BoldLine` are not implemented.
+- **RelIndex index is ignored**: The sequence number is determined by statement order, not the index
+  parameter.
+- **Style calls go at the end**: `UpdateElementStyle` and `UpdateRelStyle` must be placed after all
+  element and relationship declarations.
 - **Fixed CSS styling**: C4 diagrams use fixed colors that do not change with different Mermaid skins/themes.
 - **HTML in descriptions**: Use `<br/>` for line breaks within description strings.
-- **Named parameters require `$` prefix**: When using named parameters, always prefix with `$` (e.g., `$offsetX="-40"`).
+- **Named parameters require `$` prefix**: When using named parameters, always prefix with `$` (e.g.,
+  `$offsetX="-40"`).

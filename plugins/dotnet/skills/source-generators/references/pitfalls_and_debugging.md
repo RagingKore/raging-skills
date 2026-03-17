@@ -18,7 +18,8 @@
 
 **The single most common and damaging mistake.**
 
-Roslyn types (`ISymbol`, `ITypeSymbol`, `SyntaxNode`, `Compilation`, `SemanticModel`) use **reference equality**. They are always different between compilations, which means:
+Roslyn types (`ISymbol`, `ITypeSymbol`, `SyntaxNode`, `Compilation`, `SemanticModel`) use **reference equality**. They
+are always different between compilations, which means:
 
 - Every keystroke creates new instances
 - Equality checks always return `false`
@@ -50,7 +51,8 @@ var good = context.SyntaxProvider.ForAttributeWithMetadataName(
 
 ### 2. Storing State on the Generator Class
 
-The compiler controls generator lifetime. The same instance may or may not be reused across compilations. Never store mutable state:
+The compiler controls generator lifetime. The same instance may or may not be reused across compilations. Never store
+mutable state:
 
 ```csharp
 // BAD: Mutable state on the class
@@ -74,7 +76,8 @@ public sealed class CorrectGenerator : IIncrementalGenerator {
 
 ### 3. Throwing Exceptions
 
-Unhandled exceptions in a generator **crash the compiler**. The user sees a build failure with an unhelpful stack trace. Always catch and emit diagnostics:
+Unhandled exceptions in a generator **crash the compiler**. The user sees a build failure with an unhelpful stack trace.
+Always catch and emit diagnostics:
 
 ```csharp
 transform: static (ctx, ct) => {
@@ -101,7 +104,8 @@ context.RegisterSourceOutput(provider, static (spc, model) => {
 
 ### 4. Non-Deterministic Output
 
-The compiler may run the generator in any order. If your output depends on iteration order of `HashSet`, `Dictionary`, or unordered LINQ queries, the generated code can change between runs, causing unnecessary rebuilds:
+The compiler may run the generator in any order. If your output depends on iteration order of `HashSet`, `Dictionary`,
+or unordered LINQ queries, the generated code can change between runs, causing unnecessary rebuilds:
 
 ```csharp
 // BAD: Dictionary iteration order is non-deterministic
@@ -140,7 +144,8 @@ Generators **must** target `netstandard2.0`. Other targets will fail to load:
 <TargetFramework>netstandard2.0</TargetFramework>
 ```
 
-You can still use C# 14 features via `<LangVersion>latest</LangVersion>` because the C# version is independent of the target framework. You just can't use APIs that don't exist in `netstandard2.0` without polyfills.
+You can still use C# 14 features via `<LangVersion>latest</LangVersion>` because the C# version is independent of the
+target framework. You just can't use APIs that don't exist in `netstandard2.0` without polyfills.
 
 ### 7. Scanning for Indirect Attributes/Interfaces
 
@@ -316,7 +321,8 @@ context.RegisterSourceOutput(provider.Collect(), static (spc, items) => {
 
 ### 4. Unit Tests (Best Approach)
 
-The most reliable debugging method. Write unit tests that create a compilation, run your generator, and inspect the output. You can set breakpoints in the generator code and step through.
+The most reliable debugging method. Write unit tests that create a compilation, run your generator, and inspect the
+output. You can set breakpoints in the generator code and step through.
 
 ### 5. Generator Driver Tracing
 
@@ -392,7 +398,8 @@ transform: static (ctx, _) => new TypeModel(
 )
 ```
 
-**Note:** `Location` objects from Roslyn ARE safe to store in models (they are value-comparable). They are an exception to the "no Roslyn types" rule.
+**Note:** `Location` objects from Roslyn ARE safe to store in models (they are value-comparable). They are an exception
+ to the "no Roslyn types" rule.
 
 ## Troubleshooting Checklist
 

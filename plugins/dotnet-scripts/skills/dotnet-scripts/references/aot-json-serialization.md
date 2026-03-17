@@ -71,9 +71,8 @@ System.InvalidOperationException:
 Metadata for type 'Person' was not provided to the serializer.
 ```
 
-If you see this message, add a `[JsonSerializable(typeof(...))]` attribute for the failing type
-to your `JsonSerializerContext` subclass and pass the matching context property to the
-serialize/deserialize call.
+If you see this message, add a `[JsonSerializable(typeof(...))]` attribute for the failing type to your
+`JsonSerializerContext` subclass and pass the matching context property to the serialize/deserialize call.
 
 ## When to Use
 

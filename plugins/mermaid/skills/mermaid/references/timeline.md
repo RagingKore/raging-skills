@@ -39,7 +39,8 @@ timeline
 
 ### Sections
 
-Use `section <name>` to group time periods. All time periods after a `section` line belong to that section until a new `section` is declared. Sections share a color scheme across their time periods.
+Use `section <name>` to group time periods. All time periods after a `section` line belong to that section
+until a new `section` is declared. Sections share a color scheme across their time periods.
 
 If no `section` is defined, each time period gets its own color (multicolor mode, the default).
 
@@ -181,8 +182,10 @@ timeline
 ## Common Gotchas
 
 - **Time periods are plain text**, not parsed as dates. `"Q1 2024"`, `"Phase 1"`, or `"Day One"` all work.
-- **Colon (`:`) is the delimiter** between time period and events, and between multiple events. Colons inside event text may cause parsing issues.
-- **Section colors override multicolor.** When sections are defined, all periods in a section share one color. Without sections, each period gets its own color.
+- **Colon (`:`) is the delimiter** between time period and events, and between multiple events. Colons
+  inside event text may cause parsing issues.
+- **Section colors override multicolor.** When sections are defined, all periods in a section share one
+  color. Without sections, each period gets its own color.
 - **`disableMulticolor`** only affects unsectioned timelines. It forces a single color for all periods.
 - **`<br>` tags work** in time periods, section names, and event text for forced line breaks.
 - **Event ordering** is top-to-bottom as declared. The first event for a period renders at the top.

@@ -4,7 +4,9 @@ Complete reference for the [Keep a Changelog](https://keepachangelog.com/en/1.1.
 
 ## What Is a Changelog?
 
-A changelog is a file containing a curated, chronologically ordered list of notable changes for each version of a project. Unlike a git log or commit history, a changelog is written for human readers and focuses on what matters to users of the project.
+A changelog is a file containing a curated, chronologically ordered list of notable changes for each version of a
+project. Unlike a git log or commit history, a changelog is written for human readers and focuses on what matters to
+users of the project.
 
 ## File Convention
 
@@ -55,7 +57,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Section Types
 
-The specification defines exactly six section types. Always use them in this order when present. Omit sections with no entries.
+The specification defines exactly six section types. Always use them in this order when present. Omit sections with no
+entries.
 
 ### Added
 
@@ -83,7 +86,8 @@ Changes to existing functionality. Includes behavior changes, UI redesigns, and 
 
 ### Deprecated
 
-Features that still work but are scheduled for removal in a future version. This section signals to users that they should migrate away.
+Features that still work but are scheduled for removal in a future version. This section signals to users that they
+should migrate away.
 
 ```markdown
 ### Deprecated
@@ -118,7 +122,8 @@ Bug fixes.
 
 ### Security
 
-Changes that address security vulnerabilities. This section exists to draw attention to security-sensitive changes so users can update promptly.
+Changes that address security vulnerabilities. This section exists to draw attention to security-sensitive changes so
+users can update promptly.
 
 ```markdown
 ### Security
@@ -238,7 +243,8 @@ https://dev.azure.com/org/project/_git/repo/branchCompare?baseVersion=GTv1.0.0&t
 
 ### Dumping Git Logs
 
-Do not use `git log --oneline` as a changelog. Git logs contain noise (merge commits, WIP commits, typo fixes) and are written for developers, not users.
+Do not use `git log --oneline` as a changelog. Git logs contain noise (merge commits, WIP commits, typo fixes) and are
+written for developers, not users.
 
 **Bad:**
 ```markdown
@@ -258,19 +264,23 @@ Do not use `git log --oneline` as a changelog. Git logs contain noise (merge com
 
 ### Ignoring Deprecations
 
-Failing to document deprecations leaves users unprepared for breaking changes. Always add a `Deprecated` entry before removing a feature so users can migrate.
+Failing to document deprecations leaves users unprepared for breaking changes. Always add a `Deprecated` entry before
+removing a feature so users can migrate.
 
 ### Inconsistent Formatting
 
-Mixing date formats, omitting sections, or using different heading styles reduces readability. Follow the spec format consistently.
+Mixing date formats, omitting sections, or using different heading styles reduces readability. Follow the spec format
+consistently.
 
 ### No Unreleased Section
 
-Without an `[Unreleased]` section, there is no visible record of pending changes and the release process requires manually gathering changes.
+Without an `[Unreleased]` section, there is no visible record of pending changes and the release process requires
+manually gathering changes.
 
 ### Missing Comparison Links
 
-Without comparison links, version headers are just text. Clickable links let readers inspect exactly what changed between versions.
+Without comparison links, version headers are just text. Clickable links let readers inspect exactly what changed
+between versions.
 
 ## Complete Example
 

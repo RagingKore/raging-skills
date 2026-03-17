@@ -1,0 +1,430 @@
+{
+  "metadata": {
+    "skill_name": "mockdown",
+    "skill_path": "plugins/mockdown/skills/mockdown/SKILL.md",
+    "executor_model": "claude-opus-4-6",
+    "analyzer_model": "claude-opus-4-6",
+    "timestamp": "2026-03-11T18:30:00Z",
+    "evals_run": [
+      1,
+      2,
+      3
+    ],
+    "runs_per_configuration": 1
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "eval_name": "wireframe-to-html",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 8,
+        "failed": 0,
+        "total": 8,
+        "time_seconds": 33.8,
+        "tokens": 20058,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Uses semantic <nav> element for navigation bar",
+          "passed": true,
+          "evidence": "Line 1: <nav> element with flex layout"
+        },
+        {
+          "text": "Contains email input with placeholder text 'Enter your email...'",
+          "passed": true,
+          "evidence": "Line 15: <input type=\"email\" placeholder=\"Enter your email...\">"
+        },
+        {
+          "text": "Contains a Subscribe button",
+          "passed": true,
+          "evidence": "Line 16: <button>Subscribe</button>"
+        },
+        {
+          "text": "Checkbox is checked by default (checked attribute)",
+          "passed": true,
+          "evidence": "Line 19: <input type=\"checkbox\" checked>"
+        },
+        {
+          "text": "Card structure with 'Welcome' as the title/header",
+          "passed": true,
+          "evidence": "Line 9-12: <article> with <header> containing Welcome"
+        },
+        {
+          "text": "Contains navigation links: Home, About, Contact",
+          "passed": true,
+          "evidence": "Lines 3-5: all three links present"
+        },
+        {
+          "text": "Contains Sign Up button",
+          "passed": true,
+          "evidence": "Line 6: <button>Sign Up</button>"
+        },
+        {
+          "text": "No elaborate CSS framework or excessive styling beyond basic layout",
+          "passed": true,
+          "evidence": "Inline styles only, 24 lines total. No CSS framework."
+        }
+      ]
+    },
+    {
+      "eval_id": 1,
+      "eval_name": "wireframe-to-html",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.875,
+        "passed": 7,
+        "failed": 1,
+        "total": 8,
+        "time_seconds": 27.3,
+        "tokens": 11956,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Uses semantic <nav> element for navigation bar",
+          "passed": true,
+          "evidence": "Line 150: <nav> inside <header>"
+        },
+        {
+          "text": "Contains email input with placeholder text 'Enter your email...'",
+          "passed": true,
+          "evidence": "Line 167: correct placeholder"
+        },
+        {
+          "text": "Contains a Subscribe button",
+          "passed": true,
+          "evidence": "Line 168: Subscribe button"
+        },
+        {
+          "text": "Checkbox is checked by default (checked attribute)",
+          "passed": true,
+          "evidence": "Line 171: checked attribute"
+        },
+        {
+          "text": "Card structure with 'Welcome' as the title/header",
+          "passed": true,
+          "evidence": "Line 162: h1 Welcome inside card"
+        },
+        {
+          "text": "Contains navigation links: Home, About, Contact",
+          "passed": true,
+          "evidence": "Lines 151-153: all three links"
+        },
+        {
+          "text": "Contains Sign Up button",
+          "passed": true,
+          "evidence": "Line 156: sign-up-btn"
+        },
+        {
+          "text": "No elaborate CSS framework or excessive styling beyond basic layout",
+          "passed": false,
+          "evidence": "144 lines of CSS with hover effects, background colors, border-radius, custom class names"
+        }
+      ]
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "wireframe-to-basecoat",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 9,
+        "failed": 0,
+        "total": 9,
+        "time_seconds": 38.0,
+        "tokens": 18753,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Includes Basecoat CSS dependency (CDN or import)",
+          "passed": true,
+          "evidence": "Line 7: cdn.jsdelivr.net/npm/basecoat-css/dist/basecoat.cdn.min.css \u2014 correct CDN URL"
+        },
+        {
+          "text": "Uses Basecoat 'tabs' and 'tab active' classes",
+          "passed": true,
+          "evidence": "Line 16-21: <div class=\"tabs\"> with role=\"tablist\" and role=\"tab\" ARIA attributes"
+        },
+        {
+          "text": "Uses Lucide search icon (data-lucide='search')",
+          "passed": true,
+          "evidence": "Line 30: data-lucide=\"search\""
+        },
+        {
+          "text": "Uses Basecoat 'table' class on table element",
+          "passed": true,
+          "evidence": "Line 37: <table class=\"table\">"
+        },
+        {
+          "text": "Uses Lucide chevron icons for pagination arrows",
+          "passed": true,
+          "evidence": "Lines 70,84: chevron-left and chevron-right"
+        },
+        {
+          "text": "Page 3 is visually active/selected in pagination",
+          "passed": true,
+          "evidence": "Line 75: btn-icon-outline with aria-current=\"page\""
+        },
+        {
+          "text": "Tab 1 is the active tab",
+          "passed": true,
+          "evidence": "Line 18: aria-selected=\"true\" on tab-1"
+        },
+        {
+          "text": "Table rows contain realistic sample data (names, emails, roles) even though wireframe rows were empty",
+          "passed": true,
+          "evidence": "Lines 46-61: Alice Johnson/alice@example.com/Admin, Bob Smith/bob@example.com/Editor, Carol Martinez/carol@example.com/Viewer"
+        },
+        {
+          "text": "Calls lucide.createIcons() to initialize icons",
+          "passed": true,
+          "evidence": "Line 111: lucide.createIcons()"
+        }
+      ]
+    },
+    {
+      "eval_id": 2,
+      "eval_name": "wireframe-to-basecoat",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 9,
+        "failed": 0,
+        "total": 9,
+        "time_seconds": 40.5,
+        "tokens": 18585,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Includes Basecoat CSS dependency (CDN or import)",
+          "passed": true,
+          "evidence": "Line 7: cdn.jsdelivr.net/npm/basecoat-css/dist/basecoat.cdn.min.css"
+        },
+        {
+          "text": "Uses Basecoat 'tabs' and 'tab active' classes",
+          "passed": true,
+          "evidence": "Lines 16-21: tabs with role=\"tablist\" and ARIA attributes"
+        },
+        {
+          "text": "Uses Lucide search icon (data-lucide='search')",
+          "passed": true,
+          "evidence": "Line 27: data-lucide=\"search\""
+        },
+        {
+          "text": "Uses Basecoat 'table' class on table element",
+          "passed": true,
+          "evidence": "Line 34: <table class=\"table w-full\">"
+        },
+        {
+          "text": "Uses Lucide chevron icons for pagination arrows",
+          "passed": true,
+          "evidence": "Lines 67,82: chevron-left and chevron-right"
+        },
+        {
+          "text": "Page 3 is visually active/selected in pagination",
+          "passed": true,
+          "evidence": "Line 72: btn-icon-outline with aria-current=\"page\""
+        },
+        {
+          "text": "Tab 1 is the active tab",
+          "passed": true,
+          "evidence": "Line 18: aria-selected=\"true\""
+        },
+        {
+          "text": "Table rows contain realistic sample data (names, emails, roles) even though wireframe rows were empty",
+          "passed": true,
+          "evidence": "Lines 43-57: Alice Johnson, Bob Smith, Carol Lee with emails and roles"
+        },
+        {
+          "text": "Calls lucide.createIcons() to initialize icons",
+          "passed": true,
+          "evidence": "Line 99: lucide.createIcons()"
+        }
+      ]
+    },
+    {
+      "eval_id": 3,
+      "eval_name": "write-wireframe",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 8,
+        "failed": 0,
+        "total": 8,
+        "time_seconds": 29.0,
+        "tokens": 18484,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Uses box-drawing characters",
+          "passed": true,
+          "evidence": "Full Unicode box-drawing: \u250c \u2500 \u2510 \u2502 \u2514 \u2518 \u252c \u2534 throughout"
+        },
+        {
+          "text": "Split panel layout with sidebar and main content area",
+          "passed": true,
+          "evidence": "Two-column layout with \u252c/\u2534 vertical divider"
+        },
+        {
+          "text": "Sidebar contains Profile, Security, and Notifications items",
+          "passed": true,
+          "evidence": "Lines 9-11: \u25cf Profile, \u25cb Security, \u25cb Notifications"
+        },
+        {
+          "text": "Profile section is active/selected in sidebar",
+          "passed": true,
+          "evidence": "Line 9: \u25cf filled radio bullet on Profile"
+        },
+        {
+          "text": "Main area contains Mockdown text input patterns ([___] or similar)",
+          "passed": true,
+          "evidence": "Lines 18,21: [_______________________________] input patterns"
+        },
+        {
+          "text": "Contains an avatar/image placeholder",
+          "passed": true,
+          "evidence": "Lines 10-15: crosshatch box with \\ / pattern and IMG"
+        },
+        {
+          "text": "Contains a Save button using [ Save ] pattern",
+          "passed": true,
+          "evidence": "Line 23: [ Save ] button pattern"
+        },
+        {
+          "text": "Output is wrapped in a code fence",
+          "passed": true,
+          "evidence": "Lines 1 and 26: ``` code fence"
+        }
+      ]
+    },
+    {
+      "eval_id": 3,
+      "eval_name": "write-wireframe",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.5,
+        "passed": 4,
+        "failed": 4,
+        "total": 8,
+        "time_seconds": 21.3,
+        "tokens": 11164,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "Uses box-drawing characters",
+          "passed": false,
+          "evidence": "Uses +--+ and | for outer frame. Mixes some Unicode (\u2500) but primary structure is ASCII art."
+        },
+        {
+          "text": "Split panel layout with sidebar and main content area",
+          "passed": true,
+          "evidence": "Two-column layout with sidebar and main content"
+        },
+        {
+          "text": "Sidebar contains Profile, Security, and Notifications items",
+          "passed": true,
+          "evidence": "\u25cb Profile, \u25cb Security, \u25cb Notifications in sidebar"
+        },
+        {
+          "text": "Profile section is active/selected in sidebar",
+          "passed": false,
+          "evidence": "All items use \u25cb (unfilled). None marked as active with \u25cf (filled)."
+        },
+        {
+          "text": "Main area contains Mockdown text input patterns ([___] or similar)",
+          "passed": false,
+          "evidence": "Uses +\u2500\u2500\u2500\u2500+ bordered boxes with text 'John Doe' inside, not [___] pattern. Also fabricates data."
+        },
+        {
+          "text": "Contains an avatar/image placeholder",
+          "passed": true,
+          "evidence": "Avatar Placeholder box present"
+        },
+        {
+          "text": "Contains a Save button using [ Save ] pattern",
+          "passed": false,
+          "evidence": "Uses +\u2500\u2500\u2500\u2500\u2500\u2500+| Save |+\u2500\u2500\u2500\u2500\u2500\u2500+ box, not [ Save ] pattern"
+        },
+        {
+          "text": "Output is wrapped in a code fence",
+          "passed": true,
+          "evidence": "``` code fence markers"
+        }
+      ]
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 33.6,
+        "stddev": 4.5,
+        "min": 29.0,
+        "max": 38.0
+      },
+      "tokens": {
+        "mean": 19098.3,
+        "stddev": 841.9,
+        "min": 18484,
+        "max": 20058
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.8,
+        "stddev": 0.3,
+        "min": 0.5,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 29.7,
+        "stddev": 9.8,
+        "min": 21.3,
+        "max": 40.5
+      },
+      "tokens": {
+        "mean": 13901.7,
+        "stddev": 4075.2,
+        "min": 11164,
+        "max": 18585
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.208",
+      "time_seconds": "+3.9",
+      "tokens": "+5197"
+    }
+  },
+  "notes": [
+    "With-skill: 100% pass rate (25/25). Without-skill: 79.2% (20/25).",
+    "write-wireframe: biggest gap \u2014 with_skill 100% vs without_skill 50%. Baseline still uses ASCII +--+ instead of box-drawing, no Mockdown patterns, no active state indicator.",
+    "wireframe-to-basecoat: both versions now score 100%. Baseline agent discovered the mapping reference files in the repo, contaminating the comparison. The skill's value here is in reliably directing to the correct reference without repo exploration.",
+    "wireframe-to-html: with_skill stays minimal (24 lines). Baseline produces 180 lines with custom CSS.",
+    "Basecoat CDN fix confirmed working: both with_skill and without_skill now use cdn.jsdelivr.net/npm/basecoat-css.",
+    "Tables now populated with sample data per updated skill rules. Both versions comply."
+  ]
+}

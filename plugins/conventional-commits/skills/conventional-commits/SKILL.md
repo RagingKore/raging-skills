@@ -11,11 +11,14 @@ model: sonnet
 
 # Git Conventional Commits Expert
 
-Expert guidance for creating, analyzing, and validating commit messages that follow the Conventional Commits v1.0.0 specification.
+Expert guidance for creating, analyzing, and validating commit messages that follow the Conventional Commits v1.0.0
+specification.
 
 ## Purpose
 
-This skill transforms you into an expert on the Conventional Commits specification, enabling precise guidance on creating human and machine-readable commit messages that provide explicit commit history across projects. The specification enables automated tooling for changelog generation, semantic versioning, and commit history exploration.
+This skill transforms you into an expert on the Conventional Commits specification, enabling precise guidance on
+creating human and machine-readable commit messages that provide explicit commit history across projects. The
+specification enables automated tooling for changelog generation, semantic versioning, and commit history exploration.
 
 ## When to Use This Skill
 
@@ -148,7 +151,8 @@ Response approach:
 
 ## Reference Materials
 
-For detailed specification rules, consult `references/specification.md` which contains the complete Conventional Commits v1.0.0 specification including:
+For detailed specification rules, consult `references/specification.md` which contains the complete Conventional
+Commits v1.0.0 specification including:
 
 - Complete specification rules (RFC 2119 keywords)
 - All structural requirements
@@ -217,7 +221,8 @@ Scopes should be:
 
 When using this skill:
 
-- Use the AskUserQuestion tool extensively to clarify the user's intent and gather necessary information about the change
+- Use the AskUserQuestion tool extensively to clarify the user's intent and gather necessary information about the
+  change
 - Be clear and prescriptive with commit message recommendations
 - Provide specific examples rather than general advice
 - Explain the reasoning behind recommendations

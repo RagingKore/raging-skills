@@ -2,7 +2,8 @@
 
 ## Declaration
 
-Use the keyword `architecture-beta` to start an architecture diagram. This diagram type is available in Mermaid v11.1.0+.
+Use the keyword `architecture-beta` to start an architecture diagram. This diagram type is available in
+Mermaid v11.1.0+.
 
 ```
 architecture-beta
@@ -10,7 +11,8 @@ architecture-beta
 
 ## Complete Syntax Reference
 
-Architecture diagrams visualize relationships between services and resources in cloud or CI/CD deployments. The building blocks are **groups**, **services**, **edges**, and **junctions**.
+Architecture diagrams visualize relationships between services and resources in cloud or CI/CD deployments.
+The building blocks are **groups**, **services**, **edges**, and **junctions**.
 
 | Concept  | Purpose                                     |
 |----------|---------------------------------------------|
@@ -106,7 +108,8 @@ Append `{group}` after the service ID to route the edge out of the service's par
 server{group}:B --> T:subnet{group}
 ```
 
-This creates an edge going out of the group containing `server` and into the group containing `subnet`. Note: group IDs cannot be used directly in edge definitions; only services with the `{group}` modifier.
+This creates an edge going out of the group containing `server` and into the group containing `subnet`.
+Note: group IDs cannot be used directly in edge definitions; only services with the `{group}` modifier.
 
 ## Icons
 
@@ -133,7 +136,9 @@ Over 200,000 icons from iconify.design are available once registered.
 
 ## Styling & Configuration
 
-Architecture diagrams use the registered icons for visual styling. Custom CSS and theming are applied through Mermaid's global theme configuration. No diagram-specific theme variables are documented for this type.
+Architecture diagrams use the registered icons for visual styling. Custom CSS and theming are applied
+through Mermaid's global theme configuration. No diagram-specific theme variables are documented for this
+type.
 
 ## Practical Examples
 
@@ -218,9 +223,14 @@ architecture-beta
 
 ## Common Gotchas
 
-- **Identifier order matters**: A service or group must be declared before it is referenced in an edge or `in` clause.
-- **Group IDs cannot be used in edges**: You cannot write `groupId:R -- L:other`. Use a service inside the group with the `{group}` modifier instead.
-- **The `{group}` modifier only works on services inside a group**: Applying it to a service not inside a group will fail.
-- **Edge sides determine layout**: Using the same side (e.g., `R -- R`) or mixing sides (e.g., `T -- L`) produces 90-degree bends. Plan edge directions carefully.
-- **Custom icons require registration**: Icons beyond the five built-in ones need an icon pack registered before use.
+- **Identifier order matters**: A service or group must be declared before it is referenced in an edge or
+  `in` clause.
+- **Group IDs cannot be used in edges**: You cannot write `groupId:R -- L:other`. Use a service inside the
+  group with the `{group}` modifier instead.
+- **The `{group}` modifier only works on services inside a group**: Applying it to a service not inside a
+  group will fail.
+- **Edge sides determine layout**: Using the same side (e.g., `R -- R`) or mixing sides (e.g., `T -- L`)
+  produces 90-degree bends. Plan edge directions carefully.
+- **Custom icons require registration**: Icons beyond the five built-in ones need an icon pack registered
+  before use.
 - **Beta status**: The keyword is `architecture-beta`, indicating the syntax may change in future releases.

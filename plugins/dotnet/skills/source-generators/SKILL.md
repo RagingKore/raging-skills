@@ -11,9 +11,12 @@ description: |
 
 ## Overview
 
-Source generators are compiler plugins that run during compilation, inspect user code via the Roslyn API, and emit additional C# source files that become part of the compilation. They enable **compile-time metaprogramming** - replacing runtime reflection with statically analyzable, AOT-compatible, trimmable code.
+Source generators are compiler plugins that run during compilation, inspect user code via the Roslyn API, and emit
+additional C# source files that become part of the compilation. They enable **compile-time metaprogramming** - replacing
+runtime reflection with statically analyzable, AOT-compatible, trimmable code.
 
-**Always use `IIncrementalGenerator`** (not the deprecated `ISourceGenerator`). The incremental API provides caching, avoids redundant work on each keystroke, and is the only supported path forward.
+**Always use `IIncrementalGenerator`** (not the deprecated `ISourceGenerator`). The incremental API provides caching,
+ avoids redundant work on each keystroke, and is the only supported path forward.
 
 ## When to Use Source Generators
 
@@ -85,7 +88,8 @@ public sealed class HelloGenerator : IIncrementalGenerator {
 
 ### 1. The Incremental Pipeline
 
-The pipeline is a directed acyclic graph (DAG) of transformations. Each node caches its output and only re-executes when inputs change. Think of it as LINQ with deferred execution over compiler state.
+The pipeline is a directed acyclic graph (DAG) of transformations. Each node caches its output and only re-executes when
+inputs change. Think of it as LINQ with deferred execution over compiler state.
 
 **Key providers:**
 
@@ -118,7 +122,8 @@ The pipeline is a directed acyclic graph (DAG) of transformations. Each node cac
 
 ### 2. ForAttributeWithMetadataName (Preferred Entry Point)
 
-This is the **most performant** way to find nodes. It uses compiler-internal indices to locate attributes without walking the full syntax tree:
+This is the **most performant** way to find nodes. It uses compiler-internal indices to locate attributes without
+walking the full syntax tree:
 
 ```csharp
 var provider = context.SyntaxProvider.ForAttributeWithMetadataName(
@@ -130,7 +135,8 @@ var provider = context.SyntaxProvider.ForAttributeWithMetadataName(
 
 ### 3. The Model Pattern (Critical for Caching)
 
-Extract data into **plain, equatable model objects** in the `transform` step. Never pass Roslyn symbols (`ISymbol`, `SyntaxNode`, `Compilation`) downstream - they are not equatable and will defeat caching:
+Extract data into **plain, equatable model objects** in the `transform` step. Never pass Roslyn symbols (`ISymbol`,
+`SyntaxNode`, `Compilation`) downstream - they are not equatable and will defeat caching:
 
 ```csharp
 // Record structs give free value equality
@@ -221,29 +227,39 @@ Ship runtime types alongside the generator:
 </ItemGroup>
 ```
 
-See [references/packaging_strategies.md](references/packaging_strategies.md) for complete `.csproj` examples and multi-targeting patterns.
+See [references/packaging_strategies.md](references/packaging_strategies.md) for complete `.csproj` examples and
+multi-targeting patterns.
 
 ## Common Pitfalls
 
-1. **Passing Roslyn types downstream** - `ISymbol`, `SyntaxNode`, `Compilation` break caching. Extract data into model records.
+1. **Passing Roslyn types downstream** - `ISymbol`, `SyntaxNode`, `Compilation` break caching. Extract data into model
+   records.
 2. **Mutable state on the generator class** – The compiler controls generator lifetime. Never store state as fields.
 3. **Missing `EnforceExtendedAnalyzerRules`** - Required for analyzer/generator projects to catch common mistakes.
 4. **Targeting wrong framework** - Generators MUST target `netstandard2.0`. The compiler hosts them in its own process.
 5. **Forgetting `ReferenceOutputAssembly="false"`** - Without this, the generator DLL ends up as a runtime dependency.
-6. **Non-deterministic output** - Iterating `HashSet` or `Dictionary` produces unstable ordering. Use sorted collections.
+6. **Non-deterministic output** - Iterating `HashSet` or `Dictionary` produces unstable ordering. Use sorted
+   collections.
 7. **Throwing exceptions** – Unhandled exceptions crash the compiler. Always emit diagnostics instead.
-8. **Scanning for indirect implementations** - `ForAttributeWithMetadataName` only finds direct attributes. Don't scan for inherited/interface-based attributes.
+8. **Scanning for indirect implementations** - `ForAttributeWithMetadataName` only finds direct attributes. Don't scan
+   for inherited/interface-based attributes.
 
 ## Advanced Topics
 
 For detailed coverage, see the reference files:
 
-- [references/incremental_pipeline.md](references/incremental_pipeline.md) - Deep dive into the pipeline API, caching, equality, and performance
-- [references/packaging_strategies.md](references/packaging_strategies.md) - NuGet packaging patterns, embedding generators, multi-targeting
-- [references/aot_and_trimming.md](references/aot_and_trimming.md) - Making libraries AOT-safe, replacing reflection, trim annotations
-- [references/testing_generators.md](references/testing_generators.md) - Unit testing with CSharpGeneratorDriver, snapshot testing
-- [references/pitfalls_and_debugging.md](references/pitfalls_and_debugging.md) - Common mistakes, debugging techniques, diagnostic reporting
-- [references/real_world_patterns.md](references/real_world_patterns.md) - INotifyPropertyChanged, AutoMapper, DI registration, enum utilities
+- [references/incremental_pipeline.md](references/incremental_pipeline.md) - Deep dive into the pipeline API, caching,
+  equality, and performance
+- [references/packaging_strategies.md](references/packaging_strategies.md) - NuGet packaging patterns, embedding
+  generators, multi-targeting
+- [references/aot_and_trimming.md](references/aot_and_trimming.md) - Making libraries AOT-safe, replacing reflection,
+  trim annotations
+- [references/testing_generators.md](references/testing_generators.md) - Unit testing with CSharpGeneratorDriver,
+  snapshot testing
+- [references/pitfalls_and_debugging.md](references/pitfalls_and_debugging.md) - Common mistakes, debugging techniques,
+  diagnostic reporting
+- [references/real_world_patterns.md](references/real_world_patterns.md) - INotifyPropertyChanged, AutoMapper, DI
+  registration, enum utilities
 
 ## Learn More (Dynamic Lookup)
 

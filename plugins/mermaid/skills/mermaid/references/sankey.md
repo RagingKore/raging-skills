@@ -37,7 +37,8 @@ The data follows CSV (RFC 4180) with these specific rules:
 | target | 2nd      | String | The destination node name                    |
 | value  | 3rd      | Number | The flow magnitude between source and target |
 
-Nodes are automatically created from unique source and target names. The same node name can appear as both a source and a target to create multi-level flows.
+Nodes are automatically created from unique source and target names. The same node name can appear as both
+a source and a target to create multi-level flows.
 
 ### Quoting Rules
 

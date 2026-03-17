@@ -1,10 +1,12 @@
 # Projections Guide for Event-Sourced Systems
 
-This guide covers projection patterns for building read models from event streams, focusing on Marten for .NET, PostgreSQL for persistence, and DuckDB for analytics.
+This guide covers projection patterns for building read models from event streams, focusing on Marten for .NET,
+PostgreSQL for persistence, and DuckDB for analytics.
 
 ## What Are Projections?
 
-Projections transform event streams into read-optimized views. They answer the question: "Given all these events, what is the current state?"
+Projections transform event streams into read-optimized views. They answer the question: "Given all these events, what
+is the current state?"
 
 ```
 Events (Write Side)              Projections (Read Side)
@@ -407,7 +409,8 @@ public class MaterializedViewRefresher : BackgroundService
 
 ## DuckDB for Analytics
 
-DuckDB excels at analytical queries over event data. Use it for complex aggregations, time-series analysis, and ad-hoc reporting.
+DuckDB excels at analytical queries over event data. Use it for complex aggregations, time-series analysis, and ad-hoc
+reporting.
 
 ### When to Use DuckDB
 
