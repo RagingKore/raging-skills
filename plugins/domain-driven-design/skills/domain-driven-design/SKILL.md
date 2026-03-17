@@ -8,19 +8,6 @@ description: |
 
 Expert guidance for modeling complex business domains using strategic and tactical DDD patterns.
 
-## Table of Contents
-
-- [Core Philosophy](#core-philosophy)
-- [Ubiquitous Language](#ubiquitous-language)
-- [Problem Space: Strategic DDD](#problem-space-strategic-ddd)
-- [Solution Space: Tactical DDD](#solution-space-tactical-ddd)
-- [Implementation Patterns](#implementation-patterns)
-- [Pattern Selection Guide](#pattern-selection-guide)
-- [Common Mistakes](#common-mistakes)
-- [Reference Documents](#reference-documents)
-
----
-
 ## Core Philosophy
 
 DDD addresses the **complexity gap** between business reality and software models. It's about *understanding*, not
@@ -31,13 +18,13 @@ patterns.
 
 ### When to Use DDD
 
-| Use DDD When | Skip DDD When |
-|--------------|---------------|
-| Business logic is primary complexity | CRUD operations dominate |
-| Domain experts are accessible | Domain is commodity (use frameworks) |
-| System evolves over years | Time-to-market trumps maintainability |
-| Multiple teams collaborate | No access to domain experts |
-| Getting model wrong is costly | Simple, well-understood domain |
+| Use DDD When                         | Skip DDD When                         |
+|--------------------------------------|---------------------------------------|
+| Business logic is primary complexity | CRUD operations dominate              |
+| Domain experts are accessible        | Domain is commodity (use frameworks)  |
+| System evolves over years            | Time-to-market trumps maintainability |
+| Multiple teams collaborate           | No access to domain experts           |
+| Getting model wrong is costly        | Simple, well-understood domain        |
 
 ---
 
@@ -71,21 +58,21 @@ class LoanApplication {
 
 ### Use Domain Terms
 
-| Don't Use | Do Use |
-|-----------|--------|
-| `User` | `Customer`, `Borrower`, `Subscriber` |
-| `Item` | `Product`, `LineItem`, `Asset` |
+| Don't Use | Do Use                               |
+|-----------|--------------------------------------|
+| `User`    | `Customer`, `Borrower`, `Subscriber` |
+| `Item`    | `Product`, `LineItem`, `Asset`       |
 | `Process` | `Originate`, `Underwrite`, `Fulfill` |
-| `Handler` | `Underwriter`, `ClaimsProcessor` |
+| `Handler` | `Underwriter`, `ClaimsProcessor`     |
 
 ### Language Across Bounded Contexts
 
 The same word can mean different things in different contexts. **This is expected.**
 
-| Term | Catalog Context | Order Context | Shipping Context |
-|------|-----------------|---------------|------------------|
-| **Product** | Full catalog info | SKU + price | Weight + dimensions |
-| **Customer** | Demographics | Billing address | Delivery address |
+| Term         | Catalog Context   | Order Context   | Shipping Context    |
+|--------------|-------------------|-----------------|---------------------|
+| **Product**  | Full catalog info | SKU + price     | Weight + dimensions |
+| **Customer** | Demographics      | Billing address | Delivery address    |
 
 ---
 
@@ -95,11 +82,11 @@ Strategic DDD happens *before* writing code. It's about understanding the busine
 
 ### Subdomains
 
-| Type | Definition | Investment | Example |
-|------|------------|------------|---------|
-| **Core** | Competitive advantage | Maximum | Trading algorithms, recommendation engine |
-| **Supporting** | Necessary for core | Moderate | User management, reporting |
-| **Generic** | Solved problems | Minimum (buy/OSS) | Authentication, email |
+| Type           | Definition            | Investment        | Example                                   |
+|----------------|-----------------------|-------------------|-------------------------------------------|
+| **Core**       | Competitive advantage | Maximum           | Trading algorithms, recommendation engine |
+| **Supporting** | Necessary for core    | Moderate          | User management, reporting                |
+| **Generic**    | Solved problems       | Minimum (buy/OSS) | Authentication, email                     |
 
 **Rule**: Invest DDD effort proportionally to subdomain type.
 
@@ -126,16 +113,16 @@ A Bounded Context is a **semantic boundary** where terms have precise meaning.
 
 ### Context Mapping Patterns
 
-| Pattern | Relationship | Use When |
-|---------|--------------|----------|
-| **Partnership** | Mutual dependency, shared success | Teams coordinate closely |
-| **Shared Kernel** | Small shared code | Few truly shared, stable concepts |
-| **Customer-Supplier** | Upstream provides, downstream consumes | Clear asymmetric dependency |
-| **Conformist** | Downstream adopts upstream model | No leverage (external API) |
-| **Anti-Corruption Layer** | Translation layer protects your model | Integrating legacy/external systems |
-| **Open Host Service** | Published API for multiple consumers | Multiple systems integrate with you |
-| **Published Language** | Shared interchange format | Standard data format needed |
-| **Separate Ways** | No integration | Contexts truly independent |
+| Pattern                   | Relationship                           | Use When                            |
+|---------------------------|----------------------------------------|-------------------------------------|
+| **Partnership**           | Mutual dependency, shared success      | Teams coordinate closely            |
+| **Shared Kernel**         | Small shared code                      | Few truly shared, stable concepts   |
+| **Customer-Supplier**     | Upstream provides, downstream consumes | Clear asymmetric dependency         |
+| **Conformist**            | Downstream adopts upstream model       | No leverage (external API)          |
+| **Anti-Corruption Layer** | Translation layer protects your model  | Integrating legacy/external systems |
+| **Open Host Service**     | Published API for multiple consumers   | Multiple systems integrate with you |
+| **Published Language**    | Shared interchange format              | Standard data format needed         |
+| **Separate Ways**         | No integration                         | Contexts truly independent          |
 
 **Detailed patterns with code examples:** See [references/context-mapping.md](references/context-mapping.md)
 
@@ -157,14 +144,14 @@ Tactical patterns implement the model in code.
 
 ### Building Blocks
 
-| Pattern | Identity | Mutability | Examples |
-|---------|----------|------------|----------|
-| **Entity** | Has unique ID | Mutable | Customer, Order, Account |
-| **Value Object** | Defined by attributes | Immutable | Money, Address, DateRange |
-| **Aggregate** | Consistency boundary | Transaction unit | Order (with OrderLines) |
-| **Domain Event** | Facts that happened | Immutable | `OrderPlaced`, `PaymentFailed` |
-| **Domain Service** | Stateless operations | N/A | FundsTransferService |
-| **Repository** | Persistence abstraction | N/A | OrderRepository |
+| Pattern            | Identity                | Mutability       | Examples                       |
+|--------------------|-------------------------|------------------|--------------------------------|
+| **Entity**         | Has unique ID           | Mutable          | Customer, Order, Account       |
+| **Value Object**   | Defined by attributes   | Immutable        | Money, Address, DateRange      |
+| **Aggregate**      | Consistency boundary    | Transaction unit | Order (with OrderLines)        |
+| **Domain Event**   | Facts that happened     | Immutable        | `OrderPlaced`, `PaymentFailed` |
+| **Domain Service** | Stateless operations    | N/A              | FundsTransferService           |
+| **Repository**     | Persistence abstraction | N/A              | OrderRepository                |
 
 ### Aggregate Rules
 
@@ -250,18 +237,18 @@ Is domain logic complex?
 
 ## Common Mistakes
 
-| Mistake | Problem | Fix |
-|---------|---------|-----|
-| **Anemic Domain Model** | Entities are data bags, logic in services | Put behavior in entities |
-| **Aggregate Too Large** | Contention, slow loading | Reference by ID, keep small |
-| **Repository Per Entity** | Bypasses aggregate root | One repository per aggregate |
-| **Exposing Internals** | `public List<T>` allows bypass | Return `IReadOnlyList<T>` |
-| **CRUD Events** | `OrderUpdated` - meaningless | `OrderShipped` - domain meaning |
-| **Missing BC Boundaries** | Shared `Account` across contexts | Separate models per context |
-| **Sync Cross-Aggregate** | Direct calls between aggregates | Use domain events |
-| **Domain = Integration Events** | Internal events published externally | Translate to stable contracts |
-| **Over-Engineering** | Full DDD for user preferences | Match complexity to domain |
-| **No Domain Experts** | Guessing business rules | Regular sessions, glossary |
+| Mistake                         | Problem                                   | Fix                             |
+|---------------------------------|-------------------------------------------|---------------------------------|
+| **Anemic Domain Model**         | Entities are data bags, logic in services | Put behavior in entities        |
+| **Aggregate Too Large**         | Contention, slow loading                  | Reference by ID, keep small     |
+| **Repository Per Entity**       | Bypasses aggregate root                   | One repository per aggregate    |
+| **Exposing Internals**          | `public List<T>` allows bypass            | Return `IReadOnlyList<T>`       |
+| **CRUD Events**                 | `OrderUpdated` - meaningless              | `OrderShipped` - domain meaning |
+| **Missing BC Boundaries**       | Shared `Account` across contexts          | Separate models per context     |
+| **Sync Cross-Aggregate**        | Direct calls between aggregates           | Use domain events               |
+| **Domain = Integration Events** | Internal events published externally      | Translate to stable contracts   |
+| **Over-Engineering**            | Full DDD for user preferences             | Match complexity to domain      |
+| **No Domain Experts**           | Guessing business rules                   | Regular sessions, glossary      |
 
 **Detailed examples and code:** See [references/common-mistakes.md](references/common-mistakes.md)
 
@@ -271,10 +258,10 @@ Is domain logic complex?
 
 ### Implementation Guides
 
-| Language | Guide | Content |
-|----------|-------|---------|
-| .NET/C# | [dotnet/](references/dotnet/) | Record entities, Decider, Event Sourcing, Akka.NET actors |
-| Python | [python/](references/python/) | dataclasses, functional Decider, Ray/Thespian actors |
+| Language | Guide                         | Content                                                   |
+|----------|-------------------------------|-----------------------------------------------------------|
+| .NET/C#  | [dotnet/](references/dotnet/) | Record entities, Decider, Event Sourcing, Akka.NET actors |
+| Python   | [python/](references/python/) | dataclasses, functional Decider, Ray/Thespian actors      |
 
 Each guide is split into 6 parts for focused reference:
 - Part I: Foundations (Value Objects, Entities, Events)
@@ -286,11 +273,11 @@ Each guide is split into 6 parts for focused reference:
 
 ### Additional References
 
-| Document | Content |
-|----------|---------|
-| [actors-ddd-guide.md](references/actors-ddd-guide.md) | Actor Model + DDD: aggregate-per-actor, distributed consistency |
-| [context-mapping.md](references/context-mapping.md) | Detailed context mapping patterns with code examples |
-| [common-mistakes.md](references/common-mistakes.md) | Detailed mistake examples with good/bad code |
-| [event-evolution.md](references/event-evolution.md) | Event versioning, schema evolution, upcasting |
-| [projections-guide.md](references/projections-guide.md) | Building projections: Marten, PostgreSQL, DuckDB |
-| [books-resources.md](references/books-resources.md) | Curated reading: foundational texts, articles, talks |
+| Document                                                | Content                                                         |
+|---------------------------------------------------------|-----------------------------------------------------------------|
+| [actors-ddd-guide.md](references/actors-ddd-guide.md)   | Actor Model + DDD: aggregate-per-actor, distributed consistency |
+| [context-mapping.md](references/context-mapping.md)     | Detailed context mapping patterns with code examples            |
+| [common-mistakes.md](references/common-mistakes.md)     | Detailed mistake examples with good/bad code                    |
+| [event-evolution.md](references/event-evolution.md)     | Event versioning, schema evolution, upcasting                   |
+| [projections-guide.md](references/projections-guide.md) | Building projections: Marten, PostgreSQL, DuckDB                |
+| [books-resources.md](references/books-resources.md)     | Curated reading: foundational texts, articles, talks            |

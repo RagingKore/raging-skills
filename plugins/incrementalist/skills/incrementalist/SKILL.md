@@ -17,20 +17,6 @@ description: |
   files, GitHub Actions workflow authoring, glob patterns, and solution-wide change detection.
 ---
 
-## Contents
-
-- [What Incrementalist does](#what-incrementalist-does)
-- [Setup workflow](#setup-workflow)
-  - [Phase 1: Installation](#phase-1-installation)
-  - [Phase 2: Repository analysis](#phase-2-repository-analysis)
-  - [Phase 3: Configuration](#phase-3-configuration)
-  - [Phase 4: Workflow authoring](#phase-4-workflow-authoring)
-  - [Phase 5: Verification](#phase-5-verification)
-  - [Phase 6: Deliverables](#phase-6-deliverables)
-- [Editing existing configs](#editing-existing-configs)
-- [Key awareness](#key-awareness)
-- [Reference material](#reference-material)
-
 ## What Incrementalist does
 
 Incrementalist analyzes git diffs between the current branch and a target branch, maps changed files to affected

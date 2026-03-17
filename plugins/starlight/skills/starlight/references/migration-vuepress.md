@@ -78,22 +78,22 @@ next: Advanced Guide
 
 Full frontmatter conversion table:
 
-| VuePress Frontmatter | Starlight Frontmatter |
-|----------------------|----------------------|
-| `title: 'Page Title'` | `title: 'Page Title'` (same) |
-| `description: '...'` | `description: '...'` (same) |
-| `sidebar: auto` | Not needed — Starlight auto-generates by default |
-| `sidebar: false` | `sidebar: { hidden: true }` |
-| `sidebarDepth: 2` | `tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 3 }` |
-| `meta` | Use `description` directly |
-| `prev: './foo'` | `prev: 'Label'` or `prev: { label: '...', link: '/guide/foo' }` |
-| `next: './bar'` | `next: 'Label'` or `next: { label: '...', link: '/guide/bar' }` |
-| `editLink: false` | `editUrl: false` |
-| `lastUpdated: false` | `lastUpdated: false` |
-| `layout: 'LayoutName'` | `template: 'doc'` or `template: 'splash'` |
-| `home: true` (VuePress 1.x) | Use `template: 'splash'` with `hero` frontmatter |
-| `lang: 'en-US'` | Handled by i18n config, not per-page frontmatter |
-| `navbar: false` | No equivalent |
+| VuePress Frontmatter        | Starlight Frontmatter                                           |
+|-----------------------------|-----------------------------------------------------------------|
+| `title: 'Page Title'`       | `title: 'Page Title'` (same)                                    |
+| `description: '...'`        | `description: '...'` (same)                                     |
+| `sidebar: auto`             | Not needed — Starlight auto-generates by default                |
+| `sidebar: false`            | `sidebar: { hidden: true }`                                     |
+| `sidebarDepth: 2`           | `tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 3 }`   |
+| `meta`                      | Use `description` directly                                      |
+| `prev: './foo'`             | `prev: 'Label'` or `prev: { label: '...', link: '/guide/foo' }` |
+| `next: './bar'`             | `next: 'Label'` or `next: { label: '...', link: '/guide/bar' }` |
+| `editLink: false`           | `editUrl: false`                                                |
+| `lastUpdated: false`        | `lastUpdated: false`                                            |
+| `layout: 'LayoutName'`      | `template: 'doc'` or `template: 'splash'`                       |
+| `home: true` (VuePress 1.x) | Use `template: 'splash'` with `hero` frontmatter                |
+| `lang: 'en-US'`             | Handled by i18n config, not per-page frontmatter                |
+| `navbar: false`             | No equivalent                                                   |
 
 ## Configuration Migration
 
@@ -239,15 +239,15 @@ Common overrides:
 
 ## Plugin Equivalents
 
-| VuePress Plugin | Starlight Equivalent |
-|---|---|
-| `@vuepress/plugin-search` | Built-in (Pagefind) |
-| Algolia DocSearch | Starlight DocSearch plugin |
-| `@vuepress/plugin-back-to-top` | Not built-in (add via custom CSS/component) |
-| `@vuepress/plugin-medium-zoom` | `starlight-image-zoom` community plugin |
-| `vuepress-plugin-mermaid` | Use `rehype-mermaid` integration |
-| `@vuepress/plugin-google-analytics` | Use `head` config to add the GA script |
-| `@vuepress/plugin-pwa` | Use `head` config for manifest + service worker |
+| VuePress Plugin                     | Starlight Equivalent                            |
+|-------------------------------------|-------------------------------------------------|
+| `@vuepress/plugin-search`           | Built-in (Pagefind)                             |
+| Algolia DocSearch                   | Starlight DocSearch plugin                      |
+| `@vuepress/plugin-back-to-top`      | Not built-in (add via custom CSS/component)     |
+| `@vuepress/plugin-medium-zoom`      | `starlight-image-zoom` community plugin         |
+| `vuepress-plugin-mermaid`           | Use `rehype-mermaid` integration                |
+| `@vuepress/plugin-google-analytics` | Use `head` config to add the GA script          |
+| `@vuepress/plugin-pwa`              | Use `head` config for manifest + service worker |
 
 Useful community plugins for migration:
 - `starlight-links-validator` — catch broken internal links at build time

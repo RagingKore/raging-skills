@@ -26,6 +26,8 @@ and productivity.
 
 - [dotnet](plugins/dotnet) - C# 14, logging, configuration, DI, source generators, and telemetry.
 - [dotnet-scripts](plugins/dotnet-scripts) - Write and run single-file C# programs and distributable CLI tools with .NET 10+.
+- [aspire](plugins/aspire) - .NET Aspire cloud-native orchestration with AppHost, service defaults, testing, and deployment.
+- [cliwrap](plugins/cliwrap) - Interact with command-line interfaces in .NET using CliWrap.
 - [bullseye](plugins/bullseye) – Build automation with Bullseye target dependency graphs.
 - [incrementalist](plugins/incrementalist) - Git-based incremental builds and testing for .NET monorepos in GitHub Actions.
 
@@ -51,6 +53,10 @@ and productivity.
 
 - [starlight](plugins/starlight) – Build and deploy static documentation sites with Astro Starlight.
 - [crawl4ai](plugins/crawl4ai) - Web crawling and data extraction toolkit with optimized extraction patterns.
+
+### CI/CD
+
+- [act](plugins/act) - Run and debug GitHub Actions workflows locally with nektos/act.
 
 ### Conventions & Tooling
 

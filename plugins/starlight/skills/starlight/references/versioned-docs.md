@@ -5,13 +5,13 @@ strategies for maintaining versioned documentation, from simple to sophisticated
 
 ## Choosing a Strategy
 
-| Strategy | Best for | Complexity |
-|---|---|---|
-| Single version (latest only) | Most projects, early-stage products | None |
-| Banner with link to old versions | Projects with occasional major releases | Low |
-| Branch-per-version | Projects needing full parallel version docs | Medium |
-| Directory-per-version | All versions in one build | Medium-High |
-| `starlight-versions` plugin | Built-in version switcher UI | Low-Medium |
+| Strategy                         | Best for                                    | Complexity  |
+|----------------------------------|---------------------------------------------|-------------|
+| Single version (latest only)     | Most projects, early-stage products         | None        |
+| Banner with link to old versions | Projects with occasional major releases     | Low         |
+| Branch-per-version               | Projects needing full parallel version docs | Medium      |
+| Directory-per-version            | All versions in one build                   | Medium-High |
+| `starlight-versions` plugin      | Built-in version switcher UI                | Low-Medium  |
 
 **Start with the simplest strategy that works.** Most documentation sites — especially for
 libraries and tools — do fine with just the latest version. Add versioning only when users
@@ -236,13 +236,13 @@ export const collections = {
 
 ### Configuration options
 
-| Option | Type | Description |
-|---|---|---|
-| `versions[].slug` | `string` (required) | Used in URLs — e.g., `1.0`, `2-1-0` |
-| `versions[].label` | `string` | UI display name, defaults to slug |
-| `versions[].redirect` | `'same-page' \| 'root'` | Behavior when switching versions |
-| `current.label` | `string` | Display name for the current/latest version |
-| `current.redirect` | `'same-page' \| 'root'` | Same as above |
+| Option                | Type                    | Description                                 |
+|-----------------------|-------------------------|---------------------------------------------|
+| `versions[].slug`     | `string` (required)     | Used in URLs — e.g., `1.0`, `2-1-0`         |
+| `versions[].label`    | `string`                | UI display name, defaults to slug           |
+| `versions[].redirect` | `'same-page' \| 'root'` | Behavior when switching versions            |
+| `current.label`       | `string`                | Display name for the current/latest version |
+| `current.redirect`    | `'same-page' \| 'root'` | Same as above                               |
 
 ### Pros and cons
 

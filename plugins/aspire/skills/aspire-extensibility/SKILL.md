@@ -57,14 +57,12 @@ Subscribe to AppHost events on the builder:
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-builder.Eventing.Subscribe<BeforeStartEvent>((@event, ct) =>
-{
+builder.Eventing.Subscribe<BeforeStartEvent>((@event, ct) => {
     // Validate configuration, register dynamic resources
     return Task.CompletedTask;
 });
 
-builder.Eventing.Subscribe<AfterResourcesCreatedEvent>((@event, ct) =>
-{
+builder.Eventing.Subscribe<AfterResourcesCreatedEvent>((@event, ct) => {
     // All resources running, perform post-startup actions
     return Task.CompletedTask;
 });
@@ -84,23 +82,19 @@ Use chainable convenience methods for concise resource-level subscriptions:
 
 ```csharp
 var db = builder.AddPostgres("pg")
-    .OnInitializeResource((@event, ct) =>
-    {
+    .OnInitializeResource((@event, ct) => {
         // Custom initialization logic
         return Task.CompletedTask;
     })
-    .OnConnectionStringAvailable((@event, ct) =>
-    {
+    .OnConnectionStringAvailable((@event, ct) => {
         // Connection string resolved, log or validate
         return Task.CompletedTask;
     })
-    .OnBeforeResourceStarted((@event, ct) =>
-    {
+    .OnBeforeResourceStarted((@event, ct) => {
         // Last chance before resource starts
         return Task.CompletedTask;
     })
-    .OnResourceReady((@event, ct) =>
-    {
+    .OnResourceReady((@event, ct) => {
         // Resource is running and healthy
         return Task.CompletedTask;
     });
@@ -111,8 +105,7 @@ Alternatively, subscribe to resource events through the eventing API with a reso
 ```csharp
 builder.Eventing.Subscribe<ResourceReadyEvent>(
     db.Resource,
-    (@event, ct) =>
-    {
+    (evt, ct) => {
         // Fires only for the "pg" resource
         return Task.CompletedTask;
     });
@@ -144,15 +137,13 @@ Define custom events by implementing the appropriate interface:
 
 ```csharp
 // AppHost-level event (not tied to a specific resource)
-public sealed class DatabaseSeededEvent : IDistributedApplicationEvent
-{
+public sealed class DatabaseSeededEvent : IDistributedApplicationEvent {
     public required string DatabaseName { get; init; }
     public required int RecordCount { get; init; }
 }
 
 // Resource-level event (tied to a specific resource)
-public sealed class ResourceMigratedEvent : IDistributedApplicationResourceEvent
-{
+public sealed class ResourceMigratedEvent : IDistributedApplicationResourceEvent {
     public required IResource Resource { get; init; }
     public required string MigrationVersion { get; init; }
 }
@@ -162,8 +153,7 @@ Publish and subscribe to custom events:
 
 ```csharp
 // Subscribe
-builder.Eventing.Subscribe<DatabaseSeededEvent>((@event, ct) =>
-{
+builder.Eventing.Subscribe<DatabaseSeededEvent>((@event, ct) => {
     Console.WriteLine($"Database {event.DatabaseName} seeded with {event.RecordCount} records");
     return Task.CompletedTask;
 });
@@ -179,20 +169,14 @@ await builder.Eventing.PublishAsync(
 Build reusable event subscribers for extension libraries using `IDistributedApplicationEventingSubscriber`:
 
 ```csharp
-public sealed class DatabaseMigrationSubscriber : IDistributedApplicationEventingSubscriber
-{
-    public void Subscribe(
-        IDistributedApplicationEventing eventing,
-        CancellationToken cancellationToken = default)
-    {
-        eventing.Subscribe<BeforeStartEvent>((@event, ct) =>
-        {
+public sealed class DatabaseMigrationSubscriber : IDistributedApplicationEventingSubscriber {
+    public void Subscribe( IDistributedApplicationEventing eventing, CancellationToken cancellationToken = default) {
+        eventing.Subscribe<BeforeStartEvent>((@event, ct) => {
             // Run database migrations before any resource starts
             return Task.CompletedTask;
         });
 
-        eventing.Subscribe<AfterResourcesCreatedEvent>((@event, ct) =>
-        {
+        eventing.Subscribe<AfterResourcesCreatedEvent>((@event, ct) => {
             // Verify migration state after resources are up
             return Task.CompletedTask;
         });
@@ -216,8 +200,7 @@ extension methods:
 
 ```csharp
 // Resource definition
-public sealed class MailDevResource(string name) : ContainerResource(name)
-{
+public sealed class MailDevResource(string name) : ContainerResource(name) {
     // Custom properties for your resource
     public EndpointReference SmtpEndpoint =>
         new(this, "smtp");
@@ -230,8 +213,7 @@ public sealed class MailDevResource(string name) : ContainerResource(name)
 Create builder extension methods for ergonomic AppHost usage:
 
 ```csharp
-public static class MailDevResourceBuilderExtensions
-{
+public static class MailDevResourceBuilderExtensions {
     public static IResourceBuilder<MailDevResource> AddMailDev(
         this IDistributedApplicationBuilder builder,
         string name,
@@ -267,8 +249,7 @@ var api = builder.AddProject<Projects.Api>("api")
 Attach metadata to resources using annotations. Implement `IResourceAnnotation` for custom metadata:
 
 ```csharp
-public sealed class HealthCheckAnnotation(string healthCheckName) : IResourceAnnotation
-{
+public sealed class HealthCheckAnnotation(string healthCheckName) : IResourceAnnotation {
     public string HealthCheckName { get; } = healthCheckName;
 }
 ```
@@ -283,15 +264,12 @@ db.WithAnnotation(new HealthCheckAnnotation("pg-health"));
 Read annotations from resources:
 
 ```csharp
-builder.Eventing.Subscribe<BeforeStartEvent>((@event, ct) =>
-{
+builder.Eventing.Subscribe<BeforeStartEvent>((@event, ct) => {
     var model = @event.Services.GetRequiredService<DistributedApplicationModel>();
 
-    foreach (var resource in model.Resources)
-    {
+    foreach (var resource in model.Resources) {
         var annotations = resource.Annotations.OfType<HealthCheckAnnotation>();
-        foreach (var annotation in annotations)
-        {
+        foreach (var annotation in annotations) {
             // Process health check annotations
         }
     }
@@ -308,8 +286,7 @@ actions directly from the dashboard UI:
 ```csharp
 var db = builder.AddPostgres("pg");
 
-db.WithCommand("seed", "Seed Database", async context =>
-{
+db.WithCommand("seed", "Seed Database", async context => {
     // Execute seeding logic
     // context provides resource information and services
     return CommandResults.Success();

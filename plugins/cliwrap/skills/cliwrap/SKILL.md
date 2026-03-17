@@ -1,5 +1,5 @@
 ---
-name: CliWrap
+name: cliwrap
 description: >-
   This skill should be used when the user asks to "run a CLI command", "execute a process",
   "pipe command output", "use CliWrap", "wrap a command-line tool", "stream process output",
@@ -7,7 +7,6 @@ description: >-
   "run an external tool from C#". Also triggers when code imports `CliWrap`, `CliWrap.Buffered`,
   or `CliWrap.EventStream`, or when the user works with process execution, command piping, or
   async CLI invocation in .NET.
-version: 1.0.0
 ---
 
 # CliWrap
