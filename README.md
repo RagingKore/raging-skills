@@ -1,7 +1,7 @@
 # Raging Skills Marketplace
 
-A curated collection of Claude Code plugins for .NET development, architecture design,
-event sourcing, diagrams, and productivity.
+A curated collection of Claude Code plugins for .NET development, architecture design, event sourcing, diagrams,
+and productivity.
 
 ## Getting Started
 
@@ -72,8 +72,4 @@ provides comprehensive guidance for plugin development.
 
 ## License
 
-MIT License. See LICENSE file for details.
-
-## Maintainer
-
-[Sérgio Silveira](https://github.com/ragingkore)
+MIT License. See [LICENSE](LICENSE) file for details.

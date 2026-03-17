@@ -8,7 +8,9 @@
   },
   "repository": "https://github.com/ragingkore/raging-skills",
   "license": "MIT",
-  "skills": ["skills"],
+  "skills": [
+    "./skills/"
+  ],
   "keywords": [
     "cliwrap",
     "cli",
