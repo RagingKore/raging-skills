@@ -124,7 +124,8 @@ AGENTS.md
 # Conductor
 .conductor
 
-# Temp
+# Project scratch and docs
+.project/
 .scratch/
 .worktrees/
 .tasks/
